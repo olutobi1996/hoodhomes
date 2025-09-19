@@ -1,0 +1,169 @@
+/* Base colors */
+:root {
+    --primary-yellow: #ffcf01;
+    --dark-grey: #545454;
+}
+
+/* Global reset */
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dark-grey);
+    background-color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-yellow);
+}
+
+.logo .hh {
+    font-family: "Times New Roman", serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.logo .hood-homes {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-grey);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: black;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #ffcf01; /* match logo bg */
+    color: #545454;
+    text-align: center;
+    padding: 150px 20px 100px 20px;
+}
+
+.hero-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 4rem; /* really big */
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.hero-cta {
+    background-color: #545454;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-cta:hover {
+    background-color: #333;
+}
+
+/* Properties Grid */
+.properties {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.property-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.property-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.property-info {
+    padding: 20px;
+}
+
+.property-info h3 {
+    margin: 0 0 10px 0;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+}
+
+.property-info p {
+    margin: 5px 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #545454;
+}
+
+.view-details {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffcf01;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.view-details:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: #f9f9f9;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}

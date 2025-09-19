@@ -1,0 +1,15 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<h1>Blog</h1>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a> by {{ post.author }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
