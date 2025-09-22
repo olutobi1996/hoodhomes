@@ -55,7 +55,8 @@ body {
 
 /* Hero Section */
 .hero {
-    background-color: #ffcf01; /* match logo bg */
+    background-color: #ffcf01;
+    /* match logo bg */
     color: #545454;
     text-align: center;
     padding: 150px 20px 100px 20px;
@@ -63,7 +64,8 @@ body {
 
 .hero-title {
     font-family: 'Times New Roman', serif;
-    font-size: 4rem; /* really big */
+    font-size: 4rem;
+    /* really big */
     margin-bottom: 20px;
 }
 
@@ -110,7 +112,7 @@ body {
 
 .property-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .property-card img {
@@ -158,6 +160,216 @@ body {
     }
 }
 
+/* About Section */
+.about-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    margin: 3rem auto;
+    max-width: 800px;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Team Section */
+.team {
+    text-align: center;
+    /* centers everything inside the section */
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.team-photo img {
+    border-radius: 12px;
+    max-width: 250px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.team-info {
+    flex: 1;
+    text-align: center;
+}
+
+.team-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.team-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.team-photo img {
+    border-radius: 12px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.team-info p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.more-team {
+    text-align: center;
+    /* centers the "Learn more" link */
+    margin-top: 1.5rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .team-card {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .team-info {
+        text-align: center;
+    }
+}
+
+/* Services Section */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.service-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.service-box h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.service-box ul {
+    margin-top: 1rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+.service-box li {
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Why Choose Us */
+.why-choose {
+    margin: 4rem auto;
+    text-align: center;
+    max-width: 1100px;
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, max-content));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+    justify-items: center;
+}
+
+.reason-item {
+    max-width: 260px;
+    /* prevents stretching */
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.reason-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.reason-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: var(--primary-color, #f4f4f4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-color, #333);
+}
+
+.reason-item h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    color: #111;
+}
+
+.reason-item p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Reason Icons in Brand Color */
+.reason-icon i {
+    color: var(--primary-yellow);
+    /* brand yellow */
+    font-size: 1.8rem;
+    /* slightly larger for emphasis */
+}
+
+/* Make the last row centered */
+.reasons-grid::after {
+    content: "";
+    flex: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .reasons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-items: center;
+        /* center the last item on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        /* stack on mobile */
+    }
+}
 
 /* Footer */
 footer {

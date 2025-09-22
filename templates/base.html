@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,14 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -23,11 +31,11 @@
                 <span class="hood-homes">Hood Homes</span>
             </div>
             <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'core:home' %}">Home</a></li>
                 <li><a href="{% url 'properties:list' %}">Properties</a></li>
                 <li><a href="{% url 'bookings:create' %}">Book</a></li>
                 <li><a href="{% url 'blog:list' %}">Blog</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'core:contact' %}">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -43,5 +51,15 @@
         <p>&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
     </footer>
 
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: false
+        });
+    </script>
+
 </body>
+
 </html>
