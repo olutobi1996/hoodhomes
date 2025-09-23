@@ -1,6 +1,6 @@
 /* Base colors */
 :root {
-    --primary-yellow: #ffcf01;
+    --primary-yellow: #d4af37;
     --dark-grey: #545454;
 }
 
@@ -14,11 +14,97 @@ body {
 
 /* Navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: transparent;
+    /* ✅ transparent over hero */
     padding: 1rem 2rem;
-    background-color: var(--primary-yellow);
+    z-index: 10;
+    position: absolute;
+    /* ✅ sit on top of hero */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* ✅ align logo + links to left */
+    gap: 4rem;
+    /* ✅ proper space between logo and nav links */
+    padding: 1rem 2rem;
+}
+
+
+.navbar .logo-stack {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.navbar .logo-stack .hh {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #d4af37;
+}
+
+.navbar .logo-stack .hood-homes {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #d4af37;
+}
+
+/* Nav links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #d4af37;
+    text-transform: uppercase;
+    font-weight: 700;
+    /* make bolder */
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* Hover underline effect */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: #d4af37;
+}
+
+/* Shared stacked logo style */
+.logo-stack {
+    display: flex;
+    flex-direction: column;
+    /* stack HH above Homes */
+    align-items: center;
+    /* center align them */
+    line-height: 1.1;
+    /* tighten spacing */
 }
 
 .logo .hh {
@@ -26,58 +112,86 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     margin-right: 8px;
+    color: #d4af37;
 }
 
 .logo .hood-homes {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark-grey);
-    font-weight: 600;
-    transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-    color: black;
+    color: #d4af37;
 }
 
 /* Hero Section */
 .hero {
-    background-color: #ffcf01;
-    /* match logo bg */
-    color: #545454;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 150px 20px 100px 20px;
+    color: #d4af37;
+}
+
+.hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* keeps proportions, fills hero */
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    /* dark overlay for text readability */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* ensures text is above overlay */
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .hero-title {
     font-family: 'Times New Roman', serif;
-    font-size: 4rem;
-    /* really big */
+    font-size: 3.5rem;
     margin-bottom: 20px;
 }
 
+.hero-title.logo-stack .hh {
+    font-size: 4rem;
+    /* big bold HH in hero */
+    color: #d4af37;
+}
+
+.hero-title.logo-stack .hood-homes {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #d4af37;
+}
+
 .hero-subtitle {
-    font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 40px;
 }
 
 .hero-cta {
-    background-color: #545454;
-    color: #fff;
+    background-color: var(--primary-yellow);
+    color: var(--dark-grey);
     padding: 15px 30px;
     text-decoration: none;
     border-radius: 6px;
@@ -86,7 +200,24 @@ body {
 }
 
 .hero-cta:hover {
-    background-color: #333;
+    background-color: #d4af37;
+    color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
 }
 
 /* Properties Grid */
@@ -140,7 +271,7 @@ body {
 .view-details {
     display: inline-block;
     margin-top: 10px;
-    color: #ffcf01;
+    color: #d4af37;
     font-weight: bold;
     text-decoration: none;
 }
@@ -378,4 +509,46 @@ footer {
     background-color: #f9f9f9;
     margin-top: 2rem;
     font-size: 0.9rem;
+}
+
+/* Hide footer by default */
+.hidden-footer {
+    position: relative;
+    /* normal flow */
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.8s ease-in-out, padding 0.8s ease-in-out;
+}
+
+/* When toggled, expand footer */
+.show-footer {
+    max-height: 1000px;
+    /* large enough to fit content */
+    padding: 2rem 0;
+}
+
+/* Talk To Us button styling */
+.talk-to-us-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(45deg, #ffcf01, #ffd700);
+    color: #111;
+    padding: 1rem 1.8rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(255, 223, 0, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+}
+
+.talk-to-us-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 223, 0, 0.9);
 }

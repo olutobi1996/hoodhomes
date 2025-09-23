@@ -6,11 +6,13 @@
 {% block content %}
 
 <!-- Hero Section -->
-<section class="hero" data-aos="fade-up">
+<section class="hero">
+    <img class="hero-image" src="{% static 'images/CambridgeHeader.jpg' %}" alt="Picture of Cambridge Canal">
+    <div class="hero-overlay"></div>
     <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
-        <h1 class="hero-title">
+        <h1 class="hero-title logo-stack">
             <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
-            <span data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
+            <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
         </h1>
         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
             Your Cambridge Property Expert
@@ -20,6 +22,8 @@
         </a>
     </div>
 </section>
+
+
 
 <!-- Properties Section -->
 <section class="properties container" data-aos="fade-up">
@@ -79,7 +83,7 @@
 
     <div class="team-card" data-aos="fade-up" data-aos-delay="200">
         <div class="team-photo">
-            <img src="{% static 'img/team/joeProffesional2.jpg' %}" alt="Joe, Owner of Hood Homes">
+            <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe, Owner of Hood Homes">
         </div>
         <div class="team-info">
             <h3>Joe</h3>
@@ -189,4 +193,5 @@
         </ul>
     </div>
 </section>
+
 {% endblock %}
