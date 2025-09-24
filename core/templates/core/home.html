@@ -23,11 +23,9 @@
     </div>
 </section>
 
-
-
 <!-- Properties Section -->
 <section class="properties container" data-aos="fade-up">
-    <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Available Properties</h2>
+    <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Available Properties</h2>
 
     <div class="property-list property-list--moreBtn flx flx--wr">
         {% for property in properties %}
@@ -67,131 +65,128 @@
     </p>
 </section>
 
-<!-- About Section -->
-<section class="about container" data-aos="fade-up">
-    <div class="about-box" data-aos="fade-up" data-aos-delay="100">
-        <p class="about-text">
-            We are an experienced and multi-award winning Cambridge Estate and Letting Agent who have always called
-            Cambridge home and have a deep understanding of the City and surrounding villages.
-        </p>
-    </div>
-</section>
+<!-- Full Page Background Wrapper -->
+<section class="bg-section">
 
-<!-- Meet the Team -->
-<section class="team container" data-aos="fade-up">
-    <h2 class="section-title">Meet the Owner</h2>
-
-    <div class="team-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="team-photo">
-            <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe, Owner of Hood Homes">
+    <!-- Meet The Owner -->
+    <div class="split-section">
+        <div class="split-text" data-aos="fade-right">
+            <div class="split-text-box">
+                <h2 class="section-heading">Meet the Owner</h2>
+                <p>
+                    I’m a Cambridge local with a lifelong passion for property and hands-on experience across the sector
+                    — from running lettings branches and managing sales to handling property management and development
+                    projects. My background in professional football shaped my work ethic and high standards, which I bring to
+                    every deal. In a fast-changing market, I combine forward-thinking, efficiency, and adaptability to make
+                    every investment, sale, or let as seamless and successful as possible.
+                </p>
+                <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
+            </div>
         </div>
-        <div class="team-info">
-            <h3>Joe</h3>
-            <p>
-                As the founder of Hood Homes, Joe brings a wealth of knowledge of the Cambridge property market,
-                a passion for client care, and a vision for a modern, transparent approach to estate agency.
-                His focus is on creating long-term relationships built on trust, professionalism, and results.
-                Whether you're buying, selling, or letting, Joe ensures every client benefits from personalised advice
-                and a premium level of service.
-            </p>
+        <div class="split-image" data-aos="fade-left">
+            <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe Hood">
         </div>
     </div>
 
-    <p class="more-team" data-aos="fade-up" data-aos-delay="500">
-        <a class="uppercase" href="{% url 'core:about' %}">Learn more about us</a>
-    </p>
-</section>
+    <!-- Why Choose Us -->
+    <!-- Why Choose Us -->
+<div class="why-choose" data-aos="fade-up">
+  <h2 class="section-heading text-center">Why Choose Hood Homes</h2>
 
+  <div class="reasons-grid">
 
-<!-- WHY CHOOSE HOOD HOMES -->
-<section class="why-choose container" data-aos="fade-up">
-    <h2 class="section-title center">Why Choose Hood Homes</h2>
-
-    <div class="reasons-grid">
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="100">
-            <div class="reason-icon">
-                <i class="fa-solid fa-handshake"></i>
-            </div>
-            <h3>Partnership</h3>
-            <p>
-                We’re not about the quick sale or let. We build long-term partnerships,
-                becoming your trusted people for honest property advice.
-            </p>
-        </div>
-
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="200">
-            <div class="reason-icon">
-                <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <h3>Experience</h3>
-            <p>
-                With decades of combined experience, we’ve learnt from successes and failures alike —
-                enabling us to provide the very best advice.
-            </p>
-        </div>
-
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="300">
-            <div class="reason-icon">
-                <i class="fa-solid fa-life-ring"></i>
-            </div>
-            <h3>Safe Hands</h3>
-            <p>
-                Backed by accreditations and industry qualifications,
-                you can trust that your home or investment is always in safe hands.
-            </p>
-        </div>
-
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="400">
-            <div class="reason-icon">
-                <i class="fa-solid fa-cloud-upload"></i>
-            </div>
-            <h3>Tech</h3>
-            <p>
-                We embrace technology to bring transparency and efficiency —
-                supporting, not replacing, our personal service.
-            </p>
-        </div>
-
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
-            <div class="reason-icon">
-                <i class="fa-solid fa-users"></i>
-            </div>
-            <h3>People</h3>
-            <p>
-                At the heart of everything is people.
-                We value trust, respect and relationships as much as results.
-            </p>
-        </div>
+    <!-- Row 1 -->
+    <div class="reason-row">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="100">
+        <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Partnership</h3>
+        <p>We’re not about the quick sale or let...</p>
+      </div>
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="200">
+        <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Experience</h3>
+        <p>With decades of combined experience...</p>
+      </div>
     </div>
+
+    <!-- Row 2 -->
+    <div class="reason-row">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="300">
+        <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
+        <h3>Safe Hands</h3>
+        <p>Backed by accreditations...</p>
+      </div>
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="400">
+        <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
+        <h3>Tech</h3>
+        <p>We embrace technology...</p>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="reason-row">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
+        <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>People</h3>
+        <p>At the heart of everything...</p>
+      </div>
+    </div>
+
+  </div>
+</div>
 </section>
 
 <!-- Services Section -->
-<section class="services container" data-aos="fade-up">
-    <div class="service-box" data-aos="fade-up" data-aos-delay="100">
-        <h3>Our Sales Service</h3>
-        <p>
-            What we do is simple. How we do it isn't. It's an intricately considered, meticulously developed process,
-            formed over our 50+ years combined experience in the local property market.
-        </p>
-        <ul>
-            <li>→ Carefully crafted, well-written property particulars highlighting what really matters.</li>
-            <li>→ Beautiful photographs taken by professional photographers.</li>
-            <li>→ Detailed floor and title plans to show layout and orientation clearly.</li>
-        </ul>
+<section class="split-section">
+  <div class="split-text" data-aos="fade-left">
+    <div class="split-text-box">
+      <h2 class="section-heading">Property Lettings & Management</h2>
+      <p>
+        We handle the entire lettings process — from marketing and tenant sourcing to rent collection,
+        maintenance, compliance checks, and inspections. With the Renters Reform Bill ahead, landlords
+        need an agent who keeps them compliant while protecting their interests. We take away the stress
+        so you can focus on returns.
+      </p>
     </div>
-
-    <div class="service-box" data-aos="fade-up" data-aos-delay="200">
-        <h3>Our Lettings Service</h3>
-        <p>
-            We provide personal, individually tailored lettings services to landlords of quality properties
-            and tenants seeking exceptional homes.
-        </p>
-        <ul>
-            <li>→ Transparent, fair fee structure — no hidden charges.</li>
-            <li>→ Marketing and presentation with the same care as our sales properties.</li>
-            <li>→ A balanced approach that serves both landlord and tenant interests.</li>
-        </ul>
-    </div>
+  </div>
+  <div class="split-image" data-aos="fade-right">
+    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Lettings Service">
+  </div>
 </section>
 
+<section class="split-section">
+  <div class="split-text" data-aos="fade-right">
+    <div class="split-text-box">
+      <h2 class="section-heading">Property Sales</h2>
+      <p>
+        We don’t just “list and wait.” Our tailored strategies combine professional marketing,
+        wide online exposure, and strong negotiation to secure the best price in the shortest time.
+        Every property is unique, so we adapt our approach to highlight its strengths and keep you informed
+        from first viewing to completion.
+      </p>
+    </div>
+  </div>
+  <div class="split-image" data-aos="fade-left">
+    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Sales Service">
+  </div>
+</section>
+
+<section class="split-section">
+  <div class="split-text" data-aos="fade-left">
+    <div class="split-text-box">
+      <h2 class="section-heading">Property Investment</h2>
+      <p>
+        From sourcing high-potential opportunities to managing refurbishments, we guide you through
+        the entire investment process. Our trusted contractors ensure quality, speed, and value —
+        whether you’re growing a portfolio or maximising a single property, we make investing seamless
+        and profitable.
+      </p>
+    </div>
+  </div>
+  <div class="split-image" data-aos="fade-right">
+    <img src="{% static 'images/CambridgeHeader.jpg' %}" alt="Investment Service">
+  </div>
+</section>
+
+</div>
 {% endblock %}

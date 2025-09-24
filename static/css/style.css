@@ -4,12 +4,136 @@
     --dark-grey: #545454;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Global reset */
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     color: var(--dark-grey);
     background-color: #fff;
+}
+
+/* Consistent Headings with Gold Underline */
+/* Headings */
+.section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.3rem;
+    display: block;
+    /* instead of inline-block */
+    text-align: left;
+    /* so it's aligned with the paragraph */
+}
+
+.subheading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.subheading::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin-left: 0;
+    background: var(--primary-yellow);
+    margin-top: 0.4rem;
+    border-radius: 2px;
+}
+
+/* Shared background for sections */
+.with-bg {
+    background: url("{% static 'images/Cambridge1.jpg' %}") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem;
+}
+
+.with-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    /* white overlay for readability */
+    z-index: -1;
+}
+
+/* Fancy Section Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2,
+.section-title,
+.section-heading {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+/* Gold underline effect */
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+.section-title::after,
+.section-heading::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--primary-yellow);
+    margin: 0.5rem auto 0 auto;
+    border-radius: 2px;
+}
+
+/* Paragraphs and content text */
+p,
+li {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding-left: 1.2rem;
 }
 
 /* Navbar */
@@ -280,7 +404,156 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive adjustments */
+/* ---------------- Full-Page Background ---------------- */
+.bg-section {
+    background: url("/static/images/Cambridge1.jpg") no-repeat center center/cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* fixed parallax effect */
+    padding: 6rem 2rem;
+    position: relative;
+    color: #000;
+}
+
+/* Optional overlay for readability */
+.bg-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 0;
+}
+
+/* Make content above overlay */
+.bg-section .split-section,
+.bg-section .why-choose {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------------- Split Section Base ---------------- */
+/* Split Section Layout */
+/* ---------------- Split Section Base ---------------- */
+.split-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5rem auto;         /* ✅ centers it on the page */
+  gap: 3rem;
+  max-width: 1100px;         /* ✅ keeps width consistent */
+  padding: 0 1rem;           /* ✅ little breathing room left/right */
+  box-sizing: border-box;
+}
+
+/* Split Text */
+.split-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Meet the Owner Image */
+/* Image sizing */
+.split-image img {
+  width: 100%;
+  max-width: 500px;   /* ✅ larger image */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+/* Meet the Owner Box */
+/* Text box */
+.split-text-box {
+  max-width: 550px;
+  background: rgba(255,255,255,0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.3);
+}
+
+/* Headings & text */
+.split-text-box .section-heading {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-grey);
+}
+
+.split-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* CTA button */
+.split-text .cta-button {
+    background: var(--primary-yellow);
+    color: #111;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.split-text .cta-button:hover {
+    background: #b38f2a;
+    color: #fff;
+}
+/* Zig-zag layout */
+.split-section:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .split-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .split-text-box {
+    max-width: 100%;
+  }
+  .split-image img {
+    max-width: 100%;
+  }
+}
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+    .split-section {
+        grid-template-columns: 1fr;
+    }
+    .split-text, .split-image {
+        order: unset;
+        width: 100%;
+        height: auto;
+    }
+    .split-text-box {
+        height: auto;
+    }
+}
+
+/* ---------------- Responsive Adjustments ---------------- */
+@media (max-width: 1024px) {
+    .split-section.with-bg {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+
+    .split-image img {
+        max-width: 100%;
+        margin: 0 auto;
+        max-height: 350px;
+    }
+
+    .split-text, 
+    .split-text-box {
+        max-width: 90%;
+        margin: 0 auto 2rem auto;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-title {
         font-size: 3rem;
@@ -290,217 +563,101 @@ body {
         font-size: 1.2rem;
     }
 }
-
-/* About Section */
-.about-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    margin: 3rem auto;
-    max-width: 800px;
-}
-
-.about-text {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Team Section */
-.team {
-    text-align: center;
-    /* centers everything inside the section */
-}
-
-.team-member {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-.team-photo img {
-    border-radius: 12px;
-    max-width: 250px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.team-info {
-    flex: 1;
-    text-align: center;
-}
-
-.team-info h3 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.team-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 2rem auto;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-.team-photo img {
-    border-radius: 12px;
-    max-width: 250px;
-    width: 100%;
-}
-
-.team-info p {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
-}
-
-.more-team {
-    text-align: center;
-    /* centers the "Learn more" link */
-    margin-top: 1.5rem;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .team-card {
-        flex-direction: column;
-        padding: 1.5rem;
-    }
-
-    .team-info {
-        text-align: center;
-    }
-}
-
-/* Services Section */
-.services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.service-box {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.service-box h3 {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-}
-
-.service-box ul {
-    margin-top: 1rem;
-    padding-left: 0;
-    list-style: none;
-}
-
-.service-box li {
-    margin-bottom: 0.5rem;
-    color: #444;
-}
-
-/* Why Choose Us */
+/* Why Choose Us wrapper */
 .why-choose {
-    margin: 4rem auto;
-    text-align: center;
-    max-width: 1100px;
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  text-align: center;
 }
 
+/* Grid container = vertical stack of rows */
 .reasons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, max-content));
-    gap: 2rem;
-    margin-top: 2.5rem;
-    justify-content: center;
-    justify-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; /* space between rows */
+  align-items: center;
 }
 
+/* Each row = horizontal flexbox */
+.reason-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  position: relative;
+}
+
+/* Box styling */
 .reason-item {
-    max-width: 260px;
-    /* prevents stretching */
-    background: #fff;
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  background-color: rgba(255,255,255,0.95);
+  padding: 1.5rem 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(212,175,55,0.6);
+  text-align: center;
+  width: 220px;
+  transition: transform 0.3s ease;
 }
-
 
 .reason-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
 }
 
+/* Horizontal arrows (between boxes in same row) */
+.reason-row .reason-item:not(:last-child)::after {
+  content: "➔";
+  position: absolute;
+  right: -1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: var(--primary-yellow);
+}
+
+/* Vertical arrows (between rows) */
+.reason-row::after {
+  content: "↓";
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--primary-yellow);
+}
+
+/* Remove arrow on last row */
+.reason-row:last-child::after {
+  display: none;
+}
+
+/* Icons */
 .reason-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    background: var(--primary-color, #f4f4f4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--accent-color, #333);
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--primary-color, #f4f4f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
 }
 
-.reason-item h3 {
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-    color: #111;
-}
-
-.reason-item p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-}
-
-/* Reason Icons in Brand Color */
 .reason-icon i {
-    color: var(--primary-yellow);
-    /* brand yellow */
-    font-size: 1.8rem;
-    /* slightly larger for emphasis */
+  color: var(--primary-yellow);
+  font-size: 1.8rem;
 }
 
-/* Make the last row centered */
-.reasons-grid::after {
-    content: "";
-    flex: auto;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .reasons-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        justify-items: center;
-        /* center the last item on smaller screens */
-    }
-}
-
+/* Responsive: stack on mobile */
 @media (max-width: 768px) {
-    .reasons-grid {
-        grid-template-columns: 1fr;
-        /* stack on mobile */
-    }
+  .reason-row {
+    flex-direction: column;
+  }
+  .reason-row .reason-item:not(:last-child)::after {
+    display: none; /* remove horizontal arrows */
+  }
 }
+
 
 /* Footer */
 footer {
