@@ -7,119 +7,118 @@
 
 <!-- Hero Section -->
 <section class="hero">
-    <img class="hero-image" src="{% static 'images/CambridgeHeader.jpg' %}" alt="Picture of Cambridge Canal">
-    <div class="hero-overlay"></div>
-    <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
-        <h1 class="hero-title logo-stack">
-            <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
-            <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
-        </h1>
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-            Your Cambridge Property Expert
-        </p>
-        <a href="{% url 'bookings:create' %}" class="hero-cta" data-aos="zoom-in" data-aos-delay="500">
-            Book a Valuation
-        </a>
-    </div>
+  <img class="hero-image" src="{% static 'images/CambridgeHeader.jpg' %}" alt="Picture of Cambridge Canal">
+  <div class="hero-overlay"></div>
+  <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
+    <h1 class="hero-title logo-stack">
+      <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
+      <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
+    </h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+      Your Cambridge Property Expert
+    </p>
+    <a href="{% url 'bookings:create' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
+      Book a Valuation
+    </a>
+  </div>
 </section>
 
 <!-- Properties Section -->
 <section class="properties container" data-aos="fade-up">
-    <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Available Properties</h2>
+  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Available Properties</h2>
 
-    <div class="property-list property-list--moreBtn flx flx--wr">
-        {% for property in properties %}
-        <a class="property-card" href="{% url 'properties:detail' property.pk %}" data-aos="fade-up"
-            data-aos-delay="{{ forloop.counter0|add:1 }}00">
-            <div class="pc-image">
-                {% if property.image %}
-                <img class="ofi ofi--abs" src="{{ property.image.url }}" alt="{{ property.title }}">
-                {% else %}
-                <img class="ofi ofi--abs" src="{% static 'img/placeholder.jpg' %}" alt="No image">
-                {% endif %}
-                <div class="overlay"></div>
-            </div>
-            <div class="pc-info">
-                <div class="pc-bedsPrice flx flx--jc--btw">
-                    <div class="pc-beds">
-                        {{ property.bedrooms }} Bedrooms
-                    </div>
-                    <div class="pc-price">
-                        <span>£{{ property.price|floatformat:0 }}</span>
-                    </div>
-                </div>
-                <h4 class="pc-address">{{ property.address|linebreaksbr }}</h4>
-                <div class="pc-size">
-                    {{ property.size }} sqm / {{ property.size_sqft }} sqft
-                </div>
-            </div>
-        </a>
-        {% empty %}
-        <p data-aos="fade-up">No properties available at the moment.</p>
-        {% endfor %}
-    </div>
+  <div class="property-list property-list--moreBtn flx flx--wr">
+    {% for property in properties %}
+    <a class="property-card" href="{% url 'properties:detail' property.pk %}" data-aos="fade-up"
+      data-aos-delay="{{ forloop.counter0|add:1 }}00">
+      <div class="pc-image">
+        {% if property.image %}
+        <img class="ofi ofi--abs" src="{{ property.image.url }}" alt="{{ property.title }}">
+        {% else %}
+        <img class="ofi ofi--abs" src="{% static 'img/placeholder.jpg' %}" alt="No image">
+        {% endif %}
+        <div class="overlay"></div>
+      </div>
+      <div class="pc-info">
+        <div class="pc-bedsPrice flx flx--jc--btw">
+          <div class="pc-beds">
+            {{ property.bedrooms }} Bedrooms
+          </div>
+          <div class="pc-price">
+            <span>£{{ property.price|floatformat:0 }}</span>
+          </div>
+        </div>
+        <h4 class="pc-address">{{ property.address|linebreaksbr }}</h4>
+        <div class="pc-size">
+          {{ property.size }} sqm / {{ property.size_sqft }} sqft
+        </div>
+      </div>
+    </a>
+    {% empty %}
+    <p data-aos="fade-up">No properties available at the moment.</p>
+    {% endfor %}
+  </div>
 
 
-    <p class="more-properties textCenter" data-aos="fade-up" data-aos-delay="200">
-        <a class="uppercase" href="{% url 'properties:list' %}">See more homes</a>
-    </p>
+  <p class="more-properties textCenter" data-aos="fade-up" data-aos-delay="200">
+    <a class="uppercase" href="{% url 'properties:list' %}">See more homes</a>
+  </p>
 </section>
 
 <!-- Full Page Background Wrapper -->
 <section class="bg-section">
 
-    <!-- Meet The Owner -->
-    <div class="split-section">
-        <div class="split-text" data-aos="fade-right">
-            <div class="split-text-box">
-                <h2 class="section-heading">Meet the Owner</h2>
-                <p>
-                    I’m a Cambridge local with a lifelong passion for property and hands-on experience across the sector
-                    — from running lettings branches and managing sales to handling property management and development
-                    projects. My background in professional football shaped my work ethic and high standards, which I bring to
-                    every deal. In a fast-changing market, I combine forward-thinking, efficiency, and adaptability to make
-                    every investment, sale, or let as seamless and successful as possible.
-                </p>
-                <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
-            </div>
-        </div>
-        <div class="split-image" data-aos="fade-left">
-            <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe Hood">
-        </div>
+  <!-- Meet The Owner -->
+  <div class="split-section">
+    <div class="split-text" data-aos="fade-right">
+      <div class="split-text-box">
+        <h2 class="section-heading">Meet the Owner</h2>
+        <p>
+          I’m a Cambridge local with a lifelong passion for property and hands-on experience across the sector
+          — from running lettings branches and managing sales to handling property management and development
+          projects. My background in professional football shaped my work ethic and high standards, which I bring to
+          every deal. In a fast-changing market, I combine forward-thinking, efficiency, and adaptability to make
+          every investment, sale, or let as seamless and successful as possible.
+        </p>
+        <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
+      </div>
     </div>
+    <div class="split-image" data-aos="fade-left">
+      <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe Hood">
+    </div>
+  </div>
 
-    <!-- Why Choose Us -->
-    <!-- Why Choose Us -->
-<div class="why-choose" data-aos="fade-up">
+  <!-- Why Choose Us -->
+  <div class="why-choose" data-aos="fade-up">
   <h2 class="section-heading text-center">Why Choose Hood Homes</h2>
 
   <div class="reasons-grid">
 
     <!-- Row 1 -->
     <div class="reason-row">
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="100">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="100" data-arrow="right-down">
         <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
         <h3>Partnership</h3>
-        <p>We’re not about the quick sale or let...</p>
+        <p>We build strong relationships and guide you through every step, your success is ours.</p>
       </div>
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="200">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="200" data-arrow="down-left">
         <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
         <h3>Experience</h3>
-        <p>With decades of combined experience...</p>
+        <p>Years of sales, lettings, and management expertise you can trust.</p>
       </div>
     </div>
 
     <!-- Row 2 -->
     <div class="reason-row">
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="300">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="300" data-arrow="right-down">
         <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
         <h3>Safe Hands</h3>
-        <p>Backed by accreditations...</p>
+        <p>Fully accredited and compliant, protecting your property and interests.</p>
       </div>
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="400">
+      <div class="reason-item" data-aos="zoom-in" data-aos-delay="400" data-arrow="down">
         <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
         <h3>Tech</h3>
-        <p>We embrace technology...</p>
+        <p>Modern tools like digital marketing and online booking keep things simple.</p>
       </div>
     </div>
 
@@ -128,7 +127,7 @@
       <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
         <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
         <h3>People</h3>
-        <p>At the heart of everything...</p>
+        <p>We listen, care, and deliver a personal service tailored to your needs.</p>
       </div>
     </div>
 

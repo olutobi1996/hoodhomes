@@ -47,39 +47,37 @@
         {% endblock %}
     </main>
 
-    <!-- Toggle Button (fixed at bottom-right corner) -->
+    <!-- Talk To Us Button -->
     <button id="talk-to-us-btn" class="talk-to-us-btn">
         <i class="fas fa-comments"></i> Talk To Us
     </button>
 
-
     <!-- Footer -->
     <footer id="main-footer" class="footer premium-footer hidden-footer">
+
+        <!-- Inner Content Box -->
         <div class="footer-glow-box">
             <div class="footer-container container">
-                <!-- Company Info -->
+
+                <!-- Left: Company Info -->
                 <div class="footer-info">
                     <h3>Talk To Us</h3>
                     <p>We’d love to hear from you. Reach out for property advice, valuations, or enquiries.</p>
 
                     <h4>Our Office</h4>
-                    <p>
-                        <span class="icon gold-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        21 Wellington Square, Ayr
+                    <p><span class="icon gold-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        5 Valiant Lane, Cambridge, CB5 8XB</p>
+
+                    <p><span class="icon gold-icon"><i class="fas fa-phone-alt"></i></span>
+                        <strong>Call us:</strong> <a href="tel:07841519614">07841519614</a>
                     </p>
-                    <p>
-                        <span class="icon"><i class="fas fa-phone-alt"></i></span>
-                        <strong>Call us:</strong>
-                        <a href="tel:01292 737001">01292 737001</a>
-                    </p>
-                    <p>
-                        <span class="icon"><i class="fas fa-envelope"></i></span>
-                        <strong>Email:</strong>
-                        <a href="mailto:enquiries@formaspace.co.uk">enquiries@formaspace.co.uk</a>
+
+                    <p><span class="icon gold-icon"><i class="fas fa-envelope"></i></span>
+                        <strong>Email:</strong> <a href="mailto:Office@hoodhomes.co.uk">Office@hoodhomes.co.uk</a>
                     </p>
                 </div>
 
-                <!-- Contact Form -->
+                <!-- Right: Contact Form -->
                 <div class="footer-form">
                     <h4>Send us a message</h4>
                     <div class="form-card">
@@ -88,14 +86,28 @@
                             <input type="text" name="name" placeholder="Name" required>
                             <input type="tel" name="phone" placeholder="Phone">
                             <input type="email" name="email" placeholder="Email Address" required>
-                            <textarea name="message" placeholder="Message" rows="4" required></textarea>
+                            <textarea name="message" placeholder="Message" rows="3" required></textarea>
                             <button type="submit" class="cta-button">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <p>&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+
+        <!-- Partner Logos (full width row) -->
+        <div class="footer-partner-logos">
+            <ul class="partner-logos">
+                <li style="background-image:url('https://wdcdn.co/.../Zoopla.png?v=2022');"></li>
+                <li style="background-image:url('https://wdcdn.co/.../Rightmove.png');"></li>
+                <li style="background-image:url('https://wdcdn.co/.../Ombudsman.png');"></li>
+                <li style="background-image:url('https://wdcdn.co/.../TSI.png');"></li>
+                <li style="background-image:url('https://wdcdn.co/.../ARLA.png');"></li>
+                <li style="background-image:url('https://wdcdn.co/.../TDS.png');"></li>
+            </ul>
+        </div>
+
+        <!-- Bottom copyright -->
+        <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
     </footer>
 
     <!-- AOS JS -->
@@ -108,21 +120,19 @@
     </script>
 
     <script>
-        document.getElementById("talk-to-us-btn").addEventListener("click", () => {
+        document.addEventListener("DOMContentLoaded", function () {
+            const talkBtn = document.getElementById("talk-to-us-btn");
             const footer = document.getElementById("main-footer");
 
-            // Scroll to bottom
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: "smooth"
-            });
-
-            // Expand footer after scroll delay (optional: 800ms)
-            setTimeout(() => {
+            talkBtn.addEventListener("click", () => {
                 footer.classList.add("show-footer");
-            }, 800);
-        });
 
+                // Use setTimeout to ensure expand happens before scroll
+                setTimeout(() => {
+                    footer.scrollIntoView({ behavior: "smooth", block: "end" });
+                }, 300);
+            });
+        });
     </script>
 
 </body>
