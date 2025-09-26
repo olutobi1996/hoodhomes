@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +27,9 @@ SECRET_KEY = 'django-insecure-gyotq3y7m6nclg3k_vv)q)ud=8_veck+l-2jm68t95i&7c=y9^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
+
 
 
 # Application definition
@@ -53,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -79,12 +84,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
 
 
 # Password validation
@@ -120,8 +129,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # local dev
+STATIC_ROOT = BASE_DIR / "staticfiles"    # for collectstatic
 
 # Media files (for property photos later)
 MEDIA_URL = '/media/'
@@ -133,3 +143,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Security
+SECURE_HSTS_SECONDS = 31536000
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
