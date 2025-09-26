@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-gyotq3y7m6nclg3k_vv)q)ud=8_veck+l-2jm68t95i&7c=y9^'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 
 ALLOWED_HOSTS = ['.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
