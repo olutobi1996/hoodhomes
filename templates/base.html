@@ -33,6 +33,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="{% url 'core:home' %}">Home</a></li>
+                <li><a href="{% url 'core:about' %}">About</a></li>
                 <li><a href="{% url 'properties:list' %}">Properties</a></li>
                 <li><a href="{% url 'bookings:create' %}">Book</a></li>
                 <li><a href="{% url 'blog:list' %}">Blog</a></li>
@@ -94,20 +95,25 @@
             </div>
         </div>
 
-        <!-- Partner Logos (full width row) -->
-        <div class="footer-partner-logos">
+        <!-- Bottom bar -->
+        <div class="footer-bottom-bar">
             <ul class="partner-logos">
-                <li style="background-image:url('https://wdcdn.co/.../Zoopla.png?v=2022');"></li>
-                <li style="background-image:url('https://wdcdn.co/.../Rightmove.png');"></li>
-                <li style="background-image:url('https://wdcdn.co/.../Ombudsman.png');"></li>
-                <li style="background-image:url('https://wdcdn.co/.../TSI.png');"></li>
-                <li style="background-image:url('https://wdcdn.co/.../ARLA.png');"></li>
-                <li style="background-image:url('https://wdcdn.co/.../TDS.png');"></li>
+                <li><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Zoopla_logo_2018.svg" alt="Zoopla">
+                </li>
+                <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Rightmove_logo.svg" alt="Rightmove">
+                </li>
+                <li><img src="https://upload.wikimedia.org/wikipedia/en/9/94/The_Property_Ombudsman_logo.png"
+                        alt="Ombudsman"></li>
+                <li><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/24/Chartered_Trading_Standards_Institute_logo.png/320px-Chartered_Trading_Standards_Institute_logo.png"
+                        alt="TSI"></li>
+                <li><img src="https://www.arla.co.uk/media/10447/arla-propertymark-logo.png" alt="ARLA"></li>
+                <li><img src="https://www.tenancydepositscheme.com/wp-content/uploads/2021/04/tds-logo.png" alt="TDS">
+                </li>
             </ul>
+            <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved. | Privacy Policy | Terms
+                of Service | Complaints Procedure |</p>
         </div>
 
-        <!-- Bottom copyright -->
-        <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
     </footer>
 
     <!-- AOS JS -->
@@ -120,20 +126,34 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const talkBtn = document.getElementById("talk-to-us-btn");
-            const footer = document.getElementById("main-footer");
+        function initMap() {
+    const options = {
+        zoom: 16,
+        center: { lat: 52.203123, lng: 0.155526 },
+        disableDefaultUI: true,
+        styles: [
+            { featureType: 'all', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+            { featureType: 'all', elementType: 'geometry', stylers: [{ color: '#ffffff00' }] }, // transparent
+            { featureType: 'road', elementType: 'geometry', stylers: [{ visibility: 'off' }] },
+            { featureType: 'poi', elementType: 'geometry', stylers: [{ visibility: 'off' }] },
+            { featureType: 'water', elementType: 'geometry', stylers: [{ visibility: 'off' }] },
+            { featureType: 'transit', elementType: 'geometry', stylers: [{ visibility: 'off' }] }
+        ]
+    };
 
-            talkBtn.addEventListener("click", () => {
-                footer.classList.add("show-footer");
+    const map = new google.maps.Map(document.getElementById('custom-map'), options);
 
-                // Use setTimeout to ensure expand happens before scroll
-                setTimeout(() => {
-                    footer.scrollIntoView({ behavior: "smooth", block: "end" });
-                }, 300);
-            });
-        });
+    new google.maps.Marker({
+        position: { lat: 52.203123, lng: 0.155526 },
+        map: map,
+        title: "Hood Homes Office"
+    });
+}
+
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
 
 </body>
 

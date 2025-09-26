@@ -424,6 +424,64 @@ ul {
     text-decoration: underline;
 }
 
+/* ---------------- About Page ---------------- */
+/* Only affects About page boxes */
+.about-page .footer-glow-box,
+.about-page .split-text-box {
+    box-shadow: none;
+    /* remove any glow/shadow */
+    background: transparent;
+    /* keep it clean on top of background image */
+}
+
+.bg-section-2 {
+    background: url("/static/images/Cambridge2.jpg") no-repeat center center/cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* fixed parallax effect */
+    padding: 6rem 2rem;
+    position: relative;
+    color: #000;
+}
+
+.bg-section-2>.container {
+    position: relative;
+    z-index: 1;
+    /* make sure content sits above overlay */
+}
+
+.locations-map {
+    background: none;
+    /* no background */
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #000;
+}
+
+.locations-map .map-info {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #000;
+    margin-top: 1rem;
+}
+
+/* Wrapper around iframe for smaller width & glow effect */
+.locations-map .map-wrapper {
+    width: 100%;
+    max-width: 800px;
+    /* smaller than full width */
+    margin: 2rem auto 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+
+    /* Gold glow */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
 /* ---------------- Full-Page Background ---------------- */
 .bg-section {
     background: url("/static/images/Cambridge1.jpg") no-repeat center center/cover;
@@ -741,107 +799,92 @@ ul {
 }
 
 /* Footer */
-/* Footer Wrapper */
 footer.premium-footer {
     background: url("/static/images/Cambridge2.jpg") no-repeat center center;
     background-size: cover;
-    color: #111;
+    color: #fff;
+    /* make text readable */
     font-family: 'Inter', sans-serif;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 0;
     position: relative;
     overflow: hidden;
     width: 100%;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
     border-radius: 12px;
     z-index: 999;
-    /* ensures it’s above page content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
 }
 
 /* Glow Box */
-/* Content glow box (smaller & centered) */
 .footer-glow-box {
-    background: rgba(255, 255, 255, 0.9);
-    max-width: 900px;
-    /* smaller than before */
+    max-width: 1000px;
     margin: 2rem auto;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+    padding: 1.5rem;
     display: flex;
-    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
     flex-wrap: wrap;
-    justify-content: space-between;
+    text-align: center;
 }
 
-/* Columns */
+/* Info + Form blocks aligned centrally */
 .footer-info,
 .footer-form {
-    flex: 1 1 300px;
-    min-width: 250px;
+    flex: 1;
+    max-width: 400px;
+    text-align: center;
 }
 
-/* Headings */
-.footer-info h3,
-.footer-info h4,
-.footer-form h4 {
+/* Info styling */
+.footer-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
     color: var(--primary-yellow);
+}
+
+.footer-info h4 {
+    font-size: 1.3rem;
+    margin: 1rem 0 0.5rem;
+    color: var(--primary-yellow);
+}
+
+.footer-info p {
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 0.8rem;
 }
 
-/* Paragraphs */
-.footer-info p {
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-    font-size: 0.9rem;
-}
-
-.footer-info a {
-    color: var(--primary-yellow);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer-info a:hover {
-    color: #111;
-}
-
-/* Icons */
-.icon {
-    margin-right: 0.4rem;
-}
-
-.gold-icon i {
-    color: var(--primary-yellow);
-}
-
 /* Form */
+.footer-form h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--primary-yellow);
+}
+
 .form-card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 0.8rem;
     margin-bottom: 0.8rem;
     border-radius: 6px;
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    background: #fff;
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    background: rgba(255, 255, 255, 0.85);
     color: #111;
     font-size: 0.9rem;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: var(--primary-yellow);
-    outline: none;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-}
-
-/* Submit Button */
+/* Button */
 .cta-button {
     background: var(--primary-yellow);
     color: #111;
@@ -854,43 +897,93 @@ footer.premium-footer {
 }
 
 .cta-button:hover {
-    background: #fff;
+    background: #111;
     color: var(--primary-yellow);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
 }
 
-/* Partner logos full width row */
-.footer-partner-logos {
+/* Bottom bar (logos + copyright) */
+.footer-bottom-bar {
     width: 100%;
-    padding: 1.5rem 0;
-    background: rgba(0, 0, 0, 0.4);
-    /* optional overlay strip */
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: auto;
 }
 
 .partner-logos {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
+    flex-wrap: wrap;
     padding: 0;
-    margin: 0;
+    margin: 1rem 0;
 }
 
 .partner-logos li {
-    width: 100px;
-    height: 45px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: auto;
+    height: auto;
+    background: none;
+    /* don't force background */
 }
 
-/* Bottom copyright */
+.partner-logos li img {
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.footer-glow-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    /* adjust alpha for darkness you want */
+    border-radius: 12px;
+    /* match .footer-glow-box rounding if needed */
+    z-index: -1;
+}
+
 .footer-bottom {
-    text-align: center;
     color: #fff;
-    font-size: 0.85rem;
-    margin: 1rem 0;
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-glow-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+}
+
+/* Icons */
+.icon {
+    margin-right: 0.4rem;
+}
+
+.gold-icon i {
+    color: var(--primary-yellow);
 }
 
 /* Responsive */
