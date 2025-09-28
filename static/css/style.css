@@ -31,23 +31,26 @@ body {
 
 
 /* Consistent Headings with Gold Underline */
-/* Headings */
 .section-heading {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 2.75rem;
     font-weight: 700;
     color: #000;
-    margin-bottom: 0.3rem;
-    display: block;
-    /* instead of inline-block */
-    text-align: left;
-    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+    cursor: default;
 }
 
 .section-heading:hover {
-   color: #ffd700; /* strong gold */
-    text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 15px #ffd700;
+    color: #ffd700; /* strong gold */
+    text-shadow: 
+        0 0 2px #ffd700,
+        0 0 5px #ffd700,
+        0 0 10px #ffd700,
+        0 0 15px #ffd700; /* strong flash effect */
 }
+
 
 @keyframes shine {
   to { background-position: 200% center; }
@@ -446,6 +449,7 @@ ul {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
+    perspective: 1000px; /* ensures tilt works */
 }
 
 .gallery-grid img {
@@ -915,12 +919,16 @@ footer.premium-footer {
 .footer-info h3 {
     font-size: 2rem;
     font-weight: 700;
+    color: #000 !important;
+    font-family: 'DM Serif Display', serif;
     margin-bottom: 0.5rem;
     color: var(--primary-yellow);
 }
 
 .footer-info h4 {
     font-size: 1.3rem;
+    color: #000 !important;
+    font-family: 'DM Serif Display', serif;
     margin: 1rem 0 0.5rem;
     color: var(--primary-yellow);
 }
@@ -933,6 +941,8 @@ footer.premium-footer {
 
 /* Form */
 .footer-form h4 {
+    color: #000 !important;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
     color: var(--primary-yellow);
@@ -1022,6 +1032,23 @@ footer.premium-footer {
     border-radius: 12px;
     /* match .footer-glow-box rounding if needed */
     z-index: -1;
+}
+.footer-info h3,
+.footer-info h4,
+.footer-form h4 {
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.footer-info h3:hover,
+.footer-info h4:hover,
+.footer-form h4:hover {
+    color: #ffd700;
+    text-shadow: 
+        0 0 2px #ffd700,
+        0 0 5px #ffd700,
+        0 0 10px #ffd700,
+        0 0 15px #ffd700;
 }
 
 .footer-bottom {
