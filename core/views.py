@@ -2,8 +2,10 @@ from django.shortcuts import render
 from properties.models import Property
 
 def home(request):
-    properties = Property.objects.filter(available=True)[:6]  # latest 6 properties
-    return render(request, 'core/home.html', {'properties': properties})
+    featured_images = range(1, 11)  # Creates [1, 2, 3, ... 10]
+    return render(request, "core/home.html", {
+        "featured_images": featured_images
+    })
 
 
 def contact(request):

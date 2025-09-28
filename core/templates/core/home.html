@@ -31,11 +31,12 @@
   <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Featured Homes</h2>
 
   <div class="gallery-grid">
-    {% for i in "12345678910"|split:" " %}
-    <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" class="gallery-img"
-      data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+    {% for i in featured_images %}
+    <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" data-aos="zoom-in"
+      data-aos-delay="{{ forloop.counter0|add:1 }}00">
     {% endfor %}
   </div>
+
 </section>
 
 <!-- Full Page Background Wrapper -->
