@@ -33,7 +33,7 @@
   <div class="gallery-grid">
     {% for i in featured_images %}
     <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" data-aos="zoom-in"
-      data-aos-delay="{{ forloop.counter0|add:1 }}00">
+      data-aos-delay="{{ forloop.counter0|add:1 }}00" class="tilt">
     {% endfor %}
   </div>
 

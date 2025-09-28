@@ -29,23 +29,42 @@ body {
     box-sizing: border-box;
 }
 
-
 /* Consistent Headings with Gold Underline */
+/* Section heading with quick gold flash */
 .section-heading {
     font-family: 'DM Serif Display', serif !important;
     font-size: 2.75rem;
     font-weight: 700;
     color: #000;
     display: inline-block;
-    transition: color 0.2s ease; /* only change color on hover */
-    cursor: pointer; /* optional, like nav links */
     text-align: center;
-    margin: 0 auto 2rem auto; /* center with margin auto */
+    margin: 0 auto 2rem auto; /* center */
+    cursor: pointer;
 }
 
+/* Quick gold flash animation */
+.section-heading.flash {
+    animation: goldFlash 0.15s ease-in-out;
+}
+
+@keyframes goldFlash {
+    0% {
+        color: #000;
+        text-shadow: none;
+    }
+    50% {
+        color: #ffd700; /* bright gold */
+        text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700; /* sharp flash glow */
+    }
+    100% {
+        color: #000;
+        text-shadow: none;
+    }
+}
+
+/* Trigger animation on hover */
 .section-heading:hover {
-    color: #d4af37; /* just gold flash like nav links */
-    text-shadow: none; /* remove blurring */
+    animation: goldFlash 0.15s ease-in-out;
 }
 
 
@@ -1033,17 +1052,9 @@ footer.premium-footer {
 .footer-info h3,
 .footer-info h4,
 .footer-form h4 {
-    transition: color 0.2s ease;
+    animation: goldFlash 0.15s ease-in-out;
     cursor: pointer;
 }
-
-.footer-info h3:hover,
-.footer-info h4:hover,
-.footer-form h4:hover {
-    color: #d4af37;
-    text-shadow: none;
-}
-
 
 .footer-bottom {
     color: #fff;
