@@ -146,6 +146,15 @@ h4::after,
 ul {
     padding-left: 1.2rem;
 }
+.section-heading:hover {
+  color: #d4af37;
+  animation: goldFlash 1s infinite alternate;
+}
+
+@keyframes goldFlash {
+  from { text-shadow: 0 0 5px #d4af37; }
+  to { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffcc00; }
+}
 
 /* Navbar */
 .navbar {
@@ -260,27 +269,35 @@ ul {
 
 /* Hero Section */
 .hero {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #d4af37;
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
 }
 
-.hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* keeps proportions, fills hero */
-    z-index: 0;
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fadeSlideshow 15s infinite;
+}
+
+.hero-slideshow img:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow img:nth-child(2) { animation-delay: 5s; }
+.hero-slideshow img:nth-child(3) { animation-delay: 10s; }
+
+@keyframes fadeSlideshow {
+  0%, 33% { opacity: 1; }
+  40%, 100% { opacity: 0; }
 }
 
 .hero-overlay {
@@ -388,6 +405,14 @@ ul {
   transform: scale(1.02);
   box-shadow: 0 8px 22px rgba(0,0,0,0.12);
 }
+.gallery-img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: rotateX(5deg) rotateY(-5deg) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
 
 /* Properties Grid */
 .properties {
@@ -400,37 +425,6 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-}
-
-/* --- Property cards hover glow --- */
-.property-card {
-    transition: all 0.3s ease;
-}
-
-.property-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px var(--primary-yellow) !important;
-}
-
-.property-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.property-info {
-    padding: 20px;
-}
-
-.property-info h3 {
-    margin: 0 0 10px 0;
-    font-family: 'Times New Roman', serif;
-    font-size: 1.2rem;
-}
-
-.property-info p {
-    font-style: italic !important;
-    color: #000 !important;
 }
 
 .view-details {

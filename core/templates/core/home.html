@@ -4,10 +4,13 @@
 {% block title %}Home | Hood Homes{% endblock %}
 
 {% block content %}
-
 <!-- Hero Section -->
 <section class="hero">
-  <img class="hero-image" src="{% static 'images/CambridgeHeader.jpg' %}" alt="Picture of Cambridge Canal">
+  <div class="hero-slideshow">
+    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
+    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
+    <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
     <h1 class="hero-title logo-stack">
@@ -28,13 +31,12 @@
   <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Featured Homes</h2>
 
   <div class="gallery-grid">
-    {% for i in "345678910"|make_list %}
-      <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" 
-           data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+    {% for i in "12345678910"|split:" " %}
+    <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" class="gallery-img"
+      data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
     {% endfor %}
   </div>
 </section>
-
 
 <!-- Full Page Background Wrapper -->
 <section class="bg-section">
@@ -45,7 +47,7 @@
       <div class="split-text-box">
         <h2 class="section-heading">Meet the Owner</h2>
         <p>
-          I’m a Cambridge local with a lifelong passion for property and hands-on experience across the sector, 
+          I’m a Cambridge local with a lifelong passion for property and hands-on experience across the sector,
           from running lettings branches and managing sales to handling property management and development
           projects. My background in professional football shaped my work ethic and high standards, which I bring to
           every deal. In a fast-changing market, I combine forward-thinking, efficiency, and adaptability to make
@@ -55,55 +57,55 @@
       </div>
     </div>
     <div class="split-image" data-aos="fade-left">
-      <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe Hood">
+      <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood">
     </div>
   </div>
 
   <!-- Why Choose Us -->
   <div class="why-choose" data-aos="fade-up">
-  <h2 class="section-heading text-center">Why Choose Hood Homes</h2>
+    <h2 class="section-heading text-center">Why Choose Hood Homes</h2>
 
-  <div class="reasons-grid">
+    <div class="reasons-grid">
 
-    <!-- Row 1 -->
-    <div class="reason-row">
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="100" data-arrow="right-down">
-        <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
-        <h3>Partnership</h3>
-        <p>We build strong relationships and guide you through every step, your success is ours.</p>
+      <!-- Row 1 -->
+      <div class="reason-row">
+        <div class="reason-item" data-aos="zoom-in" data-aos-delay="100" data-arrow="right-down">
+          <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Partnership</h3>
+          <p>We build strong relationships and guide you through every step, your success is ours.</p>
+        </div>
+        <div class="reason-item" data-aos="zoom-in" data-aos-delay="200" data-arrow="down-left">
+          <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3>Experience</h3>
+          <p>Years of sales, lettings, and management expertise you can trust.</p>
+        </div>
       </div>
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="200" data-arrow="down-left">
-        <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <h3>Experience</h3>
-        <p>Years of sales, lettings, and management expertise you can trust.</p>
+
+      <!-- Row 2 -->
+      <div class="reason-row">
+        <div class="reason-item" data-aos="zoom-in" data-aos-delay="300" data-arrow="right-down">
+          <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
+          <h3>Safe Hands</h3>
+          <p>Fully accredited and compliant, protecting your property and interests.</p>
+        </div>
+        <div class="reason-item" data-aos="zoom-in" data-aos-delay="400" data-arrow="down">
+          <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
+          <h3>Tech</h3>
+          <p>Modern tools like digital marketing and online booking keep things simple.</p>
+        </div>
       </div>
+
+      <!-- Row 3 -->
+      <div class="reason-row">
+        <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
+          <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
+          <h3>People</h3>
+          <p>We listen, care, and deliver a personal service tailored to your needs.</p>
+        </div>
+      </div>
+
     </div>
-
-    <!-- Row 2 -->
-    <div class="reason-row">
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="300" data-arrow="right-down">
-        <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
-        <h3>Safe Hands</h3>
-        <p>Fully accredited and compliant, protecting your property and interests.</p>
-      </div>
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="400" data-arrow="down">
-        <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
-        <h3>Tech</h3>
-        <p>Modern tools like digital marketing and online booking keep things simple.</p>
-      </div>
-    </div>
-
-    <!-- Row 3 -->
-    <div class="reason-row">
-      <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
-        <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
-        <h3>People</h3>
-        <p>We listen, care, and deliver a personal service tailored to your needs.</p>
-      </div>
-    </div>
-
   </div>
-</div>
 </section>
 
 <!-- Services Section -->
