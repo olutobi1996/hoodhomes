@@ -49,7 +49,7 @@ body {
 
 @keyframes goldFlash {
     0% {
-        color: #000;
+        color: #ffd700;
         text-shadow: none;
     }
     50% {
@@ -57,7 +57,7 @@ body {
         text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700; /* sharp flash glow */
     }
     100% {
-        color: #000;
+        color: #ffd700;
         text-shadow: none;
     }
 }
@@ -479,7 +479,6 @@ ul {
 
 .gallery-grid img:hover {
     box-shadow: 0 0 25px var(--primary-yellow);
-    transform: rotateX(4deg) rotateY(-4deg) scale(1.03); /* remove perspective() */
 }
 
 /* Properties Grid */
