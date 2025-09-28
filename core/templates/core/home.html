@@ -23,47 +23,18 @@
   </div>
 </section>
 
-<!-- Properties Section -->
+<!-- Featured Properties Section -->
 <section class="properties container" data-aos="fade-up">
-  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Available Properties</h2>
+  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Featured Homes</h2>
 
-  <div class="property-list property-list--moreBtn flx flx--wr">
-    {% for property in properties %}
-    <a class="property-card" href="{% url 'properties:detail' property.pk %}" data-aos="fade-up"
-      data-aos-delay="{{ forloop.counter0|add:1 }}00">
-      <div class="pc-image">
-        {% if property.image %}
-        <img class="ofi ofi--abs" src="{{ property.image.url }}" alt="{{ property.title }}">
-        {% else %}
-        <img class="ofi ofi--abs" src="{% static 'img/placeholder.jpg' %}" alt="No image">
-        {% endif %}
-        <div class="overlay"></div>
-      </div>
-      <div class="pc-info">
-        <div class="pc-bedsPrice flx flx--jc--btw">
-          <div class="pc-beds">
-            {{ property.bedrooms }} Bedrooms
-          </div>
-          <div class="pc-price">
-            <span>£{{ property.price|floatformat:0 }}</span>
-          </div>
-        </div>
-        <h4 class="pc-address">{{ property.address|linebreaksbr }}</h4>
-        <div class="pc-size">
-          {{ property.size }} sqm / {{ property.size_sqft }} sqft
-        </div>
-      </div>
-    </a>
-    {% empty %}
-    <p data-aos="fade-up">No properties available at the moment.</p>
+  <div class="gallery-grid">
+    {% for i in "345678910"|make_list %}
+      <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Property {{ i }}" 
+           data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
     {% endfor %}
   </div>
-
-
-  <p class="more-properties textCenter" data-aos="fade-up" data-aos-delay="200">
-    <a class="uppercase" href="{% url 'properties:list' %}">See more homes</a>
-  </p>
 </section>
+
 
 <!-- Full Page Background Wrapper -->
 <section class="bg-section">
