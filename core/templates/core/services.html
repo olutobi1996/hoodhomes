@@ -32,9 +32,9 @@
     <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Our Work in Cambridge</h2>
 
     <div class="masonry-grid">
-        {% for i in "11 12 13 14 15 16 17 18".split %}
-        <div class="masonry-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
-            <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Cambridge Showcase {{ i }}" class="tilt">
+        {% for i in images %}
+        <div class="masonry-item">
+            <img src="{% static 'images/services/' %}{{ i }}.jpg" alt="Service {{ i }}">
         </div>
         {% endfor %}
     </div>

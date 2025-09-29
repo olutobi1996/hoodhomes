@@ -16,4 +16,5 @@ def about(request):
     return render(request, "core/about.html")
 
 def services(request):
-    return render(request, "core/services.html")
+    images = ["11", "12", "13", "14", "15", "16", "17", "18"]
+    return render(request, "core/services.html", {"images": images})
