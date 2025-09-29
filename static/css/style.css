@@ -1177,6 +1177,19 @@ footer.premium-footer {
     color: #ffd700;
     /* shiny gold */
 }
+.footer-info p a {
+    color: var(--primary-yellow); /* gold */
+    text-decoration: none; /* no underline */
+    transition: color 0.2s ease;
+}
+
+.footer-info p a:hover {
+    color: #ffd700; /* brighter gold on hover */
+}
+.footer-info p a i {
+    margin-right: 0.4rem; /* keep the icon spacing */
+    color: var(--primary-yellow);
+}
 
 .footer-bottom {
     color: #fff;
