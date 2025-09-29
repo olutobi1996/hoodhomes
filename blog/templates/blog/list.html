@@ -1,15 +1,51 @@
+{% extends "base.html" %}
 {% load static %}
-{% extends 'base.html' %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}Blog | Hood Homes{% endblock %}
 
 {% block content %}
-<h1>Blog</h1>
-<ul>
-    {% for post in posts %}
-        <li>
-            <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a> by {{ post.author }}
-        </li>
-    {% endfor %}
-</ul>
+<div class="page-light-theme">
+    <section class="blog-section container py-5" data-aos="fade-up">
+
+        <!-- Section Heading -->
+        <div class="section-title text-center mb-5">
+            <h2 class="section-heading">Insights & Updates from Hood Homes</h2>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-post-grid">
+            {% for post in posts %}
+            <div class="fancy-hover-box blog-post-card text-center">
+                {% if post.image %}
+                <div class="mb-3">
+                    <a href="{% url 'blog:post_detail' post.pk %}">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded"
+                             style="max-height: 200px; object-fit: cover;">
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="section-title mb-2">
+                    <h3 class="section-heading">
+                        <a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a>
+                    </h3>
+                </div>
+
+                <p class="post-date text-muted">{{ post.published_at|date:"F j, Y" }}</p>
+
+                <p class="post-snippet text-dark mt-2">
+                    {{ post.content|striptags|truncatewords:30 }}
+                </p>
+
+                <div class="text-center mt-3">
+                    <a href="{% url 'blog:post_detail' post.pk %}" class="btn-text">Read More →</a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted text-center">No posts yet — check back soon!</p>
+            {% endfor %}
+        </div>
+
+    </section>
+</div>
 {% endblock %}

@@ -655,6 +655,59 @@ ul {
     z-index: 1;
 }
 
+/* ---------------- Blog & Map style ---------------- */
+.fancy-hover-box {
+    background-color: #fff;          /* White background */
+    border-radius: 12px;             /* Rounded corners */
+    padding: 2rem;                   /* Inner padding */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    color: #000;                     /* Text color */
+}
+
+.fancy-hover-box:hover {
+    transform: translateY(-5px);    /* Slight lift on hover */
+    box-shadow: 
+        0 10px 25px rgba(0,0,0,0.1),   /* Main shadow */
+        0 0 20px rgba(218,165,32,0.4); /* Gold glow */
+}
+
+/* Optional: Center text inside cards */
+.fancy-hover-box.text-center {
+    text-align: center;
+}
+
+/* Section headings inside fancy boxes */
+.fancy-hover-box .section-heading {
+    margin-bottom: 1rem;
+}
+
+/* Paragraph text inside fancy boxes */
+.fancy-hover-box p {
+    color: #000;
+    line-height: 1.6;
+}
+
+/* Buttons inside fancy boxes */
+.fancy-hover-box .btn-text,
+.fancy-hover-box .btn-small {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    background-color: #d4af37; /* Gold */
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.fancy-hover-box .btn-text:hover,
+.fancy-hover-box .btn-small:hover {
+    background-color: #b7952f; /* Darker gold */
+    transform: translateY(-2px);
+}
+
 /* ---------------- Split Section Base ---------------- */
 /* Split Section Layout */
 /* ---------------- Split Section Base ---------------- */

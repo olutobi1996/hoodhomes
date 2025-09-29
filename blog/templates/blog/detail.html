@@ -1,13 +1,40 @@
+{% extends "base.html" %}
 {% load static %}
-{% extends 'base.html' %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} | Hood Homes{% endblock %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>
-<p>By {{ post.author }} on {{ post.created_at|date:"F j, Y" }}</p>
-<p>{{ post.content }}</p>
-{% if post.image %}
-    <img src="{{ post.image.url }}" alt="{{ post.title }}">
-{% endif %}
+<div class="page-light-theme">
+    <section class="container py-5" data-aos="fade-up">
+
+        <!-- Section Title -->
+        <div class="section-title text-center mb-5">
+            <h2 class="section-heading">{{ post.title }}</h2>
+        </div>
+
+        <div class="fancy-hover-box post-detail-card p-5">
+            {% if post.image %}
+            <div class="text-center mb-4">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mx-auto d-block">
+            </div>
+            {% endif %}
+
+            <p class="post-date text-muted text-center">{{ post.published_at|date:"F j, Y" }}</p>
+
+            <div class="post-body mt-4 text-dark">
+                {{ post.content|safe }}
+            </div>
+
+            {% if post.tags %}
+            <div class="post-tags mt-4 text-center">
+                <strong>Tags:</strong> {{ post.tags }}
+            </div>
+            {% endif %}
+
+            <div class="text-center mt-5">
+                <a href="{% url 'blog:post_list' %}" class="btn-small">← Back to Blog</a>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
