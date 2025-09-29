@@ -4,17 +4,53 @@
 {% block title %}About | Hood Homes{% endblock %}
 
 {% block content %}
+<!-- Hero Section (About) -->
+<section class="hero">
+    <div class="hero-slideshow">
+        <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
+        <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
+        <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
+        <img src="{% static 'images/Cambridge4.jpg' %}" alt="Cambridge 4">
+        <img src="{% static 'images/Cambridge5.jpg' %}" alt="Cambridge 5">
+        <img src="{% static 'images/Cambridge6.jpg' %}" alt="Cambridge 6">
+        <img src="{% static 'images/Cambridge7.jpg' %}" alt="Cambridge 7">
+        <img src="{% static 'images/Cambridge8.jpg' %}" alt="Cambridge 8">
+        <img src="{% static 'images/Cambridge9.jpg' %}" alt="Cambridge 9">
+        <img src="{% static 'images/Cambridge10.jpg' %}" alt="Cambridge 10">
+        <img src="{% static 'images/Cambridge11.jpg' %}" alt="Cambridge 11">
+        <img src="{% static 'images/Cambridge12.jpg' %}" alt="Cambridge 12">
+        <img src="{% static 'images/Cambridge13.jpg' %}" alt="Cambridge 13">
+        <img src="{% static 'images/Cambridge14.jpg' %}" alt="Cambridge 14">
+        <img src="{% static 'images/Cambridge15.jpg' %}" alt="Cambridge 15">
+        <img src="{% static 'images/Cambridge16.jpg' %}" alt="Cambridge 16">
+        <img src="{% static 'images/Cambridge17.jpg' %}" alt="Cambridge 17">
+        <img src="{% static 'images/Cambridge18.jpg' %}" alt="Cambridge 18">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="hero-title logo-stack">
+            <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
+            <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">About Us</span>
+        </h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+            Dedicated to Helping You Buy, Sell & Let in Cambridge
+        </p>
+        <a href="{% url 'bookings:create' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
+            Book a Valuation
+        </a>
+    </div>
+</section>
 
 <!-- About Page Full Background -->
 <section class="bg-section-2 about-page">
 
     <div class="container">
-
-        <!-- About & Why You Need Me Combined -->
+        <!-- About Joe Hood -->
         <section class="split-section">
+            <!-- Text Column -->
             <div class="split-text" data-aos="fade-right">
                 <div class="split-text-box">
-                    <h2 class="section-heading text-center">About Joe Hood</h2>
+                    <h2 class="section-heading">About Joe Hood</h2>
                     <p>
                         I’m a Cambridge local with a lifelong passion for property and extensive experience across the
                         sector,
@@ -29,27 +65,24 @@
                         make the process seamless whether you’re investing, selling, or letting. I am proactive,
                         adaptable, and
                         laser-focused on your goals, treating every property as if it were my own to deliver outstanding
-                        results. Property is changing, and your choice of agent has never mattered more. You need
-                        someone who is proactive, adaptable, and laser-focused on your goals, not just hitting internal
-                        sales targets. I combine hands-on experience with a commitment to high standards, clear
-                        communication, and efficient processes that keep everything moving smoothly.
-                        I treat every property as if it were my own, protecting its value and maximising its potential.
-                        In a period of massive change, you don’t just need an agent, you need one who will outthink,
-                        outwork, and outperform the rest.
+                        results.
+                        Your choice of agent has never mattered more; you need someone who will outthink, outwork, and
+                        outperform
+                        the rest while protecting your property’s value and potential.
                     </p>
+                    <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
                 </div>
             </div>
 
             <!-- Portrait Column -->
             <div class="split-image" data-aos="fade-left">
-                <img src="{% static 'images/joeProffesional2.jpg' %}" alt="Joe Hood Portrait"
-                    style="height: 100%; max-height: 600px; object-fit: cover; border-radius: 12px;">
+                <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood Portrait">
             </div>
         </section>
 
+
         <!-- Why Choose Me Section -->
-        <div class="footer-glow-box text-center"
-            style="margin-top: 3rem; padding: 2rem; display: flex; flex-direction: column; align-items: center;">
+        <div class="footer-glow-box text-center">
             <h2 class="section-heading" data-aos="fade-up">Why Choose Me</h2>
 
             <div class="reasons-grid" style="justify-content: center; gap: 2rem; max-width: 1000px;" data-aos="fade-up"

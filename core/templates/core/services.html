@@ -4,41 +4,57 @@
 {% block title %}Services| Hood Homes{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
+<!-- Hero Section (Services) -->
 <section class="hero">
-    <div class="hero-slideshow">
-        <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
-        <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
-        <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
-        <h1 class="hero-title logo-stack">
-            <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
-            <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
-            <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Our Services</span>
-        </h1>
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-            Your Cambridge Property Expert
-        </p>
-        <a href="{% url 'bookings:create' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
-            Book a Valuation
-        </a>
-    </div>
+  <div class="hero-slideshow">
+    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
+    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
+    <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
+    <img src="{% static 'images/Cambridge4.jpg' %}" alt="Cambridge 4">
+    <img src="{% static 'images/Cambridge5.jpg' %}" alt="Cambridge 5">
+    <img src="{% static 'images/Cambridge6.jpg' %}" alt="Cambridge 6">
+    <img src="{% static 'images/Cambridge7.jpg' %}" alt="Cambridge 7">
+    <img src="{% static 'images/Cambridge8.jpg' %}" alt="Cambridge 8">
+    <img src="{% static 'images/Cambridge9.jpg' %}" alt="Cambridge 9">
+    <img src="{% static 'images/Cambridge10.jpg' %}" alt="Cambridge 10">
+    <img src="{% static 'images/Cambridge11.jpg' %}" alt="Cambridge 11">
+    <img src="{% static 'images/Cambridge12.jpg' %}" alt="Cambridge 12">
+    <img src="{% static 'images/Cambridge13.jpg' %}" alt="Cambridge 13">
+    <img src="{% static 'images/Cambridge14.jpg' %}" alt="Cambridge 14">
+    <img src="{% static 'images/Cambridge15.jpg' %}" alt="Cambridge 15">
+    <img src="{% static 'images/Cambridge16.jpg' %}" alt="Cambridge 16">
+    <img src="{% static 'images/Cambridge17.jpg' %}" alt="Cambridge 17">
+    <img src="{% static 'images/Cambridge18.jpg' %}" alt="Cambridge 18">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
+    <h1 class="hero-title logo-stack">
+      <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
+      <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Our Services</span>
+    </h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+      Professional Sales, Lettings & Property Management
+    </p>
+    <a href="{% url 'bookings:create' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
+      Book a Valuation
+    </a>
+  </div>
 </section>
 
-<!-- Feautured Homes -->
+
+<!-- Featured Homes Masonry -->
 <section class="services-gallery container" data-aos="fade-up">
     <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Our Work in Cambridge</h2>
 
     <div class="masonry-grid">
         {% for i in images %}
-        <div class="masonry-item">
-            <img src="{% static 'images/services/' %}{{ i }}.jpg" alt="Service {{ i }}">
+        <div class="masonry-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+            <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" alt="Service {{ i }}">
         </div>
         {% endfor %}
     </div>
 </section>
+
 
 <!-- Services Section -->
 <section class="split-section">
