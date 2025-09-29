@@ -923,6 +923,51 @@ ul {
         /* remove horizontal arrows */
     }
 }
+/* Servies Styles */
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.area-box {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.area-box:hover {
+  transform: translateY(-5px);
+}
+/* Masonry Grid */
+.masonry-grid {
+    column-count: 3; /* number of columns */
+    column-gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.masonry-item img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+}
+
+.masonry-item img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px var(--primary-yellow);
+}
 
 /* Footer */
 footer.premium-footer {
