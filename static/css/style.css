@@ -942,6 +942,29 @@ ul {
     }
 }
 /* Servies Styles */
+/* Services Page Background */
+.bg-section-2.services-page {
+    background: url("/static/images/CambridgeHeader.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
+    padding: 6rem 2rem;
+    position: relative;
+    color: #000;
+}
+
+.bg-section-2.services-page > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Optional overlay for readability */
+.bg-section-2.services-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6); /* adjust for transparency */
+    z-index: 0;
+}
+
 .areas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
