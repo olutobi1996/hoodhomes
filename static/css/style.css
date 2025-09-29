@@ -561,13 +561,11 @@ ul {
 
 /* ---------------- About Page ---------------- */
 /* Only affects About page boxes */
-.about-page .footer-glow-box,
 .about-page .split-text-box {
-    box-shadow: none;
-    /* remove any glow/shadow */
-    background: transparent;
-    /* keep it clean on top of background image */
+    background: rgba(255, 255, 255, 0.95); /* solid white with slight transparency */
+    box-shadow: 0 0 30px var(--primary-yellow); /* golden glow */
 }
+
 
 .bg-section-2 {
     background: url("/static/images/Cambridge2.jpg") no-repeat center center/cover;
@@ -602,6 +600,17 @@ ul {
     line-height: 1.8;
     color: #000;
     margin-top: 1rem;
+}
+
+/* About Map */
+.locations-map .map-info a {
+    color: var(--primary-yellow);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.locations-map .map-info a:hover {
+    color: #d4af37;
 }
 
 /* Wrapper around iframe for smaller width & glow effect */
