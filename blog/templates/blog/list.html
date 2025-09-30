@@ -41,7 +41,7 @@
         </a>
     </div>
 </section>
-
+<!-- Blog List -->
 <div class="page-light-theme">
     <section class="blog-section container py-5" data-aos="fade-up" style="padding-top: 120px;">
 
@@ -51,28 +51,28 @@
 
         <div class="blog-post-grid">
             {% for post in posts %}
-            <div class="fancy-hover-box post-detail-card p-4">
+            <div class="post-detail-card fancy-hover-box">
                 {% if post.image %}
-                <div class="text-center mb-4">
-                    <a href="{% url 'blog:detail' post.pk %}">
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mx-auto d-block">
-                    </a>
-                </div>
+                <a href="{% url 'blog:detail' post.pk %}">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                </a>
                 {% endif %}
 
-                <h3 class="section-heading text-center">
+                <h3>
                     <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a>
                 </h3>
-                <p class="post-date text-muted text-center">{{ post.created_at|date:"F j, Y" }}</p>
-                <p class="post-snippet text-dark mt-2">{{ post.content|striptags|truncatewords:30 }}</p>
-                <div class="text-center mt-3">
-                    <a href="{% url 'blog:detail' post.pk %}" class="btn-small">Read More →</a>
-                </div>
+                <p class="post-date">{{ post.created_at|date:"F j, Y" }}</p>
+                <p class="post-snippet">{{ post.content|striptags|truncatewords:30 }}</p>
+
+                <a href="{% url 'blog:detail' post.pk %}" class="btn-small">Read More →</a>
             </div>
             {% empty %}
             <p class="text-muted text-center">No posts yet — check back soon!</p>
             {% endfor %}
         </div>
+
     </section>
 </div>
+{% endblock %}
+
 {% endblock %}

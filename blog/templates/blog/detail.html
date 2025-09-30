@@ -4,8 +4,6 @@
 {% block title %}{{ post.title }} | Hood Homes{% endblock %}
 
 {% block content %}
-
-<!-- Blog Detail -->
 <div class="page-light-theme">
     <section class="blog-section container py-5" data-aos="fade-up" style="padding-top: 120px;">
 
@@ -13,16 +11,14 @@
             <h2 class="section-heading">{{ post.title }}</h2>
         </div>
 
-        <div class="fancy-hover-box post-detail-card p-5">
+        <div class="post-detail-card fancy-hover-box">
             {% if post.image %}
-            <div class="text-center mb-4">
-                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mx-auto d-block">
-            </div>
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
             {% endif %}
 
-            <p class="post-date text-muted text-center">{{ post.published_at|date:"F j, Y" }}</p>
+            <p class="post-date text-center">{{ post.published_at|date:"F j, Y" }}</p>
 
-            <div class="post-body mt-4 text-dark">
+            <div class="post-body mt-4">
                 {{ post.content|safe }}
             </div>
 
@@ -36,6 +32,7 @@
                 <a href="{% url 'blog:list' %}" class="btn-small">← Back to Blog</a>
             </div>
         </div>
+
     </section>
 </div>
 {% endblock %}
