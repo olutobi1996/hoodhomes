@@ -25,11 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gyotq3y7m6nclg3k_vv)q)ud=8_veck+l-2jm68t95i&7c=y9^'
 
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 
-
-ALLOWED_HOSTS = ['.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
 
 
 # Application definition
@@ -42,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      # your apps
+    'django_extensions',
     'core',
     'properties',
     'bookings',
@@ -140,7 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 # Security
-SECURE_HSTS_SECONDS = 31536000
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 0
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+

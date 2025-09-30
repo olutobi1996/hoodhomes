@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="page-light-theme">
-    <section class="container py-5" data-aos="fade-up">
+    <section class="blog-section container py-5" data-aos="fade-up" style="padding-top: 120px;">
 
         <!-- Section Title -->
         <div class="section-title text-center mb-5">
@@ -32,7 +32,7 @@
             {% endif %}
 
             <div class="text-center mt-5">
-                <a href="{% url 'blog:post_list' %}" class="btn-small">← Back to Blog</a>
+                <a href="{% url 'blog:list' %}" class="btn-small">← Back to Blog</a>
             </div>
         </div>
     </section>
