@@ -4,48 +4,75 @@
 {% block title %}Blog | Hood Homes{% endblock %}
 
 {% block content %}
+
+<!-- Hero Section (Blog) -->
+<section class="hero">
+    <div class="hero-slideshow">
+        <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
+        <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
+        <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
+        <img src="{% static 'images/Cambridge4.jpg' %}" alt="Cambridge 4">
+        <img src="{% static 'images/Cambridge5.jpg' %}" alt="Cambridge 5">
+        <img src="{% static 'images/Cambridge6.jpg' %}" alt="Cambridge 6">
+        <img src="{% static 'images/Cambridge7.jpg' %}" alt="Cambridge 7">
+        <img src="{% static 'images/Cambridge8.jpg' %}" alt="Cambridge 8">
+        <img src="{% static 'images/Cambridge9.jpg' %}" alt="Cambridge 9">
+        <img src="{% static 'images/Cambridge10.jpg' %}" alt="Cambridge 10">
+        <img src="{% static 'images/Cambridge11.jpg' %}" alt="Cambridge 11">
+        <img src="{% static 'images/Cambridge12.jpg' %}" alt="Cambridge 12">
+        <img src="{% static 'images/Cambridge13.jpg' %}" alt="Cambridge 13">
+        <img src="{% static 'images/Cambridge14.jpg' %}" alt="Cambridge 14">
+        <img src="{% static 'images/Cambridge15.jpg' %}" alt="Cambridge 15">
+        <img src="{% static 'images/Cambridge16.jpg' %}" alt="Cambridge 16">
+        <img src="{% static 'images/Cambridge17.jpg' %}" alt="Cambridge 17">
+        <img src="{% static 'images/Cambridge18.jpg' %}" alt="Cambridge 18">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="hero-title logo-stack">
+            <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
+            <span class="hood-homes" data-aos="fade-left" data-aos-delay="400">Blog</span>
+        </h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+              Insights, Updates & Tips from Hood Homes
+        </p>
+        <a href="{% url 'core:contact' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
+            Book a Valuation
+        </a>
+    </div>
+</section>
+
 <div class="page-light-theme">
     <section class="blog-section container py-5" data-aos="fade-up" style="padding-top: 120px;">
 
-        <!-- Section Heading -->
         <div class="section-title text-center mb-5">
             <h2 class="section-heading">Insights & Updates from Hood Homes</h2>
         </div>
 
-        <!-- Blog Grid -->
         <div class="blog-post-grid">
             {% for post in posts %}
-            <div class="fancy-hover-box blog-post-card text-center">
+            <div class="fancy-hover-box post-detail-card p-4">
                 {% if post.image %}
-                <div class="mb-3">
-                    <a href="{% url 'blog:post_detail' post.pk %}">
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded"
-                             style="max-height: 200px; object-fit: cover;">
+                <div class="text-center mb-4">
+                    <a href="{% url 'blog:detail' post.pk %}">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mx-auto d-block">
                     </a>
                 </div>
                 {% endif %}
 
-                <div class="section-title mb-2">
-                    <h3 class="section-heading">
-                        <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a>
-                    </h3>
-                </div>
-
-                <p class="post-date text-muted">{{ post.published_at|date:"F j, Y" }}</p>
-
-                <p class="post-snippet text-dark mt-2">
-                    {{ post.content|striptags|truncatewords:30 }}
-                </p>
-
+                <h3 class="section-heading text-center">
+                    <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a>
+                </h3>
+                <p class="post-date text-muted text-center">{{ post.created_at|date:"F j, Y" }}</p>
+                <p class="post-snippet text-dark mt-2">{{ post.content|striptags|truncatewords:30 }}</p>
                 <div class="text-center mt-3">
-                    <a href="{% url 'blog:detail' post.pk %}">Read More →</a>
+                    <a href="{% url 'blog:detail' post.pk %}" class="btn-small">Read More →</a>
                 </div>
             </div>
             {% empty %}
             <p class="text-muted text-center">No posts yet — check back soon!</p>
             {% endfor %}
         </div>
-
     </section>
 </div>
 {% endblock %}
