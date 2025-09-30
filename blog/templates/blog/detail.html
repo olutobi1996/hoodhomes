@@ -13,7 +13,13 @@
 
         <div class="post-detail-card fancy-hover-box">
             {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            <a href="{% url 'blog:detail' post.pk %}">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            </a>
+            {% else %}
+            <a href="{% url 'blog:detail' post.pk %}">
+                <img src="{% static 'images/placeholder.png' %}" alt="No image available">
+            </a>
             {% endif %}
 
             <p class="post-date text-center">{{ post.published_at|date:"F j, Y" }}</p>
