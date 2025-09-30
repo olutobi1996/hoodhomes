@@ -16,6 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, PropertySitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'properties': PropertySitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +30,8 @@ urlpatterns = [
     path('properties/', include('properties.urls', namespace='properties')),
     path('bookings/', include('bookings.urls', namespace='bookings')),
     path('blog/', include('blog.urls', namespace='blog')),
+    
+    # ✅ Add this line for sitemap.xml
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
+
