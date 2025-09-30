@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 import dj_database_url
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gyotq3y7m6nclg3k_vv)q)ud=8_veck+l-2jm68t95i&7c=y9^'
-
-
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
 
@@ -40,12 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      # your apps
-    'django_extensions',
+    'cloudinary',
     'core',
     'properties',
     'bookings',
     'blog',
     'accounts',
+    'cloudinary_storage',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +133,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"    # for collectstatic
 
 # Media files (for property photos later)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Default primary key field type
@@ -138,9 +141,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-# Security
-SECURE_HSTS_SECONDS = 0
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
