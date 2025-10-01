@@ -1665,7 +1665,7 @@ footer.premium-footer {
 
 .footer-legal-links p {
   margin: 0.3rem 0;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: #fff;
 }
 
@@ -1712,8 +1712,9 @@ footer.premium-footer {
 }
 
 .partner-logos li img {
-    height: 40px;
-    width: auto;
+    height: 60px;
+    width: auto;  /* keep aspect ratio */
+    margin: 0 15px; /* spacing between logos */
     object-fit: contain;
     display: block;
 }
