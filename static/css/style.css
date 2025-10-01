@@ -1428,12 +1428,13 @@ footer.premium-footer {
     width: 100%;
     padding: 0.8rem 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;       /* stack logos + legal links */
+    align-items: center;          /* center horizontally */
+    gap: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin-top: auto;
 }
+
 
 .footer-glow-box::before {
     content: "";
@@ -1482,11 +1483,12 @@ footer.premium-footer {
 }
 
 .footer-bottom {
-    color: #fff;
-    font-size: 0.9rem;
+    color: var(--primary-yellow); /* gold */
+    font-size: 1rem;              /* slightly bigger */
     margin: 0;
-    text-align: right;
+    text-align: center;            /* center */
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -1607,22 +1609,22 @@ footer.premium-footer {
 }
 /* Scrolling logos */
 .logos-scroll-wrapper {
-  overflow: hidden;
-  width: 100%;
-  margin: 1rem 0;
-  border-top: 1px solid rgba(255,255,255,0.3);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  padding: 0.5rem 0;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;      /* center logos */
+    margin: 1rem 0;
 }
 
 .partner-logos-scroll {
-  display: flex;
-  gap: 3rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  animation: scroll-logos 20s linear infinite;
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: scroll-logos 20s linear infinite;
 }
+
 
 .partner-logos-scroll li img {
   height: 40px;
@@ -1640,26 +1642,31 @@ footer.premium-footer {
 }
 
 /* Legal links styling */
+
 .footer-legal-links {
-  text-align: center;
-  margin-top: 1rem;
+    text-align: center;       /* center everything */
+    margin-top: 1rem;
+    font-size: 1rem;          /* slightly larger */
+    color: var(--primary-yellow); /* gold */
+    font-weight: bold;
+    line-height: 1.8;         /* spacing */
+}
+
+.footer-legal-links a {
+    color: var(--primary-yellow);  /* gold links */
+    text-decoration: none;
+    margin: 0 0.5rem;              /* spacing between links */
+    transition: color 0.3s;
+}
+
+.footer-legal-links a:hover {
+    color: #ffd700; /* brighter gold */
 }
 
 .footer-legal-links p {
   margin: 0.3rem 0;
   font-size: 0.9rem;
   color: #fff;
-}
-
-.footer-legal-links a {
-  color: var(--primary-yellow);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.footer-legal-links a:hover {
-  color: #ffd700;
 }
 
 /* Cookie Banner */
@@ -1674,7 +1681,8 @@ footer.premium-footer {
     padding: 1rem 2rem;
     z-index: 9999;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;           /* wrap on small screens */
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     border-top: 4px solid var(--primary-yellow);
@@ -1695,6 +1703,7 @@ footer.premium-footer {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+      margin-top: 0.5rem;       /* small gap on small screens */
 }
 
 .cookie-banner button:hover {

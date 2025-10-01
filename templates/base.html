@@ -126,15 +126,14 @@
   </div>
 
   <!-- Legal links -->
-  <div class="footer-legal-links">
-    <p><p>
-  <a href="{% url 'core:privacy' %}" class="policy-link">Privacy Policy</a> |
-  <a href="{% url 'core:terms' %}" class="policy-link">Terms & Conditions</a> |
-  <a href="{% url 'core:cookies' %}" class="policy-link">Cookies</a>
-</p>
-</p>
-    <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
-  </div>
+ <div class="footer-legal-links">
+  <p>
+    <a href="{% url 'core:privacy_policy' %}" class="policy-link">Privacy Policy</a> |
+    <a href="{% url 'core:terms_conditions' %}" class="policy-link">Terms & Conditions</a> |
+    <a href="{% url 'core:cookies' %}" class="policy-link">Cookies</a>
+  </p>
+  <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+</div>
 
 </div>
     </footer>
