@@ -31,6 +31,15 @@
                     <span class="hood-homes">Hood Homes</span>
                 </div>
             </div>
+
+
+            <!-- Hamburger for mobile -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="{% url 'core:home' %}">Home</a></li>
                 <li><a href="{% url 'core:about' %}">About</a></li>
@@ -102,24 +111,30 @@
         </div>
 
         <!-- Bottom bar -->
-        <div class="footer-bottom-bar">
-            <ul class="partner-logos">
-                <li><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Zoopla_logo_2018.svg" alt="Zoopla">
-                </li>
-                <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Rightmove_logo.svg" alt="Rightmove">
-                </li>
-                <li><img src="https://upload.wikimedia.org/wikipedia/en/9/94/The_Property_Ombudsman_logo.png"
-                        alt="Ombudsman"></li>
-                <li><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/24/Chartered_Trading_Standards_Institute_logo.png/320px-Chartered_Trading_Standards_Institute_logo.png"
-                        alt="TSI"></li>
-                <li><img src="https://www.arla.co.uk/media/10447/arla-propertymark-logo.png" alt="ARLA"></li>
-                <li><img src="https://www.tenancydepositscheme.com/wp-content/uploads/2021/04/tds-logo.png" alt="TDS">
-                </li>
-            </ul>
-            <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved. | Privacy Policy | Terms
-                of Service | Complaints Procedure |</p>
-        </div>
+      <!-- Bottom Logos & Legal -->
+<div class="footer-bottom-bar">
 
+  <!-- Scrolling logos -->
+  <div class="logos-scroll-wrapper">
+    <ul class="partner-logos-scroll">
+      <li><img src="{% static 'static/logos/zoopla.svg' %}" alt="Zoopla"></li>
+      <li><img src="{% static 'static/logos/rightmove.svg' %}" alt="Rightmove"></li>
+      <li><img src="{% static 'static/logos/ombudsman.png' %}" alt="Ombudsman"></li>
+      <li><img src="{% static 'static/logos/tsi.png' %}" alt="TSI"></li>
+      <li><img src="{% static 'static/logos/arla.png' %}" alt="ARLA"></li>
+      <li><img src="{% static 'static/logos/tds.png' %}" alt="TDS"></li>
+    </ul>
+  </div>
+
+  <!-- Legal links -->
+  <div class="footer-legal-links">
+    <p><a href="#privacy-policy" class="policy-link">Privacy Policy</a> | 
+       <a href="#terms-conditions" class="policy-link">Terms & Conditions</a> | 
+       <a href="#cookies" class="policy-link">Cookies</a></p>
+    <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+  </div>
+
+</div>
     </footer>
 
     <!-- AOS JS -->
@@ -178,6 +193,48 @@
             "max-glare": 0.2,
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.policy-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const modal = document.querySelector(this.getAttribute('href'));
+                modal.style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                this.closest('.policy-modal').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', function (e) {
+            document.querySelectorAll('.policy-modal').forEach(modal => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+        });
+    </script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 
