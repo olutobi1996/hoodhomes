@@ -66,3 +66,12 @@ def about(request):
 def services(request):
     images = ["11", "12", "13", "14", "15", "16", "17", "18"]
     return render(request, "core/services.html", {"images": images})
+
+def privacy_policy(request):
+    return render(request, 'core/privacy_policy.html')
+
+def terms_conditions(request):
+    return render(request, 'core/terms_conditions.html')
+
+def cookies_policy(request):
+    return render(request, 'core/cookies.html')

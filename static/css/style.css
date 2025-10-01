@@ -1661,3 +1661,50 @@ footer.premium-footer {
 .footer-legal-links a:hover {
   color: #ffd700;
 }
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 2rem;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-top: 4px solid var(--primary-yellow);
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+}
+
+.cookie-banner.show {
+    transform: translateY(0);
+}
+
+.cookie-banner button {
+    background: var(--primary-yellow);
+    color: #000;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cookie-banner button:hover {
+    background: #fff;
+    color: #d4af37;
+}
+
+.partner-logos li img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
