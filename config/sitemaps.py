@@ -1,6 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from .models import Property  # example if you have dynamic models
+from properties.models import Property
+
 
 class StaticViewSitemap(Sitemap):
     changefreq = "monthly"
