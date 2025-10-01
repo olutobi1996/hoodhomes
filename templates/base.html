@@ -117,20 +117,26 @@
             <!-- Scrolling logos -->
             <div class="logos-scroll-wrapper">
                 <ul class="partner-logos-scroll">
-                    <li><img src="{% static 'images/logos/zoopla.svg' %}" alt="Zoopla"></li>
-                    <li><img src="{% static 'images/logos/rightmove.svg' %}" alt="Rightmove"></li>
-                    <li><img src="{% static 'images/logos/the-property-ombudsman.svg' %}" alt="Ombudsman"></li>
-                    <li><img src="{% static 'images/logos/tsi-3.svg' %}" alt="TSI"></li>
-                    <li><img src="{% static 'images/logos/tds.svg' %}" alt="TDS"></li>
+                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/zoopla_samcbx.png"
+                            alt="Zoopla"></li>
+                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/rightmove_czenkd.svg"
+                            alt="Rightmove"></li>
+                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/the-property-ombudsman_n6fcdn.svg"
+                            alt="Ombudsman"></li>
+                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tsi-3_qr8fpe.svg"
+                            alt="TSI"></li>
+                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tds_wvluun.svg"
+                            alt="TDS"></li>
                 </ul>
             </div>
 
             <!-- Legal links -->
             <div class="footer-legal-links">
                 <p>
-                    <a href="{% url 'core:privacy_policy' %}" class="policy-link">Privacy Policy</a> |
-                    <a href="{% url 'core:terms_conditions' %}" class="policy-link">Terms & Conditions</a> |
-                    <a href="{% url 'core:cookies' %}" class="policy-link">Cookies</a>
+                    <a href="{% url 'core:privacy_policy' %}" class="policy-link" target="_blank">Privacy Policy</a> |
+                    <a href="{% url 'core:terms_conditions' %}" class="policy-link" target="_blank">Terms &
+                        Conditions</a> |
+                    <a href="{% url 'core:cookies' %}" class="policy-link" target="_blank">Cookies</a>
                 </p>
                 <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
             </div>
@@ -215,13 +221,6 @@
     </script>
 
     <script>
-        document.querySelectorAll('.policy-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const modal = document.querySelector(this.getAttribute('href'));
-                modal.style.display = 'block';
-            });
-        });
 
         document.querySelectorAll('.close-btn').forEach(btn => {
             btn.addEventListener('click', function () {
