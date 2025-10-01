@@ -111,31 +111,31 @@
         </div>
 
         <!-- Bottom bar -->
-      <!-- Bottom Logos & Legal -->
-<div class="footer-bottom-bar">
+        <!-- Bottom Logos & Legal -->
+        <div class="footer-bottom-bar">
 
-  <!-- Scrolling logos -->
-  <div class="logos-scroll-wrapper">
-    <ul class="partner-logos-scroll">
-      <li><img src="{% static 'images/logos/zoopla.svg' %}" alt="Zoopla"></li>
-      <li><img src="{% static 'images/logos/rightmove.svg' %}" alt="Rightmove"></li>
-      <li><img src="{% static 'images/logos/the-property-ombudsman.svg' %}" alt="Ombudsman"></li>
-      <li><img src="{% static 'images/logos/tsi-3.svg' %}" alt="TSI"></li>
-      <li><img src="{% static 'images/logos/tds.svg' %}" alt="TDS"></li>
-    </ul>
-  </div>
+            <!-- Scrolling logos -->
+            <div class="logos-scroll-wrapper">
+                <ul class="partner-logos-scroll">
+                    <li><img src="{% static 'images/logos/zoopla.svg' %}" alt="Zoopla"></li>
+                    <li><img src="{% static 'images/logos/rightmove.svg' %}" alt="Rightmove"></li>
+                    <li><img src="{% static 'images/logos/the-property-ombudsman.svg' %}" alt="Ombudsman"></li>
+                    <li><img src="{% static 'images/logos/tsi-3.svg' %}" alt="TSI"></li>
+                    <li><img src="{% static 'images/logos/tds.svg' %}" alt="TDS"></li>
+                </ul>
+            </div>
 
-  <!-- Legal links -->
- <div class="footer-legal-links">
-  <p>
-    <a href="{% url 'core:privacy_policy' %}" class="policy-link">Privacy Policy</a> |
-    <a href="{% url 'core:terms_conditions' %}" class="policy-link">Terms & Conditions</a> |
-    <a href="{% url 'core:cookies' %}" class="policy-link">Cookies</a>
-  </p>
-  <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
-</div>
+            <!-- Legal links -->
+            <div class="footer-legal-links">
+                <p>
+                    <a href="{% url 'core:privacy_policy' %}" class="policy-link">Privacy Policy</a> |
+                    <a href="{% url 'core:terms_conditions' %}" class="policy-link">Terms & Conditions</a> |
+                    <a href="{% url 'core:cookies' %}" class="policy-link">Cookies</a>
+                </p>
+                <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+            </div>
 
-</div>
+        </div>
     </footer>
 
     <!-- AOS JS -->
@@ -236,39 +236,40 @@
         });
     </script>
 
-<!-- Cookie Banner -->
-<div id="cookie-banner" hidden class="cookie-banner">
-  <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-  <button id="accept-cookies">Accept All</button>
-</div>
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" hidden class="cookie-banner">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+        </p>
+        <button id="accept-cookies">Accept All</button>
+    </div>
 
-<script>
-(function () {
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('accept-cookies');
-    const LS_KEY = 'hh_cookies_accepted';
-    const COOKIE_NAME = 'hh_cookies_accepted';
+    <script>
+        (function () {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const LS_KEY = 'hh_cookies_accepted';
+            const COOKIE_NAME = 'hh_cookies_accepted';
 
-    function hasAccepted() {
-        try { if (localStorage.getItem(LS_KEY) === '1') return true; } catch(e){}
-        return document.cookie.split('; ').some(c => c.startsWith(COOKIE_NAME + '=1'));
-    }
+            function hasAccepted() {
+                try { if (localStorage.getItem(LS_KEY) === '1') return true; } catch (e) { }
+                return document.cookie.split('; ').some(c => c.startsWith(COOKIE_NAME + '=1'));
+            }
 
-    function accept() {
-        try { localStorage.setItem(LS_KEY, '1'); } catch(e){}
-        document.cookie = COOKIE_NAME + '=1; max-age=31536000; path=/; SameSite=Lax';
-        banner.classList.remove('show');
-        banner.setAttribute('hidden', '');
-    }
+            function accept() {
+                try { localStorage.setItem(LS_KEY, '1'); } catch (e) { }
+                document.cookie = COOKIE_NAME + '=1; max-age=31536000; path=/; SameSite=Lax';
+                banner.classList.remove('show');
+                banner.setAttribute('hidden', '');
+            }
 
-    if (!hasAccepted()) {
-        banner.removeAttribute('hidden');
-        requestAnimationFrame(() => banner.classList.add('show'));
-    }
+            if (!hasAccepted()) {
+                banner.removeAttribute('hidden');
+                requestAnimationFrame(() => banner.classList.add('show'));
+            }
 
-    acceptBtn.addEventListener('click', accept);
-})();
-</script>
+            acceptBtn.addEventListener('click', accept);
+        })();
+    </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
