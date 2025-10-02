@@ -270,17 +270,23 @@
         })();
     </script>
 
-     <!-- Crisp Chatbot -->
+    <!-- Crisp Chatbot -->
     <script type="text/javascript">
-        window.$crisp=[];
-        window.CRISP_WEBSITE_ID="b3616b36-2d1b-4192-ab85-1696fb7d5c57";
-        (function(){
-            d=document;
-            s=d.createElement("script");
-            s.src="https://client.crisp.chat/l.js";
-            s.async=1;
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "b3616b36-2d1b-4192-ab85-1696fb7d5c57";
+        (function () {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
             d.getElementsByTagName("head")[0].appendChild(s);
         })();
+    </script>
+    <script type="text/javascript">
+        window.$crisp.push(["config", "color:theme", "#d4af37"]);   // gold bubble
+        window.$crisp.push(["config", "color:button", "#111111"]);  // black button inside
+        window.$crisp.push(["config", "color:main", "#ffffff"]);    // white background
+        window.$crisp.push(["config", "text:welcome", "👋 Hi! Welcome to Hood Homes — how can we help today?"]);
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
