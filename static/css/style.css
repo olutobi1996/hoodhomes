@@ -1543,6 +1543,7 @@ footer.premium-footer {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
+    right: 6rem;
     background: linear-gradient(45deg, #ffcf01, #ffd700);
     color: #111;
     padding: 0.8rem 1.5rem;
