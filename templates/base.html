@@ -295,7 +295,7 @@
         async function renderGoogleReviews() {
             const container = document.getElementById('google-reviews');
             try {
-                const res = await fetch("{% url 'google_reviews' %}");
+                const res = await fetch("{% url 'core:google_reviews' %}");
                 const data = await res.json();
 
                 if (data.error) throw new Error(data.error);
