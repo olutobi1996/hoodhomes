@@ -291,8 +291,64 @@
         };
     </script>
 
+    <script>
+        async function renderGoogleReviews() {
+            const container = document.getElementById('google-reviews');
+            try {
+                const res = await fetch("{% url 'google_reviews' %}");
+                const data = await res.json();
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+                if (data.error) throw new Error(data.error);
+
+                if (data.reviews.length) {
+                    container.innerHTML = data.reviews.map(r => `
+        <div class="g-review">
+          <p><strong>${r.author_name}</strong> ⭐ ${r.rating}</p>
+          <p>${r.text}</p>
+          <p class="review-time">${new Date(r.time * 1000).toLocaleDateString()}</p>
+        </div>
+      `).join('');
+                } else {
+                    container.innerHTML = '<p>No public reviews yet.</p>';
+                }
+
+                const placeId = "{{ PLACE_ID }}";  // pass it from your template context if needed
+                document.getElementById('leave-google-review').href = `https://search.google.com/local/writereview?placeid=${placeId}`;
+
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p>Unable to load reviews right now.</p>';
+            }
+        }
+
+        renderGoogleReviews();
+    </script>
+
+    <style>
+        .g-review {
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .review-time {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #4285F4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap" async defer></script>
 </body>
 
 </html>

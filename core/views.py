@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from properties.models import Property
 # core/views.py
@@ -5,12 +6,22 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.conf import settings
+import requests
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
+from django.views.decorators.cache import cache_page
+
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
 
 def home(request):
     featured_images = range(1, 11)  # Creates [1, 2, 3, ... 10]
     return render(request, "core/home.html", {
-        "featured_images": featured_images
-    })
+    "featured_images": featured_images,
+    "PLACE_ID": PLACE_ID,
+    "GOOGLE_API_KEY": GOOGLE_API_KEY,
+})
+
 
 
 def contact(request):
@@ -58,6 +69,39 @@ def contact(request):
 
     return render(request, "core/contact.html")
 
+
+
+@require_GET
+@cache_page(60*30)  # cache for 30 minutes
+def google_reviews(request):
+    """
+    Returns up to 5 reviews from Google Places
+    """
+    if not GOOGLE_API_KEY or not PLACE_ID:
+        return JsonResponse({"error": "Missing API key or Place ID"}, status=500)
+
+    url = f"https://maps.googleapis.com/maps/api/place/details/json"
+    params = {
+        "place_id": PLACE_ID,
+        "fields": "name,rating,reviews,formatted_address",
+        "key": GOOGLE_API_KEY
+    }
+
+    try:
+        r = requests.get(url, params=params, timeout=10)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as e:
+        return JsonResponse({"error": "Failed to fetch Google reviews", "detail": str(e)}, status=502)
+
+    result = data.get("result", {})
+    reviews = result.get("reviews", [])[:5]  # top 5 reviews
+    return JsonResponse({
+        "name": result.get("name"),
+        "rating": result.get("rating"),
+        "address": result.get("formatted_address"),
+        "reviews": reviews
+    })
 
 
 def about(request):
