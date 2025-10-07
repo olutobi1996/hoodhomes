@@ -10,6 +10,7 @@ import requests
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.views.decorators.cache import cache_page
+from .manual_reviews import MANUAL_REVIEWS
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
@@ -72,6 +73,20 @@ def contact(request):
 
 
 @require_GET
+def google_reviews(request):
+    """
+    Temporary manual Google reviews
+    """
+    return JsonResponse({
+        "name": "Hood Homes",
+        "rating": 5,
+        "address": "5 Valiant Lane, Cambridge, CB5 8XB",
+        "reviews": MANUAL_REVIEWS
+    })
+
+
+"""
+@require_GET
 @cache_page(60*30)  # cache for 30 minutes
 def google_reviews(request):
     """
@@ -102,7 +117,7 @@ def google_reviews(request):
         "address": result.get("formatted_address"),
         "reviews": reviews
     })
-
+"""
 
 def about(request):
     return render(request, "core/about.html")
