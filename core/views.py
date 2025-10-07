@@ -24,7 +24,6 @@ def home(request):
 })
 
 
-
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name")
@@ -89,9 +88,8 @@ def google_reviews(request):
 @require_GET
 @cache_page(60*30)  # cache for 30 minutes
 def google_reviews(request):
-    """
-    Returns up to 5 reviews from Google Places
-    """
+
+    
     if not GOOGLE_API_KEY or not PLACE_ID:
         return JsonResponse({"error": "Missing API key or Place ID"}, status=500)
 
