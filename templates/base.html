@@ -106,7 +106,7 @@
                         </div>
                         {% endfor %}
                         {% endif %}
-                        
+
                         <form action="{% url 'core:contact' %}" method="post" class="contact-form">
                             {% csrf_token %}
                             <input type="text" name="name" placeholder="Name" required>
@@ -334,12 +334,6 @@
         renderGoogleReviews();
     </script>
 
-   <script>
-                            // Redirect to home after 5 seconds if success message exists
-                            setTimeout(() => {
-                                window.location.href = '/';
-                            }, 5000); // 5000ms = 5 seconds
-                        </script>
     <style>
         .g-review {
             border: 1px solid #eee;
