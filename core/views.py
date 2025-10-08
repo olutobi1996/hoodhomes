@@ -36,34 +36,66 @@ def contact(request):
         email = request.POST.get("email", "").strip()
         phone = request.POST.get("phone", "").strip()
         message_text = request.POST.get("message", "").strip()
+        consent = request.POST.get("consent") == "on"
 
         if not (name and email and message_text):
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'error': 'Please fill out all required fields.'})
-            messages.error(request, "Please fill out all required fields.")
-            return render(request, "core/contact.html")
+            messages.error(request, "⚠️ Please fill out all required fields.")
+            return redirect("/#contact-form")  # Redirect to footer form anchor
+
+        # Compose email to client
+        client_subject = f"New Contact Form Enquiry from {name}"
+        client_message = (
+            f"Name: {name}\n"
+            f"Email: {email}\n"
+            f"Phone: {phone}\n"
+            f"Consent: {'Yes' if consent else 'No'}\n\n"
+            f"Message:\n{message_text}"
+        )
+
+        # Compose auto-reply to user
+        user_subject = "Thanks for contacting Hood Homes"
+        user_message = (
+            f"Hi {name},\n\n"
+            "Thanks for getting in touch with Hood Homes. "
+            "We’ve received your enquiry and will respond as soon as possible.\n\n"
+            "— The Hood Homes Team"
+        )
 
         try:
+            # Test SMTP connection (optional, helps debug)
+            conn = get_connection()
+            if not conn.open():
+                logger.warning("Could not connect to SMTP server!")
+
+            # Send email to client
             send_mail(
-                subject=f"New contact form from {name}",
-                message=f"Message: {message_text}\nPhone: {phone}\nEmail: {email}",
-                from_email=settings.DEFAULT_FROM_EMAIL,  # sender email (office@hoodhomes.co.uk)
-                recipient_list=[settings.DEFAULT_FROM_EMAIL],  # send to Hood Homes only
+                subject=client_subject,
+                message=client_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=["office@hoodhomes.co.uk"],  # Client's inbox
                 fail_silently=False,
             )
 
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'success': '✅ Thank you for your message. We’ll be in touch soon.'})
-            messages.success(request, "Thank you for your message.")
+            # Send optional auto-reply to user
+            send_mail(
+                subject=user_subject,
+                message=user_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[email],
+                fail_silently=True,
+            )
 
-        except Exception:
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                return JsonResponse({'error': 'An error occurred. Please try again later.'})
-            messages.error(request, "An error occurred while sending your message.")
+            messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
+            return redirect("/#contact-form")  # Redirect back to form with anchor
+
+        except BadHeaderError:
+            messages.error(request, "⚠️ Invalid header found in email.")
+        except Exception as e:
+            logger.exception("Error sending contact form email: %s", e)
+            messages.error(request, "⚠️ An error occurred while sending your message. Please try again later.")
+            return redirect("/#contact-form")
 
     return render(request, "core/contact.html")
-
-
 
 
 @require_GET
