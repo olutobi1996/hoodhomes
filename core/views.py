@@ -1,16 +1,21 @@
 import os
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from properties.models import Property
 # core/views.py
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
-from django.contrib import messages
 from django.conf import settings
 import requests
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.views.decorators.cache import cache_page
 from .manual_reviews import MANUAL_REVIEWS
+
+from django.core.mail import send_mail, get_connection, BadHeaderError
+from django.contrib import messages
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
@@ -26,48 +31,65 @@ def home(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        consent = request.POST.get("consent", False)
+        name = request.POST.get("name", "").strip()
+        email = request.POST.get("email", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        message_text = request.POST.get("message", "").strip()
+        consent = request.POST.get("consent") == "on"
 
-        if name and email and message:
-            # Email that goes to your client
+        if not (name and email and message_text):
+            messages.error(request, "⚠️ Please fill out all required fields.")
+            return redirect("/#contact-form")
+
+        client_subject = f"New Contact Form Enquiry from {name}"
+        client_message = (
+            f"Name: {name}\n"
+            f"Email: {email}\n"
+            f"Phone: {phone}\n"
+            f"Consent: {'Yes' if consent else 'No'}\n\n"
+            f"Message:\n{message_text}"
+        )
+
+        user_subject = "Thanks for contacting Hood Homes"
+        user_message = (
+            f"Hi {name},\n\n"
+            "Thanks for getting in touch with Hood Homes. "
+            "We’ve received your enquiry and will respond as soon as possible.\n\n"
+            "— The Hood Homes Team"
+        )
+
+        try:
+            conn = get_connection()
+            if not conn.open():
+                logger.warning("Could not connect to SMTP server!")
+
             send_mail(
-                subject=f"New Contact Form Enquiry from {name}",
-                message=(
-                    f"Name: {name}\n"
-                    f"Email: {email}\n"
-                    f"Phone: {phone}\n"
-                    f"Consent: {'Yes' if consent else 'No'}\n\n"
-                    f"Message:\n{message}"
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,  
-                recipient_list=["Office@hoodhomes.co.uk"],  # Client's inbox
+                subject=client_subject,
+                message=client_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=["office@hoodhomes.co.uk"],
                 fail_silently=False,
             )
 
-            # Optional auto-reply to the user
             send_mail(
-                subject="Thanks for contacting Hood Homes",
-                message=(
-                    f"Hi {name},\n\n"
-                    "Thanks for getting in touch with Hood Homes. "
-                    "We’ve received your enquiry and will respond as soon as possible.\n\n"
-                    "— The Hood Homes Team"
-                ),
+                subject=user_subject,
+                message=user_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[email],
                 fail_silently=True,
             )
 
+            # Show success message on the same page
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-            return redirect("core:contact")
-        else:
-            messages.error(request, "⚠️ Please fill out all required fields.")
+
+        except BadHeaderError:
+            messages.error(request, "⚠️ Invalid header found in email.")
+        except Exception as e:
+            logger.exception("Error sending contact form email: %s", e)
+            messages.error(request, "⚠️ An error occurred while sending your message. Please try again later.")
 
     return render(request, "core/contact.html")
+
 
 
 

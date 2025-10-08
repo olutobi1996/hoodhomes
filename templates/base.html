@@ -97,6 +97,22 @@
                 <div class="footer-form">
                     <h4>Send us a message</h4>
                     <div class="form-card">
+
+                        <!-- ✅ Place success/error messages here -->
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}" id="success-message">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+
+                        <script>
+                            // Redirect to home after 5 seconds if success message exists
+                            setTimeout(() => {
+                                window.location.href = '/';
+                            }, 5000); // 5000ms = 5 seconds
+                        </script>
+                        {% endif %}
                         <form action="{% url 'core:contact' %}" method="post" class="contact-form">
                             {% csrf_token %}
                             <input type="text" name="name" placeholder="Name" required>
@@ -348,7 +364,8 @@
         }
     </style>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap" async
+        defer></script>
 </body>
 
 </html>
