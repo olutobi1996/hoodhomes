@@ -327,45 +327,50 @@
 
         renderGoogleReviews();
     </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-    const thankYou = document.getElementById('thank-you-message');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const thankYou = document.getElementById('thank-you-message');
 
-    if (!form) return;
+            if (!form) return;
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
 
-        const formData = new FormData(form);
+                // get CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                body: formData
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        thankYou.textContent = data.success;
+                        thankYou.style.display = 'block';
+                        form.reset();
+
+                        setTimeout(() => {
+                            window.location.href = "{% url 'core:home' %}";
+                        }, 3000);
+                    } else if (data.error) {
+                        alert(data.error);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("⚠️ Something went wrong. Please try again.");
+                }
             });
-
-            const data = await response.json();
-
-            if (data.success) {
-                thankYou.textContent = data.success;
-                thankYou.style.display = 'block';
-                form.reset();
-
-                // Optional redirect after 3s
-                setTimeout(() => window.location.href = "{% url 'core:home' %}", 3000);
-            } else if (data.error) {
-                alert(data.error);
-            }
-        } catch (err) {
-            console.error(err);
-            alert("⚠️ Something went wrong. Please try again.");
-        }
-    });
-});
-</script>
-
+        });
+    </script>
     <style>
         .g-review {
             border: 1px solid #eee;
