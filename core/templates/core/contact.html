@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Contact Us — Hood Homes{% endblock %}
-
 {% block content %}
 <!-- Full Page Background Wrapper -->
 <section class="bg-section">
@@ -31,19 +30,22 @@
       <div class="footer-form">
         <h4>Send us a message</h4>
         <div class="form-card">
-          <form action="{% url 'core:contact' %}" method="post" class="contact-form">
+          <form id="contact-form" action="{% url 'core:contact' %}" method="post" class="contact-form">
             {% csrf_token %}
-            <input type="text" name="name" placeholder="Your name*" required>
-            <input type="email" name="email" placeholder="Email address*" required>
-            <input type="tel" name="phone" placeholder="Telephone number">
-            <textarea name="message" placeholder="Please leave us a message, or if booking a market appraisal, provide your postcode / town & street." rows="5" required></textarea>
-            
-            <div class="consent-box" style="text-align:left; font-size:0.9rem; margin:0.8rem 0;">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="tel" name="phone" placeholder="Phone">
+            <input type="email" name="email" placeholder="Email Address" required>
+            <textarea name="message" placeholder="Message" rows="3" required></textarea>
+            <div class="consent-box">
               <input type="checkbox" name="consent" required>
-              <label>I consent to an agent of Hood Homes contacting me via email or telephone to discuss my enquiry.</label>
+              <label>I consent to an agent of Hood Homes contacting me.</label>
             </div>
+            <button type="submit" class="cta-button">Submit</button>
+          </form>
 
-            <button type="submit" class="cta-button">Send Message</button>
+          <div id="thank-you-message" style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
+
+          <button type="submit" class="cta-button">Send Message</button>
           </form>
         </div>
       </div>

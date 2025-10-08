@@ -97,17 +97,7 @@
                 <div class="footer-form">
                     <h4>Send us a message</h4>
                     <div class="form-card">
-
-                        <!-- ✅ Place success/error messages here -->
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert {{ message.tags }}" id="success-message">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                        {% endif %}
-
-                        <form action="{% url 'core:contact' %}" method="post" class="contact-form">
+                        <form id="contact-form" action="{% url 'core:contact' %}" method="post" class="contact-form">
                             {% csrf_token %}
                             <input type="text" name="name" placeholder="Name" required>
                             <input type="tel" name="phone" placeholder="Phone">
@@ -115,8 +105,12 @@
                             <textarea name="message" placeholder="Message" rows="3" required></textarea>
                             <button type="submit" class="cta-button">Submit</button>
                         </form>
+
+                        <div id="thank-you-message"
+                            style="display:none; color:d4af37; font-weight:bold; margin-top:10px;"></div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -332,6 +326,41 @@
         }
 
         renderGoogleReviews();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const thankYou = document.getElementById('thank-you-message');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();  // prevent page reload
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                        body: formData
+                    });
+                    const data = await response.json();
+
+                    if (data.success) {
+                        thankYou.textContent = data.success;
+                        thankYou.style.display = 'block';
+
+                        // Redirect after 3 seconds
+                        setTimeout(() => {
+                            window.location.href = "{% url 'core:home' %}";
+                        }, 3000);
+                    } else if (data.error) {
+                        alert(data.error);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert("⚠️ Something went wrong. Please try again.");
+                }
+            });
+        });
     </script>
 
     <style>

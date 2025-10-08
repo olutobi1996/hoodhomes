@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.views.decorators.cache import cache_page
 from .manual_reviews import MANUAL_REVIEWS
-
+from django.http import JsonResponse
 from django.core.mail import send_mail, get_connection, BadHeaderError
 from django.contrib import messages
 import logging
@@ -28,6 +28,8 @@ def home(request):
     "GOOGLE_API_KEY": GOOGLE_API_KEY,
 })
 
+
+
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
@@ -37,64 +39,43 @@ def contact(request):
         consent = request.POST.get("consent") == "on"
 
         if not (name and email and message_text):
+            if request.is_ajax():
+                return JsonResponse({"error": "Please fill out all required fields."}, status=400)
             messages.error(request, "⚠️ Please fill out all required fields.")
             return render(request, "core/contact.html")
 
-        # Email to site owner
         client_subject = f"New Contact Form Enquiry from {name}"
-        client_message = (
-            f"Name: {name}\n"
-            f"Email: {email}\n"
-            f"Phone: {phone}\n"
-            f"Consent: {'Yes' if consent else 'No'}\n\n"
-            f"Message:\n{message_text}"
-        )
+        client_message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\nConsent: {'Yes' if consent else 'No'}\n\nMessage:\n{message_text}"
 
-        # Acknowledgment email to user
         user_subject = "Thanks for contacting Hood Homes"
-        user_message = (
-            f"Hi {name},\n\n"
-            "Thanks for getting in touch with Hood Homes. "
-            "We’ve received your enquiry and will respond as soon as possible.\n\n"
-            "— The Hood Homes Team"
-        )
+        user_message = f"Hi {name},\n\nThanks for getting in touch with Hood Homes. We’ve received your enquiry and will respond as soon as possible.\n\n— The Hood Homes Team"
 
         try:
-            # Open connection explicitly (optional)
             conn = get_connection()
             if not conn.open():
                 logger.warning("Could not connect to SMTP server!")
 
-            # Send email to office
-            send_mail(
-                subject=client_subject,
-                message=client_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=["office@hoodhomes.co.uk"],
-                fail_silently=False,
-            )
+            send_mail(client_subject, client_message, settings.DEFAULT_FROM_EMAIL, ["office@hoodhomes.co.uk"], fail_silently=False)
+            send_mail(user_subject, user_message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=True)
 
-            # Send acknowledgment to user
-            send_mail(
-                subject=user_subject,
-                message=user_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                fail_silently=True,
-            )
-
-            # Show success message on page
+            if request.is_ajax():
+                return JsonResponse({"success": "✅ Thank you for your message. Redirecting..."})
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
 
         except BadHeaderError:
+            if request.is_ajax():
+                return JsonResponse({"error": "Invalid header found in email."}, status=400)
             messages.error(request, "⚠️ Invalid header found in email.")
         except Exception as e:
             logger.exception("Error sending contact form email: %s", e)
+            if request.is_ajax():
+                return JsonResponse({"error": "An error occurred while sending your message."}, status=500)
             messages.error(request, "⚠️ An error occurred while sending your message. Please try again later.")
 
     return render(request, "core/contact.html")
 
-    
+
+
 @require_GET
 def google_reviews(request):
     """
