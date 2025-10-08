@@ -28,7 +28,6 @@ def home(request):
     "GOOGLE_API_KEY": GOOGLE_API_KEY,
 })
 
-
 def contact(request):
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
@@ -59,10 +58,7 @@ def contact(request):
         )
 
         try:
-            conn = get_connection()
-            if not conn.open():
-                logger.warning("Could not connect to SMTP server!")
-
+            # Send email to admin
             send_mail(
                 subject=client_subject,
                 message=client_message,
@@ -71,6 +67,7 @@ def contact(request):
                 fail_silently=False,
             )
 
+            # Optional: auto-reply to user
             send_mail(
                 subject=user_subject,
                 message=user_message,
@@ -79,8 +76,8 @@ def contact(request):
                 fail_silently=True,
             )
 
-            # Show success message on the same page
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
+            return redirect("/#contact-form-success")  # anchor for JS redirect
 
         except BadHeaderError:
             messages.error(request, "⚠️ Invalid header found in email.")

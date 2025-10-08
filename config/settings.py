@@ -15,6 +15,7 @@ import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 
+
 # Load .env file
 load_dotenv()
 
