@@ -36,43 +36,33 @@ def contact(request):
         email = request.POST.get("email", "").strip()
         phone = request.POST.get("phone", "").strip()
         message_text = request.POST.get("message", "").strip()
-        consent = request.POST.get("consent") == "on"
 
         if not (name and email and message_text):
-            if request.is_ajax():
-                return JsonResponse({"error": "Please fill out all required fields."}, status=400)
-            messages.error(request, "⚠️ Please fill out all required fields.")
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'error': 'Please fill out all required fields.'})
+            messages.error(request, "Please fill out all required fields.")
             return render(request, "core/contact.html")
 
-        client_subject = f"New Contact Form Enquiry from {name}"
-        client_message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\nConsent: {'Yes' if consent else 'No'}\n\nMessage:\n{message_text}"
-
-        user_subject = "Thanks for contacting Hood Homes"
-        user_message = f"Hi {name},\n\nThanks for getting in touch with Hood Homes. We’ve received your enquiry and will respond as soon as possible.\n\n— The Hood Homes Team"
-
         try:
-            conn = get_connection()
-            if not conn.open():
-                logger.warning("Could not connect to SMTP server!")
+            send_mail(
+                subject=f"New contact form from {name}",
+                message=f"Message: {message_text}\nPhone: {phone}\nEmail: {email}",
+                from_email=settings.DEFAULT_FROM_EMAIL,  # sender email (office@hoodhomes.co.uk)
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],  # send to Hood Homes only
+                fail_silently=False,
+            )
 
-            send_mail(client_subject, client_message, settings.DEFAULT_FROM_EMAIL, ["office@hoodhomes.co.uk"], fail_silently=False)
-            send_mail(user_subject, user_message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=True)
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'success': '✅ Thank you for your message. We’ll be in touch soon.'})
+            messages.success(request, "Thank you for your message.")
 
-            if request.is_ajax():
-                return JsonResponse({"success": "✅ Thank you for your message. Redirecting..."})
-            messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-
-        except BadHeaderError:
-            if request.is_ajax():
-                return JsonResponse({"error": "Invalid header found in email."}, status=400)
-            messages.error(request, "⚠️ Invalid header found in email.")
-        except Exception as e:
-            logger.exception("Error sending contact form email: %s", e)
-            if request.is_ajax():
-                return JsonResponse({"error": "An error occurred while sending your message."}, status=500)
-            messages.error(request, "⚠️ An error occurred while sending your message. Please try again later.")
+        except Exception:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'error': 'An error occurred. Please try again later.'})
+            messages.error(request, "An error occurred while sending your message.")
 
     return render(request, "core/contact.html")
+
 
 
 

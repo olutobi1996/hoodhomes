@@ -327,41 +327,44 @@
 
         renderGoogleReviews();
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contact-form');
-            const thankYou = document.getElementById('thank-you-message');
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('thank-you-message');
 
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();  // prevent page reload
-                const formData = new FormData(form);
+    if (!form) return;
 
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                        body: formData
-                    });
-                    const data = await response.json();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-                    if (data.success) {
-                        thankYou.textContent = data.success;
-                        thankYou.style.display = 'block';
+        const formData = new FormData(form);
 
-                        // Redirect after 3 seconds
-                        setTimeout(() => {
-                            window.location.href = "{% url 'core:home' %}";
-                        }, 3000);
-                    } else if (data.error) {
-                        alert(data.error);
-                    }
-                } catch (err) {
-                    console.error(err);
-                    alert("⚠️ Something went wrong. Please try again.");
-                }
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                body: formData
             });
-        });
-    </script>
+
+            const data = await response.json();
+
+            if (data.success) {
+                thankYou.textContent = data.success;
+                thankYou.style.display = 'block';
+                form.reset();
+
+                // Optional redirect after 3s
+                setTimeout(() => window.location.href = "{% url 'core:home' %}", 3000);
+            } else if (data.error) {
+                alert(data.error);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("⚠️ Something went wrong. Please try again.");
+        }
+    });
+});
+</script>
 
     <style>
         .g-review {
