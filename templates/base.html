@@ -93,7 +93,6 @@
                     </p>
                 </div>
 
-                <!-- Right: Contact Form -->
                 <div class="footer-form">
                     <h4>Send us a message</h4>
                     <div class="form-card">
@@ -103,49 +102,53 @@
                             <input type="tel" name="phone" placeholder="Phone">
                             <input type="email" name="email" placeholder="Email Address" required>
                             <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                            <div class="consent-box">
+                                <input type="checkbox" name="consent" required>
+                                <label>I consent to an agent of Hood Homes contacting me.</label>
+                            </div>
                             <button type="submit" class="cta-button">Submit</button>
                         </form>
-
                         <div id="thank-you-message"
-                            style="display:none; color:d4af37; font-weight:bold; margin-top:10px;"></div>
+                            style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
+
                     </div>
+
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <!-- Bottom Logos & Legal -->
+            <div class="footer-bottom-bar">
+
+                <!-- Scrolling logos -->
+                <div class="logos-scroll-wrapper">
+                    <ul class="partner-logos-scroll">
+                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/zoopla_samcbx.png"
+                                alt="Zoopla"></li>
+                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/rightmove_czenkd.svg"
+                                alt="Rightmove"></li>
+                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/the-property-ombudsman_n6fcdn.svg"
+                                alt="Ombudsman"></li>
+                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tsi-3_qr8fpe.svg"
+                                alt="TSI"></li>
+                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tds_wvluun.svg"
+                                alt="TDS"></li>
+                    </ul>
+                </div>
+
+                <!-- Legal links -->
+                <div class="footer-legal-links">
+                    <p>
+                        <a href="{% url 'core:privacy_policy' %}" class="policy-link" target="_blank">Privacy Policy</a>
+                        |
+                        <a href="{% url 'core:terms_conditions' %}" class="policy-link" target="_blank">Terms &
+                            Conditions</a> |
+                        <a href="{% url 'core:cookies' %}" class="policy-link" target="_blank">Cookies</a>
+                    </p>
+                    <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
                 </div>
 
             </div>
-        </div>
-
-        <!-- Bottom bar -->
-        <!-- Bottom Logos & Legal -->
-        <div class="footer-bottom-bar">
-
-            <!-- Scrolling logos -->
-            <div class="logos-scroll-wrapper">
-                <ul class="partner-logos-scroll">
-                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/zoopla_samcbx.png"
-                            alt="Zoopla"></li>
-                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/rightmove_czenkd.svg"
-                            alt="Rightmove"></li>
-                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/the-property-ombudsman_n6fcdn.svg"
-                            alt="Ombudsman"></li>
-                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tsi-3_qr8fpe.svg"
-                            alt="TSI"></li>
-                    <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tds_wvluun.svg"
-                            alt="TDS"></li>
-                </ul>
-            </div>
-
-            <!-- Legal links -->
-            <div class="footer-legal-links">
-                <p>
-                    <a href="{% url 'core:privacy_policy' %}" class="policy-link" target="_blank">Privacy Policy</a> |
-                    <a href="{% url 'core:terms_conditions' %}" class="policy-link" target="_blank">Terms &
-                        Conditions</a> |
-                    <a href="{% url 'core:cookies' %}" class="policy-link" target="_blank">Cookies</a>
-                </p>
-                <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
-            </div>
-
-        </div>
     </footer>
 
     <!-- AOS JS -->
@@ -328,49 +331,27 @@
         renderGoogleReviews();
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contact-form');
-            const thankYou = document.getElementById('thank-you-message');
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("contact-form");
+            const thankYou = document.getElementById("thank-you-message");
 
-            if (!form) return;
+            if (!form || !thankYou) return;
 
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(form);
+            form.addEventListener("submit", (e) => {
+                // Show thank-you message right away
+                thankYou.textContent = "✅ Thank you for your message — sending now...";
+                thankYou.style.display = "block";
+                thankYou.style.transition = "opacity 0.5s ease";
+                thankYou.style.opacity = "1";
 
-                // get CSRF token
-                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRFToken': csrfToken
-                        },
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        thankYou.textContent = data.success;
-                        thankYou.style.display = 'block';
-                        form.reset();
-
-                        setTimeout(() => {
-                            window.location.href = "{% url 'core:home' %}";
-                        }, 3000);
-                    } else if (data.error) {
-                        alert(data.error);
-                    }
-                } catch (err) {
-                    console.error(err);
-                    alert("⚠️ Something went wrong. Please try again.");
-                }
+                // Optional: fade it out after a few seconds
+                setTimeout(() => {
+                    thankYou.style.opacity = "0";
+                }, 4000);
             });
         });
     </script>
+
     <style>
         .g-review {
             border: 1px solid #eee;
