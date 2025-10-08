@@ -106,9 +106,7 @@
                         </div>
                         {% endfor %}
                         {% endif %}
-
-
-                        {% endif %}
+                        
                         <form action="{% url 'core:contact' %}" method="post" class="contact-form">
                             {% csrf_token %}
                             <input type="text" name="name" placeholder="Name" required>
