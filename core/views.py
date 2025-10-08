@@ -38,8 +38,9 @@ def contact(request):
 
         if not (name and email and message_text):
             messages.error(request, "⚠️ Please fill out all required fields.")
-            return redirect("/#contact-form")
+            return render(request, "core/contact.html")
 
+        # Email to site owner
         client_subject = f"New Contact Form Enquiry from {name}"
         client_message = (
             f"Name: {name}\n"
@@ -49,6 +50,7 @@ def contact(request):
             f"Message:\n{message_text}"
         )
 
+        # Acknowledgment email to user
         user_subject = "Thanks for contacting Hood Homes"
         user_message = (
             f"Hi {name},\n\n"
@@ -58,7 +60,12 @@ def contact(request):
         )
 
         try:
-            # Send email to admin
+            # Open connection explicitly (optional)
+            conn = get_connection()
+            if not conn.open():
+                logger.warning("Could not connect to SMTP server!")
+
+            # Send email to office
             send_mail(
                 subject=client_subject,
                 message=client_message,
@@ -67,7 +74,7 @@ def contact(request):
                 fail_silently=False,
             )
 
-            # Optional: auto-reply to user
+            # Send acknowledgment to user
             send_mail(
                 subject=user_subject,
                 message=user_message,
@@ -76,8 +83,8 @@ def contact(request):
                 fail_silently=True,
             )
 
+            # Show success message on page
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-            return redirect("/#contact-form-success")  # anchor for JS redirect
 
         except BadHeaderError:
             messages.error(request, "⚠️ Invalid header found in email.")
@@ -87,9 +94,7 @@ def contact(request):
 
     return render(request, "core/contact.html")
 
-
-
-
+    
 @require_GET
 def google_reviews(request):
     """
