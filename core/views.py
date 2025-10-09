@@ -41,8 +41,12 @@ def contact(request):
         message = request.POST.get("message")
         consent = request.POST.get("consent", False)
 
-        if name and email and message:
-            # Email that goes to your client
+        if not all([name, email, message]):
+            messages.error(request, "⚠️ Please fill out all required fields.")
+            return redirect("core:contact")
+
+        try:
+            # Send main email to you
             send_mail(
                 subject=f"New Contact Form Enquiry from {name}",
                 message=(
@@ -57,7 +61,7 @@ def contact(request):
                 fail_silently=False,
             )
 
-            # Optional auto-reply to user
+            # Send auto-reply to user
             send_mail(
                 subject="Thanks for contacting Hood Homes",
                 message=(
@@ -73,8 +77,11 @@ def contact(request):
 
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
             return redirect("core:contact")
-        else:
-            messages.error(request, "⚠️ Please fill out all required fields.")
+
+        except Exception as e:
+            logger.error(f"Email sending failed: {e}", exc_info=True)
+            messages.error(request, "❌ Sorry, there was an error sending your message. Please try again later.")
+            return redirect("core:contact")
 
     return render(request, "core/contact.html")
 
