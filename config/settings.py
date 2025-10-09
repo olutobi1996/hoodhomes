@@ -142,12 +142,9 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-# Django Email Settings for Zoho Mail
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.zoho.eu"  # or smtp.zoho.com (depends on your region)
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "office@hoodhomes.co.uk"  # your Zoho email address
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")  # store this safely in env vars
+
+# SendGrid Email Settings
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # disable sandbox mode
 DEFAULT_FROM_EMAIL = "office@hoodhomes.co.uk"
-EMAIL_TIMEOUT = 10

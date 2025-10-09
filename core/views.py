@@ -29,9 +29,7 @@ def home(request):
 })
 
 
-
 logger = logging.getLogger(__name__)
-
 
 def contact(request):
     if request.method == "POST":
@@ -84,6 +82,7 @@ def contact(request):
             return redirect("core:contact")
 
     return render(request, "core/contact.html")
+
 
 
 @require_GET
