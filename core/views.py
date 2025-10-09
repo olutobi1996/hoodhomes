@@ -32,67 +32,51 @@ def home(request):
 
 logger = logging.getLogger(__name__)
 
+
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get("name", "").strip()
-        email = request.POST.get("email", "").strip()
-        phone = request.POST.get("phone", "").strip()
-        message_text = request.POST.get("message", "").strip()
-        consent = request.POST.get("consent") == "on"
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        message = request.POST.get("message")
+        consent = request.POST.get("consent", False)
 
-        if not (name and email and message_text):
-            if request.headers.get("x-requested-with") == "XMLHttpRequest":
-                return JsonResponse({"error": "⚠️ Please fill out all required fields."})
-            messages.error(request, "⚠️ Please fill out all required fields.")
-            return redirect("/#contact-form")
-
-        client_subject = f"New Contact Form Enquiry from {name}"
-        client_message = (
-            f"Name: {name}\nEmail: {email}\nPhone: {phone}\nConsent: {'Yes' if consent else 'No'}\n\nMessage:\n{message_text}"
-        )
-        user_subject = "Thanks for contacting Hood Homes"
-        user_message = (
-            f"Hi {name},\n\nThanks for getting in touch with Hood Homes. "
-            "We’ve received your enquiry and will respond as soon as possible.\n\n— The Hood Homes Team"
-        )
-
-        try:
+        if name and email and message:
+            # Email that goes to your client
             send_mail(
-                subject=client_subject,
-                message=client_message,
+                subject=f"New Contact Form Enquiry from {name}",
+                message=(
+                    f"Name: {name}\n"
+                    f"Email: {email}\n"
+                    f"Phone: {phone}\n"
+                    f"Consent: {'Yes' if consent else 'No'}\n\n"
+                    f"Message:\n{message}"
+                ),
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=["office@hoodhomes.co.uk"],
                 fail_silently=False,
             )
 
+            # Optional auto-reply to user
             send_mail(
-                subject=user_subject,
-                message=user_message,
+                subject="Thanks for contacting Hood Homes",
+                message=(
+                    f"Hi {name},\n\n"
+                    "Thanks for getting in touch with Hood Homes. "
+                    "We’ve received your enquiry and will respond as soon as possible.\n\n"
+                    "— The Hood Homes Team"
+                ),
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[email],
                 fail_silently=True,
             )
 
-            if request.headers.get("x-requested-with") == "XMLHttpRequest":
-                return JsonResponse({"success": "✅ Thank you for your message. We’ll be in touch soon."})
-
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-            return redirect("/#contact-form")
-
-        except BadHeaderError:
-            logger.exception("BadHeaderError in contact form")
-            if request.headers.get("x-requested-with") == "XMLHttpRequest":
-                return JsonResponse({"error": "⚠️ Invalid header found in email."})
-            messages.error(request, "⚠️ Invalid header found in email.")
-        except Exception as e:
-            logger.exception("Error sending contact form email: %s", e)
-            if request.headers.get("x-requested-with") == "XMLHttpRequest":
-                return JsonResponse({"error": "⚠️ Something went wrong. Please try again later."})
-            messages.error(request, "⚠️ Something went wrong. Please try again later.")
-            return redirect("/#contact-form")
+            return redirect("core:contact")
+        else:
+            messages.error(request, "⚠️ Please fill out all required fields.")
 
     return render(request, "core/contact.html")
-
 
 
 @require_GET

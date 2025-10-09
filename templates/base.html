@@ -93,21 +93,15 @@
                     </p>
                 </div>
 
+                <!-- Right: Contact Form -->
                 <div class="footer-form">
                     <h4>Send us a message</h4>
                     <div class="form-card">
-                        <form id="contact-form" action="{% url 'core:contact' %}" method="post" class="contact-form">
-                            {% csrf_token %}
-                            <input type="text" name="name" placeholder="Name" required>
-                            <input type="tel" name="phone" placeholder="Phone">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                            <textarea name="message" placeholder="Message" rows="3" required></textarea>
-                            <div class="consent-box">
-                                <input type="checkbox" name="consent" required>
-                                <label>I consent to an agent of Hood Homes contacting me.</label>
-                            </div>
-                            <button type="submit" class="cta-button">Submit</button>
-                        </form>
+                        <form action="{% url 'core:contact' %}" method="post" class="contact-form"> {% csrf_token %}
+                            <input type="text" name="name" placeholder="Name" required> <input type="tel" name="phone"
+                                placeholder="Phone"> <input type="email" name="email" placeholder="Email Address"
+                                required> <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                            <button type="submit" class="cta-button">Submit</button> </form>
                         <div id="thank-you-message"
                             style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
 
