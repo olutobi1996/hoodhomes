@@ -1750,3 +1750,23 @@ footer.premium-footer {
     object-fit: contain;
     display: block;
 }
+/* Fix consent box label visibility */
+.consent-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.consent-box input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-yellow); /* gives the checkbox a gold tint */
+}
+
+.consent-box label {
+  color: #d4af37; /* or #d4af37 if you want gold text */
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+}
