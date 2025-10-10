@@ -52,6 +52,16 @@
 
     <!-- Page Content -->
     <main>
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         {% block content %}
         {% endblock %}
     </main>
@@ -94,25 +104,27 @@
                 </div>
 
                 <!-- Right: Contact Form -->
-            <!-- Right: Footer Contact Form -->
-<div class="footer-form">
-    <h4>Send us a message</h4>
-    <div class="form-card">
-        <form id="contact-form-footer" action="{% url 'core:contact' %}" method="post" class="contact-form">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="tel" name="phone" placeholder="Phone">
-            <input type="email" name="email" placeholder="Email Address" required>
-            <textarea name="message" placeholder="Message" rows="3" required></textarea>
-            <div class="consent-box">
-                <input type="checkbox" name="consent" required>
-                <label>I consent to an agent of Hood Homes contacting me.</label>
-            </div>
-            <button type="submit" class="cta-button">Submit</button>
-        </form>
-        <div id="thank-you-footer" style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
-    </div>
-</div>
+                <!-- Right: Footer Contact Form -->
+                <div class="footer-form">
+                    <h4>Send us a message</h4>
+                    <div class="form-card">
+                        <form id="contact-form-footer" action="{% url 'core:contact' %}" method="post"
+                            class="contact-form">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="Name" required>
+                            <input type="tel" name="phone" placeholder="Phone">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                            <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                            <div class="consent-box">
+                                <input type="checkbox" name="consent" required>
+                                <label>I consent to an agent of Hood Homes contacting me.</label>
+                            </div>
+                            <button type="submit" class="cta-button">Submit</button>
+                        </form>
+                        <div id="thank-you-footer"
+                            style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Bottom bar -->
@@ -329,37 +341,37 @@
 
         renderGoogleReviews();
     </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Footer form
-    const footerForm = document.getElementById("contact-form-footer");
-    const thankFooter = document.getElementById("thank-you-footer");
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Footer form
+            const footerForm = document.getElementById("contact-form-footer");
+            const thankFooter = document.getElementById("thank-you-footer");
 
-    if (footerForm && thankFooter) {
-        footerForm.addEventListener("submit", () => {
-            thankFooter.textContent = "✅ Thank you for your message — sending now...";
-            thankFooter.style.display = "block";
-            thankFooter.style.transition = "opacity 0.5s ease";
-            thankFooter.style.opacity = "1";
-            setTimeout(() => { thankFooter.style.opacity = "0"; }, 4000);
+            if (footerForm && thankFooter) {
+                footerForm.addEventListener("submit", () => {
+                    thankFooter.textContent = "✅ Thank you for your message — sending now...";
+                    thankFooter.style.display = "block";
+                    thankFooter.style.transition = "opacity 0.5s ease";
+                    thankFooter.style.opacity = "1";
+                    setTimeout(() => { thankFooter.style.opacity = "0"; }, 4000);
+                });
+            }
+
+            // Add similar code for main contact page if it exists
+            const mainForm = document.getElementById("contact-form-main");
+            const thankMain = document.getElementById("thank-you-main");
+
+            if (mainForm && thankMain) {
+                mainForm.addEventListener("submit", () => {
+                    thankMain.textContent = "✅ Thank you for your message — sending now...";
+                    thankMain.style.display = "block";
+                    thankMain.style.transition = "opacity 0.5s ease";
+                    thankMain.style.opacity = "1";
+                    setTimeout(() => { thankMain.style.opacity = "0"; }, 4000);
+                });
+            }
         });
-    }
-
-    // Add similar code for main contact page if it exists
-    const mainForm = document.getElementById("contact-form-main");
-    const thankMain = document.getElementById("thank-you-main");
-
-    if (mainForm && thankMain) {
-        mainForm.addEventListener("submit", () => {
-            thankMain.textContent = "✅ Thank you for your message — sending now...";
-            thankMain.style.display = "block";
-            thankMain.style.transition = "opacity 0.5s ease";
-            thankMain.style.opacity = "1";
-            setTimeout(() => { thankMain.style.opacity = "0"; }, 4000);
-        });
-    }
-});
-</script>
+    </script>
 
     <style>
         .g-review {
