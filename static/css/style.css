@@ -1829,14 +1829,15 @@ footer.premium-footer {
 
 /* Footer mobile fix */
 @media (max-width: 768px) {
-    footer.premium-footer {
-        min-height: 100vh; /* Make footer take full viewport height */
-        padding: 2rem 1rem; /* spacing from edges */
-        overflow: visible; /* allow all content to show */
+      footer.premium-footer {
+        min-height: auto; /* Let content define the height */
+        padding: 2rem 1rem; 
+        overflow: visible; 
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* stack items naturally */
+        justify-content: flex-start;
         align-items: center;
+        width: 100%; /* ensure it stays within screen */
     }
 
     .footer-glow-box {
