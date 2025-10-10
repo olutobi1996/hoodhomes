@@ -73,9 +73,9 @@ def contact(request):
                 fail_silently=True,
             )
 
+            # ✅ Correct indentation here
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-                return redirect("core:contact")
-
+            return redirect("core:home")
 
         except Exception as e:
             logger.error(f"Email sending failed: {e}", exc_info=True)
@@ -83,6 +83,7 @@ def contact(request):
             return redirect("core:contact")
 
     return render(request, "core/contact.html")
+
 
 
 
