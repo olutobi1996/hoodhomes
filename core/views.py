@@ -74,7 +74,8 @@ def contact(request):
             )
 
             messages.success(request, "✅ Thank you for your message. We’ll be in touch soon.")
-            return redirect("core:contact")
+                return redirect("core:contact")
+
 
         except Exception as e:
             logger.error(f"Email sending failed: {e}", exc_info=True)

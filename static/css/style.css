@@ -1311,14 +1311,15 @@ ul {
 }
 
 .alert {
-  background: #f0f9eb;
-  border: 1px solid #b2d8b2;
-  color: #2e7d32;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: 600;
-  animation: fadeOut 5s ease forwards;
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #f0f9eb !important;
+  color: #2e7d32 !important;
 }
+
 
 .alert.error {
   background: #ffe6e6;
