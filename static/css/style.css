@@ -1488,6 +1488,8 @@ footer.premium-footer {
     background: rgba(255, 255, 255, 0.85);
     color: #111;
     font-size: 0.9rem;
+     box-sizing: border-box; /* crucial for mobile */
+    display: block; /* prevent inline overflows */
 }
 
 /* Button */
@@ -1875,5 +1877,24 @@ footer.premium-footer {
     .cta-button {
         width: 100%;
         padding: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-form {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 0.5rem; /* optional: small padding inside */
+    }
+
+    .contact-form button.cta-button {
+        width: 100%; /* full width button */
+        padding: 0.8rem;
+        box-sizing: border-box;
+    }
+
+    .contact-form textarea {
+        height: auto; /* let it expand naturally */
     }
 }
