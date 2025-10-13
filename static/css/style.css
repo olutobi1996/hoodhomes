@@ -254,14 +254,16 @@ ul {
 }
 
 /* Hamburger icon */
+/* --- Ensure hamburger is visible above everything --- */
 .hamburger {
-    display: none;
-    /* hidden on desktop */
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 22px;
-    cursor: pointer;
+  display: none; /* stays hidden on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2000; /* 🔥 higher than the navbar (1000) */
 }
 
 .hamburger span {
@@ -269,8 +271,24 @@ ul {
     height: 3px;
     width: 100%;
     background: var(--primary-yellow);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
     border-radius: 2px;
     transition: all 0.3s ease;
+}
+
+/* If you want it to sit visibly on top-right corner */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 2000;
+  }
+
+  .hamburger span {
+    background: #ffd700; /* brighter gold for contrast */
+  }
 }
 
 /* Mobile nav adjustments */
@@ -1880,21 +1898,73 @@ footer.premium-footer {
     }
 }
 
+/* === Universal Fix for mobile overflow === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* === Footer Mobile Fix (merged & optimized) === */
 @media (max-width: 768px) {
-    .footer-form {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 0 0.5rem; /* optional: small padding inside */
-    }
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-    .contact-form button.cta-button {
-        width: 100%; /* full width button */
-        padding: 0.8rem;
-        box-sizing: border-box;
-    }
+  footer.premium-footer {
+    min-height: auto;
+    padding: 2rem 1rem;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
 
-    .contact-form textarea {
-        height: auto; /* let it expand naturally */
-    }
+  .footer-glow-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .footer-info,
+  .footer-form {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .contact-form button.cta-button {
+    width: 100%;
+    padding: 0.8rem;
+    box-sizing: border-box;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem 0.5rem;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
 }
