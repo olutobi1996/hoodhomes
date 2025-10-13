@@ -277,19 +277,29 @@ ul {
 }
 
 /* If you want it to sit visibly on top-right corner */
+/* === Ensure hamburger icon is always visible on top === */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
     position: absolute;
     top: 1.2rem;
     right: 1.5rem;
-    z-index: 2000;
+    z-index: 3000; /* higher than navbar and nav menu */
+    background: rgba(0, 0, 0, 0.4); /* subtle dark backdrop so gold stands out */
+    padding: 6px;
+    border-radius: 6px;
   }
 
   .hamburger span {
-    background: #ffd700; /* brighter gold for contrast */
+    background: #ffd700; /* bright gold for contrast */
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+  }
+
+  .nav-links {
+    z-index: 2000; /* keep the menu below the hamburger */
   }
 }
+
 
 /* Mobile nav adjustments */
 @media (max-width: 768px) {
