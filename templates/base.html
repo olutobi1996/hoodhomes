@@ -373,6 +373,29 @@
         });
     </script>
 
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");   // animate burger
+      navLinks.classList.toggle("active");     // show/hide menu
+    });
+
+    // Optional UX bonus: close the menu when a nav link is clicked
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("active");
+      });
+    });
+  }
+});
+</script>
+
+
     <style>
         .g-review {
             border: 1px solid #eee;
