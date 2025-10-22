@@ -407,6 +407,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeModal = document.querySelector(".close-modal");
+
+  document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    });
+  });
+
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  modal.onclick = function(e) {
+    if (e.target === modal) modal.style.display = "none";
+  };
+});
+</script>
 
     <style>
         .g-review {
@@ -419,16 +441,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .review-time {
             font-size: 0.85rem;
             color: #666;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 10px 15px;
-            background: #4285F4;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
         }
     </style>
 
