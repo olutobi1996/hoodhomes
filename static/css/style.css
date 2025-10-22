@@ -749,7 +749,6 @@ ul {
   z-index: 999999; /* ensure above everything */
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(4px);
-  display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -806,7 +805,6 @@ ul {
     right: 15px;
   }
 }
-
 
 /* Properties Grid */
 .properties {
