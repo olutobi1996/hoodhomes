@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Property
 
-# List view
 def property_list(request):
-    properties = Property.objects.all()
-    return render(request, 'properties/property_list.html', {'properties': properties})
+    # Images for Property A
+    propertyA_images = [f'images/properties/propertyA/{i}.jpg' for i in range(1, 31)]
+    # Images for Property B
+    propertyB_images = [f'images/properties/propertyB/{i}.jpg' for i in range(1, 31)]
 
-# Detail view
-def property_detail(request, pk):
-    property_obj = get_object_or_404(Property, pk=pk)
-    return render(request, 'properties/property_detail.html', {'property': property_obj})
+    context = {
+        'propertyA_images': propertyA_images,
+        'propertyB_images': propertyB_images,
+    }
+    return render(request, 'properties/property_list.html', context)
+
+

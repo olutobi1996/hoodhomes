@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Properties | Hood Homes{% endblock %}
+
+{% block content %}
+<section class="properties container" data-aos="fade-up">
+  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Properties</h2>
+
+<h2>Property A</h2>
+<div class="gallery-wrapper">
+  <button class="gallery-arrow left">&#10094;</button>
+  <div class="gallery-carousel">
+    {% for img in propertyA_images %}
+      <div class="gallery-item">
+        <img src="{% static img %}" alt="Property A image {{ forloop.counter }}">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="gallery-arrow right">&#10095;</button>
+</div>
+
+<h2>Property B</h2>
+<div class="gallery-wrapper">
+  <button class="gallery-arrow left">&#10094;</button>
+  <div class="gallery-carousel">
+    {% for img in propertyB_images %}
+      <div class="gallery-item">
+        <img src="{% static img %}" alt="Property B image {{ forloop.counter }}">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="gallery-arrow right">&#10095;</button>
+</div>
+
