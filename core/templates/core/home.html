@@ -9,22 +9,17 @@
   <div class="hero-slideshow">
     <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
     <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
-    <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
-    <img src="{% static 'images/Cambridge4.jpg' %}" alt="Cambridge 4">
-    <img src="{% static 'images/Cambridge5.jpg' %}" alt="Cambridge 5">
-    <img src="{% static 'images/Cambridge6.jpg' %}" alt="Cambridge 6">
-    <img src="{% static 'images/Cambridge7.jpg' %}" alt="Cambridge 7">
-    <img src="{% static 'images/Cambridge8.jpg' %}" alt="Cambridge 8">
-    <img src="{% static 'images/Cambridge9.jpg' %}" alt="Cambridge 9">
-    <img src="{% static 'images/Cambridge10.jpg' %}" alt="Cambridge 10">
-    <img src="{% static 'images/Cambridge11.jpg' %}" alt="Cambridge 11">
-    <img src="{% static 'images/Cambridge12.jpg' %}" alt="Cambridge 12">
-    <img src="{% static 'images/Cambridge13.jpg' %}" alt="Cambridge 13">
-    <img src="{% static 'images/Cambridge14.jpg' %}" alt="Cambridge 14">
-    <img src="{% static 'images/Cambridge15.jpg' %}" alt="Cambridge 15">
-    <img src="{% static 'images/Cambridge16.jpg' %}" alt="Cambridge 16">
-    <img src="{% static 'images/Cambridge17.jpg' %}" alt="Cambridge 17">
-    <img src="{% static 'images/Cambridge18.jpg' %}" alt="Cambridge 18">
+    <img src="{% static 'images/Cambridge Photos - 5.jpg' %}" alt="Cambridge Photos - 5">
+<img src="{% static 'images/Cambridge Photos - 8.jpg' %}" alt="Cambridge Photos - 8">
+<img src="{% static 'images/Cambridge Photos - 7.jpg' %}" alt="Cambridge Photos - 7">
+<img src="{% static 'images/Cambridge Photos - 14.jpg' %}" alt="Cambridge Photos - 14">
+<img src="{% static 'images/Cambridge Photos - 17.jpg' %}" alt="Cambridge Photos - 17">
+<img src="{% static 'images/Cambridge Photos - 26.jpg' %}" alt="Cambridge Photos - 26">
+<img src="{% static 'images/Cambridge Photos - 28.jpg' %}" alt="Cambridge Photos - 28">
+<img src="{% static 'images/Cambridge Photos - 23.jpg' %}" alt="Cambridge Photos - 23">
+<img src="{% static 'images/Cambridge Photos - 27.jpg' %}" alt="Cambridge Photos - 27">
+<img src="{% static 'images/Cambridge Photos - 32.jpg' %}" alt="Cambridge Photos - 32">
+<img src="{% static 'images/Cambridge Photos - 35.jpg' %}" alt="Cambridge Photos - 35">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
@@ -52,7 +47,7 @@
       {% for i in featured_images %}
       <div class="gallery-item">
         <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" 
-             alt="Cambridge Property {{ i }}" 
+             alt="Cambridge Property {{ i }}"
              data-aos="zoom-in"
              data-aos-delay="{{ forloop.counter0|add:1 }}00"
              class="tilt">
@@ -62,13 +57,13 @@
 
     <button class="gallery-arrow right">&#10095;</button>
   </div>
-<!-- Image Modal for Zoom View -->
+</section>
+
+<!-- ✅ Modal OUTSIDE the section -->
 <div id="imageModal" class="image-modal">
   <span class="close-modal">&times;</span>
   <img class="modal-content" id="modalImage">
 </div>
-
-</section>
 
 
 <!-- Full Page Background Wrapper -->
