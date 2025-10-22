@@ -373,6 +373,41 @@
         });
     </script>
 
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const carousel = document.querySelector(".gallery-carousel");
+  const items = document.querySelectorAll(".gallery-item");
+  const prevBtn = document.querySelector(".gallery-arrow.left");
+  const nextBtn = document.querySelector(".gallery-arrow.right");
+
+  const totalItems = items.length;
+  const visibleItems = 3;
+  let index = 0;
+
+  function updateCarousel() {
+    const offset = -(index * (100 / visibleItems));
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    index = (index + 1) % totalItems;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    index = (index - 1 + totalItems) % totalItems;
+    updateCarousel();
+  });
+
+  // Auto-scroll every 4 seconds
+  setInterval(() => {
+    index = (index + 1) % totalItems;
+    updateCarousel();
+  }, 4000);
+});
+</script>
+
+
     <style>
         .g-review {
             border: 1px solid #eee;

@@ -20,17 +20,18 @@ logger = logging.getLogger(__name__)
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
 
+
 def home(request):
-    featured_images = range(1, 11)  # Creates [1, 2, 3, ... 10]
+    featured_images = range(1, 11)  # still fine
     return render(request, "core/home.html", {
-    "featured_images": featured_images,
-    "PLACE_ID": PLACE_ID,
-    "GOOGLE_API_KEY": GOOGLE_API_KEY,
-})
+        "featured_images": featured_images,
+        "PLACE_ID": PLACE_ID,
+        "GOOGLE_API_KEY": GOOGLE_API_KEY,
+    })
+
 
 
 logger = logging.getLogger(__name__)
-
 
 
 def contact(request):
