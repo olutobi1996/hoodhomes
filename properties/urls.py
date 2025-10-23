@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-app_name = "properties"  # <-- this is the namespace
+app_name = "properties"  # fine to keep this namespace
 
 urlpatterns = [
-    path('', views.property_list, name='list'),  # list of properties
+    path('', views.gallery, name='gallery'),  # renamed to gallery
 ]

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gallery | Hood Homes{% endblock %}
+
+{% block content %}
+<section class="bg-section-2 about-page">
+  <section class="properties container" style="padding-top: 120px;" data-aos="fade-up">
+    <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Gallery</h2>
+
+    <!-- Property A -->
+    <div class="gallery-wrapper" style="margin-bottom: 60px">
+      <button class="gallery-arrow left">&#10094;</button>
+      <div class="gallery-carousel">
+        {% for img in propertyA_images %}
+        <div class="gallery-item">
+          <img src="{% static img %}" 
+               alt="Property A image {{ forloop.counter }}" 
+               data-aos="zoom-in"
+               data-aos-delay="{{ forloop.counter0|add:1 }}00"
+               class="tilt">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="gallery-arrow right">&#10095;</button>
+    </div>
+
+    <!-- Property B -->
+    <div class="gallery-wrapper" style="margin-bottom: 80px">
+      <button class="gallery-arrow left">&#10094;</button>
+      <div class="gallery-carousel">
+        {% for img in propertyB_images %}
+        <div class="gallery-item">
+          <img src="{% static img %}" 
+               alt="Property B image {{ forloop.counter }}" 
+               data-aos="zoom-in"
+               data-aos-delay="{{ forloop.counter0|add:1 }}00"
+               class="tilt">
+        </div>
+        {% endfor %}
+      </div>
+      <button class="gallery-arrow right">&#10095;</button>
+    </div>
+
+  </section>
+</section>
+{% endblock %}

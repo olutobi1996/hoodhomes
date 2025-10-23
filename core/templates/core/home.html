@@ -7,20 +7,12 @@
 <!-- Hero Section (Home) -->
 <section class="hero">
   <div class="hero-slideshow">
-    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
-    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
-    <img src="{% static 'images/Cambridge Photos - 5.jpg' %}" alt="Cambridge Photos - 5">
-<img src="{% static 'images/Cambridge Photos - 8.jpg' %}" alt="Cambridge Photos - 8">
-<img src="{% static 'images/Cambridge Photos - 7.jpg' %}" alt="Cambridge Photos - 7">
-<img src="{% static 'images/Cambridge Photos - 14.jpg' %}" alt="Cambridge Photos - 14">
-<img src="{% static 'images/Cambridge Photos - 17.jpg' %}" alt="Cambridge Photos - 17">
-<img src="{% static 'images/Cambridge Photos - 26.jpg' %}" alt="Cambridge Photos - 26">
-<img src="{% static 'images/Cambridge Photos - 28.jpg' %}" alt="Cambridge Photos - 28">
-<img src="{% static 'images/Cambridge Photos - 23.jpg' %}" alt="Cambridge Photos - 23">
-<img src="{% static 'images/Cambridge Photos - 27.jpg' %}" alt="Cambridge Photos - 27">
-<img src="{% static 'images/Cambridge Photos - 32.jpg' %}" alt="Cambridge Photos - 32">
-<img src="{% static 'images/Cambridge Photos - 35.jpg' %}" alt="Cambridge Photos - 35">
-  </div>
+  {% for img in hero_images %}
+    <img src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
+  {% endfor %}
+</div>
+
+
   <div class="hero-overlay"></div>
   <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
     <h1 class="hero-title logo-stack">
