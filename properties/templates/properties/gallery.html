@@ -9,16 +9,14 @@
     <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Gallery</h2>
 
     <!-- Property A -->
-    <div class="gallery-wrapper" style="margin-bottom: 60px">
+    <div class="gallery-wrapper" style="margin-bottom: 60px; position: relative; overflow: hidden;">
       <button class="gallery-arrow left">&#10094;</button>
-      <div class="gallery-carousel">
+      <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
         {% for img in propertyA_images %}
-        <div class="gallery-item">
-          <img src="{% static img %}" 
+        <div class="gallery-item min-w-full">
+          <img src="{% static 'images/gallery/propertyA/' %}{{ img }}" 
                alt="Property A image {{ forloop.counter }}" 
-               data-aos="zoom-in"
-               data-aos-delay="{{ forloop.counter0|add:1 }}00"
-               class="tilt">
+               class="w-full h-auto object-cover">
         </div>
         {% endfor %}
       </div>
@@ -26,16 +24,14 @@
     </div>
 
     <!-- Property B -->
-    <div class="gallery-wrapper" style="margin-bottom: 80px">
+    <div class="gallery-wrapper" style="margin-bottom: 80px; position: relative; overflow: hidden;">
       <button class="gallery-arrow left">&#10094;</button>
-      <div class="gallery-carousel">
+      <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
         {% for img in propertyB_images %}
-        <div class="gallery-item">
-          <img src="{% static img %}" 
+        <div class="gallery-item min-w-full">
+          <img src="{% static 'images/gallery/propertyB/' %}{{ img }}" 
                alt="Property B image {{ forloop.counter }}" 
-               data-aos="zoom-in"
-               data-aos-delay="{{ forloop.counter0|add:1 }}00"
-               class="tilt">
+               class="w-full h-auto object-cover">
         </div>
         {% endfor %}
       </div>
@@ -44,4 +40,29 @@
 
   </section>
 </section>
+
+<script>
+document.querySelectorAll('.gallery-wrapper').forEach(wrapper => {
+  const carousel = wrapper.querySelector('.gallery-carousel');
+  const items = carousel.querySelectorAll('.gallery-item');
+  const left = wrapper.querySelector('.gallery-arrow.left');
+  const right = wrapper.querySelector('.gallery-arrow.right');
+
+  let index = 0;
+
+  const moveCarousel = () => {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  };
+
+  right.addEventListener('click', () => {
+    index = (index + 1) % items.length; // loop forward
+    moveCarousel();
+  });
+
+  left.addEventListener('click', () => {
+    index = (index - 1 + items.length) % items.length; // loop backward
+    moveCarousel();
+  });
+});
+</script>
 {% endblock %}
