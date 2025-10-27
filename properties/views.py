@@ -7,7 +7,6 @@ def gallery(request):
         "Cambridge_Photos_14.jpg",
         "Cambridge_Photos_17.jpg",
         "Cambridge_Photos_23.jpg",
-        "Cambridge_Photos_26.jpg",
         "Cambridge_Photos_27.jpg",
         "Cambridge_Photos_28.jpg",
         "Cambridge_Photos_32.jpg",
