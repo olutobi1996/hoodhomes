@@ -17,8 +17,8 @@ MANUAL_REVIEWS = [
         "author_name": "Caz Mortlock",
         "rating": 5,
         "text": (
-            "I’ve worked with Joe Hood from Hood Property Management on the letting of my great aunt’s house and have been really impressed. "
-            "Joe has been fair, proactive and genuinely resourceful, even helping to coordinate other trades."
+            "I’ve had such a great experience with Hood Homes Property Management. They’re always friendly, easy to reach, and super quick to take care of anything that comes up. "
+            "You can tell they really care about the people they work with — not just the properties"
         ),
         "time": 1736160000
     },
