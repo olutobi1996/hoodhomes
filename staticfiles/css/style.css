@@ -123,6 +123,17 @@ body {
     z-index: -1;
 }
 
+/* Remove background entirely on mobile */
+@media (max-width: 768px) {
+    .with-bg {
+        background: #f9f9f9; /* soft neutral color */
+    }
+
+    .with-bg::before {
+        background: none !important;   /* removes the overlay too */
+    }
+}
+
 
 /* --- FORCE Headings Black --- */
 h1,
