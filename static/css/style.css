@@ -126,7 +126,7 @@ body {
 /* Remove background entirely on mobile */
 @media (max-width: 768px) {
     .with-bg {
-        background: #f9f9f9; /* soft neutral color */
+        background: none !important;
     }
 
     .with-bg::before {
