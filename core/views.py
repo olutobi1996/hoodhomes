@@ -36,9 +36,6 @@ def home(request):
             "propertyA/Cambridge_Photos_26.jpg",
             "propertyA/Cambridge_Photos_28.jpg",
             "propertyA/Cambridge_Photos_23.jpg",
-            "propertyA/Cambridge_Photos_27.jpg",
-            "propertyA/Cambridge_Photos_32.jpg",
-            "propertyA/Cambridge_Photos_35.jpg",
         ]
         cache.set("hero_images", hero_images, 300)  # cache 5 minutes
 
@@ -52,8 +49,6 @@ def home(request):
             "Cambridge4.jpg",
             "Cambridge5.jpg",
             "Cambridge6.jpg",
-            "Cambridge7.jpg",
-            "Cambridge8.jpg"
         ]
         cache.set("featured_images", featured_images, 300)
 

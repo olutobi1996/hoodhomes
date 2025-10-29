@@ -8,7 +8,7 @@
 <section class="hero">
   <div class="hero-slideshow">
   {% for img in hero_images %}
-    <img src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
+    <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
   {% endfor %}
 </div>
 
@@ -38,7 +38,7 @@
     <div class="gallery-carousel">
   {% for i in featured_images %}
   <div class="gallery-item">
-    <img src="{% static 'images/Cambridge/' %}{{ i }}" 
+    <img loading="lazy" src="{% static 'images/gallery/' %}{{ i }}" 
          alt="Cambridge Property {{ forloop.counter }}"
          data-aos="zoom-in"
          data-aos-delay="{{ forloop.counter0|add:1 }}00"
