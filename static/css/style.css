@@ -123,13 +123,14 @@ body {
     z-index: -1;
 }
 
-/* Mobile fix */
+/* Remove background entirely on mobile */
 @media (max-width: 768px) {
     .with-bg {
-        background-image: url("{% static 'images/Cambridge1@2x.jpg' %}");
-        background-size: contain;  /* makes the whole image fit */
-        background-position: top center;
-        background-repeat: no-repeat;
+        background: #f9f9f9; /* soft neutral color */
+    }
+
+    .with-bg::before {
+        background: none !important;   /* removes the overlay too */
     }
 }
 
