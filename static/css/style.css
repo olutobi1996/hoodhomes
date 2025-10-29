@@ -123,12 +123,16 @@ body {
     z-index: -1;
 }
 
+/* Mobile fix */
 @media (max-width: 768px) {
     .with-bg {
-        background-size: contain;
-        background-position: top center; /* adjust as needed */
+        background-image: url("{% static 'images/Cambridge1@2x.jpg' %}");
+        background-size: contain;  /* makes the whole image fit */
+        background-position: top center;
+        background-repeat: no-repeat;
     }
 }
+
 
 /* --- FORCE Headings Black --- */
 h1,
