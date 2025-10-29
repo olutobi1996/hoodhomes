@@ -36,16 +36,16 @@
     <button class="gallery-arrow left">&#10094;</button>
 
     <div class="gallery-carousel">
-      {% for i in featured_images %}
-      <div class="gallery-item">
-        <img src="{% static 'images/Cambridge' %}{{ i }}.jpg" 
-             alt="Cambridge Property {{ i }}"
-             data-aos="zoom-in"
-             data-aos-delay="{{ forloop.counter0|add:1 }}00"
-             class="tilt">
-      </div>
-      {% endfor %}
-    </div>
+  {% for i in featured_images %}
+  <div class="gallery-item">
+    <img src="{% static 'images/Cambridge/' %}{{ i }}" 
+         alt="Cambridge Property {{ forloop.counter }}"
+         data-aos="zoom-in"
+         data-aos-delay="{{ forloop.counter0|add:1 }}00"
+         class="tilt">
+  </div>
+  {% endfor %}
+</div>
 
     <button class="gallery-arrow right">&#10095;</button>
   </div>

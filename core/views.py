@@ -1,11 +1,11 @@
 import os
 from django.shortcuts import redirect, render
-# core/views.py
+from django.core.cache import cache
 from django.shortcuts import render, redirect
 from django.conf import settings
 import requests
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET 
 from django.views.decorators.cache import cache_page
 from .manual_reviews import MANUAL_REVIEWS
 from django.http import JsonResponse
@@ -20,26 +20,46 @@ GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
 
 
-# home view
+@cache_page(60*5)
 def home(request):
-    hero_images = [
-        "propertyA/Cambridge1.jpg",
-        "propertyA/Cambridge2.jpg",
-        "propertyA/Cambridge_Photos_5.jpg",
-        "propertyA/Cambridge_Photos_8.jpg",
-        "propertyA/Cambridge_Photos_7.jpg",
-        "propertyA/Cambridge_Photos_14.jpg",
-        "propertyA/Cambridge_Photos_17.jpg",
-        "propertyA/Cambridge_Photos_26.jpg",
-        "propertyA/Cambridge_Photos_28.jpg",
-        "propertyA/Cambridge_Photos_23.jpg",
-        "propertyA/Cambridge_Photos_27.jpg",
-        "propertyA/Cambridge_Photos_32.jpg",
-        "propertyA/Cambridge_Photos_35.jpg",
-    ]
+    # Try to get from cache first
+    hero_images = cache.get("hero_images")
+    if not hero_images:
+        hero_images = [
+            "propertyA/Cambridge1.jpg",
+            "propertyA/Cambridge2.jpg",
+            "propertyA/Cambridge_Photos_5.jpg",
+            "propertyA/Cambridge_Photos_8.jpg",
+            "propertyA/Cambridge_Photos_7.jpg",
+            "propertyA/Cambridge_Photos_14.jpg",
+            "propertyA/Cambridge_Photos_17.jpg",
+            "propertyA/Cambridge_Photos_26.jpg",
+            "propertyA/Cambridge_Photos_28.jpg",
+            "propertyA/Cambridge_Photos_23.jpg",
+            "propertyA/Cambridge_Photos_27.jpg",
+            "propertyA/Cambridge_Photos_32.jpg",
+            "propertyA/Cambridge_Photos_35.jpg",
+        ]
+        cache.set("hero_images", hero_images, 300)  # cache 5 minutes
+
+    # Replace these with **actual image filenames** in static/images/Cambridge/
+    featured_images = cache.get("featured_images")
+    if not featured_images:
+        featured_images = [
+            "Cambridge1.jpg",
+            "Cambridge2.jpg",
+            "Cambridge3.jpg",
+            "Cambridge4.jpg",
+            "Cambridge5.jpg",
+            "Cambridge6.jpg",
+            "Cambridge7.jpg",
+            "Cambridge8.jpg"
+        ]
+        cache.set("featured_images", featured_images, 300)
 
     return render(request, "core/home.html", {
         "hero_images": hero_images,
+        "featured_images": featured_images,
         "PLACE_ID": PLACE_ID,
         "GOOGLE_API_KEY": GOOGLE_API_KEY,
     })
