@@ -22,7 +22,6 @@ PLACE_ID = os.environ.get("GOOGLE_PLACE_ID")
 
 @cache_page(60*5)
 def home(request):
-    # Try to get from cache first
     hero_images = cache.get("hero_images")
     if not hero_images:
         hero_images = [
@@ -31,15 +30,9 @@ def home(request):
             "propertyA/Cambridge_Photos_5.jpg",
             "propertyA/Cambridge_Photos_8.jpg",
             "propertyA/Cambridge_Photos_7.jpg",
-            "propertyA/Cambridge_Photos_14.jpg",
-            "propertyA/Cambridge_Photos_17.jpg",
-            "propertyA/Cambridge_Photos_26.jpg",
-            "propertyA/Cambridge_Photos_28.jpg",
-            "propertyA/Cambridge_Photos_23.jpg",
         ]
-        cache.set("hero_images", hero_images, 300)  # cache 5 minutes
+        cache.set("hero_images", hero_images, 300)
 
-    # Replace these with **actual image filenames** in static/images/Cambridge/
     featured_images = cache.get("featured_images")
     if not featured_images:
         featured_images = [
@@ -59,9 +52,6 @@ def home(request):
         "GOOGLE_API_KEY": GOOGLE_API_KEY,
     })
 
-
-
-logger = logging.getLogger(__name__)
 
 
 def contact(request):

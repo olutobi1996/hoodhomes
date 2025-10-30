@@ -4,21 +4,25 @@
 {% block title %}Home | Hood Homes{% endblock %}
 
 {% block content %}
-<!-- Hero Section (Home) -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero-slideshow">
-  {% for img in hero_images %}
-    <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
-  {% endfor %}
-</div>
+    {% for img in hero_images %}
+      <picture>
+        <source srcset="{% static 'images/gallery/' %}{{ img|replace:'.jpg','.webp' }}" type="image/webp">
+        <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
+      </picture>
+    {% endfor %}
+  </div>
 
+  <!-- Overlay Content -->
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
     <h1 class="hero-title logo-stack">
-      <span class="hh" data-aos="fade-right">HH</span>
-      <span class="hood-homes" data-aos="fade-left">Hood Homes</span>
+      <span class="hh" data-aos="fade-right" data-aos-delay="200">HH</span>
+      <span class="hood-homes" data-aos="fade-left" data-aos-delay="300">Hood Homes</span>
     </h1>
-    <p class="hero-subtitle" data-aos="fade-up">
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
       Your Cambridge Property Expert
     </p>
     <a href="{% url 'core:contact' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
@@ -30,22 +34,20 @@
 <!-- Gallery Section -->
 <section class="properties container">
   <h2 class="section-heading">Gallery</h2>
-
   <div class="gallery-wrapper">
     <button class="gallery-arrow left">&#10094;</button>
-
     <div class="gallery-carousel">
-  {% for i in featured_images %}
-  <div class="gallery-item">
-    <img loading="lazy" src="{% static 'images/' %}{{ i }}" 
-         alt="Cambridge Property {{ forloop.counter }}"
-         data-aos="zoom-in"
-         data-aos-delay="{{ forloop.counter0|add:1 }}00"
-         class="tilt">
-  </div>
-  {% endfor %}
-</div>
-
+      {% for i in featured_images %}
+      <div class="gallery-item">
+        <picture>
+          <source srcset="{% static 'images/' %}{{ i|replace:'.jpg','.webp' }}" type="image/webp">
+          <img loading="lazy" src="{% static 'images/' %}{{ i }}" 
+               alt="Cambridge Property {{ forloop.counter }}"
+               class="tilt">
+        </picture>
+      </div>
+      {% endfor %}
+    </div>
     <button class="gallery-arrow right">&#10095;</button>
   </div>
 </section>

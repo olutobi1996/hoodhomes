@@ -449,8 +449,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     </style>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap" async
-        defer></script>
+    <script>document.addEventListener("DOMContentLoaded", function() {
+  if (window.innerWidth > 768 && typeof VanillaTilt !== 'undefined') {
+    VanillaTilt.init(document.querySelectorAll(".tilt"), {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3
+    });
+  }
+});
+</script>
 
     <!-- Gallery Image Modal -->
 <div id="imageModal" class="image-modal">
