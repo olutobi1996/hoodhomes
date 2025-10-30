@@ -19,28 +19,24 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if os.getenv("DATABASE_URL"):
-    DATABASES = {
-        'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-
+# --- DATABASE ---
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# --- SECRET & DEBUG ---
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','pythonanywhere.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','hoodhomes.herokuapp.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
 
 
 # Application definition
@@ -148,7 +144,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"    # for collectstatic
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-# Cloudinary storage
+# --- Cloudinary ---
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
@@ -157,11 +153,10 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-# SendGrid Email Settings
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # disable sandbox mode
-DEFAULT_FROM_EMAIL = "office@hoodhomes.co.uk"
+# --- Email / SendGrid ---
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "office@hoodhomes.co.uk")
 
 
 # --- Static optimization ---
