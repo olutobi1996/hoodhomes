@@ -105,34 +105,6 @@ body {
     border-radius: 2px;
 }
 
-/* Shared background for sections */
-.with-bg {
-    background: #fdfdfd; /* light off-white, can change to #f7f7f7 or #faf9f6 */
-    position: relative;
-    z-index: 1;
-    padding: 4rem 2rem;
-}
-
-.with-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: #fdfdfd; /* match or slightly tinted */
-    z-index: -1;
-}
-
-
-/* Remove background entirely on mobile */
-@media (max-width: 768px) {
-    .with-bg {
-        background: none !important;
-    }
-
-    .with-bg::before {
-        background: none !important;   /* removes the overlay too */
-    }
-}
-
 
 /* --- FORCE Headings Black --- */
 h1,
