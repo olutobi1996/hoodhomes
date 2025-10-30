@@ -1,1 +1,1 @@
-web: gunicorn hoodhomes_project.wsgi
+web: gunicorn hoodhomes.wsgi
