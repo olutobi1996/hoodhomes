@@ -40,7 +40,7 @@ else:
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','.onrender.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','pythonanywhere.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
 
 
 # Application definition
