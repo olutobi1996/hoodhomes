@@ -469,18 +469,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function nextHeroSlide() {
-        current = (current + 1) % heroImages.length;
+        heroImg.style.transition = "opacity 0.5s ease";
+        heroImg.style.opacity = 0; // fade out
 
-        // Smooth fade
-        heroImg.style.opacity = 0;
         setTimeout(() => {
+            current = (current + 1) % heroImages.length;
             heroImg.src = preloaded[current].src;
             heroImg.alt = "Hero image " + (current + 1);
-            heroImg.style.opacity = 1;
-        }, 300); // fade duration
+            heroImg.style.opacity = 1; // fade in
+        }, 500); // match transition duration
     }
 
-    setInterval(nextHeroSlide, 5000); // 5s
+    // Loop every 5 seconds
+    setInterval(nextHeroSlide, 5000);
 });
 </script>
 
