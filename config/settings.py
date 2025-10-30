@@ -33,10 +33,12 @@ DATABASES = {
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # --- SECRET & DEBUG ---
-SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','hoodhomes.herokuapp.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-for-local-dev')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.fly.dev','hoodhomes-6e279de71059.herokuapp.com', 'hoodhomes.co.uk', 'www.hoodhomes.co.uk']
 
 
 # Application definition
