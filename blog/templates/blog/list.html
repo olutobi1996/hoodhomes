@@ -8,25 +8,10 @@
 <!-- Hero Section (Blog) -->
 <section class="hero">
     <div class="hero-slideshow">
-        <img src="{% static 'images/Cambridge1.jpg' %}" alt="Cambridge 1">
-        <img src="{% static 'images/Cambridge2.jpg' %}" alt="Cambridge 2">
-        <img src="{% static 'images/Cambridge3.jpg' %}" alt="Cambridge 3">
-        <img src="{% static 'images/Cambridge4.jpg' %}" alt="Cambridge 4">
-        <img src="{% static 'images/Cambridge5.jpg' %}" alt="Cambridge 5">
-        <img src="{% static 'images/Cambridge6.jpg' %}" alt="Cambridge 6">
-        <img src="{% static 'images/Cambridge7.jpg' %}" alt="Cambridge 7">
-        <img src="{% static 'images/Cambridge8.jpg' %}" alt="Cambridge 8">
-        <img src="{% static 'images/Cambridge9.jpg' %}" alt="Cambridge 9">
-        <img src="{% static 'images/Cambridge10.jpg' %}" alt="Cambridge 10">
-        <img src="{% static 'images/Cambridge11.jpg' %}" alt="Cambridge 11">
-        <img src="{% static 'images/Cambridge12.jpg' %}" alt="Cambridge 12">
-        <img src="{% static 'images/Cambridge13.jpg' %}" alt="Cambridge 13">
-        <img src="{% static 'images/Cambridge14.jpg' %}" alt="Cambridge 14">
-        <img src="{% static 'images/Cambridge15.jpg' %}" alt="Cambridge 15">
-        <img src="{% static 'images/Cambridge16.jpg' %}" alt="Cambridge 16">
-        <img src="{% static 'images/Cambridge17.jpg' %}" alt="Cambridge 17">
-        <img src="{% static 'images/Cambridge18.jpg' %}" alt="Cambridge 18">
+        <!-- Only one image in DOM -->
+        <img id="hero-img" src="{% static 'images/gallery/' %}{{ hero_images.0 }}" alt="Hero image 1">
     </div>
+
     <div class="hero-overlay"></div>
     <div class="hero-content" data-aos="zoom-in" data-aos-delay="100">
         <h1 class="hero-title logo-stack">
@@ -34,13 +19,17 @@
             <span class="hood-homes" data-aos="fade-left" data-aos-delay="400">Blog</span>
         </h1>
         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-              Insights, Updates & Tips from Hood Homes
+            Insights, Updates & Tips from Hood Homes
         </p>
         <a href="{% url 'core:contact' %}" class="cta-button" data-aos="zoom-in" data-aos-delay="500">
             Book a Valuation
         </a>
     </div>
 </section>
+
+<!-- Send the image list to JS -->
+{{ hero_images|json_script:"hero-images-data" }}
+
 <!-- Blog List -->
 <div class="page-light-theme">
     <section class="blog-section container py-5" data-aos="fade-up" style="padding-top: 120px;">

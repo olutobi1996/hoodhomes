@@ -162,11 +162,24 @@ def google_reviews(request):
 """
 
 def about(request):
-    return render(request, "core/about.html")
+    hero_images = [
+        "propertyA/Cambridge1.png",
+            "propertyA/Cambridge2.png",
+            "propertyA/Cambridge_Photos_5.png",
+            "propertyA/Cambridge_Photos_8.png",
+            "propertyA/Cambridge_Photos_7.png",
+    ]
+    return render(request, "core/about.html", {'hero_images': hero_images})
 
 def services(request):
-    images = ["11", "12", "13", "14", "15", "16", "17", "18"]
-    return render(request, "core/services.html", {"images": images})
+    hero_images = [
+        "propertyA/Cambridge1.png",
+            "propertyA/Cambridge2.png",
+            "propertyA/Cambridge_Photos_5.png",
+            "propertyA/Cambridge_Photos_8.png",
+            "propertyA/Cambridge_Photos_7.png",
+    ]
+    return render(request, "core/services.html", {"hero_images": hero_images})
 
 def privacy_policy(request):
     return render(request, 'core/privacy_policy.html')
