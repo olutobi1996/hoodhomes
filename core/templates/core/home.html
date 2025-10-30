@@ -7,9 +7,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-slideshow">
-    {% for img in hero_images %}
-      <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
-    {% endfor %}
+    <!-- Only one image in DOM -->
+    <img id="hero-img" src="{% static 'images/gallery/' %}{{ hero_images.0 }}" alt="Hero image 1">
   </div>
 
   <!-- Overlay Content -->
@@ -27,6 +26,10 @@
     </a>
   </div>
 </section>
+
+
+{{ hero_images|json_script:"hero-images-data" }}
+
 
 <!-- Gallery Section -->
 <section class="properties container">

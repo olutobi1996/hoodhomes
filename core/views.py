@@ -25,23 +25,23 @@ def home(request):
     hero_images = cache.get("hero_images")
     if not hero_images:
         hero_images = [
-            "propertyA/Cambridge1.jpg",
-            "propertyA/Cambridge2.jpg",
-            "propertyA/Cambridge_Photos_5.jpg",
-            "propertyA/Cambridge_Photos_8.jpg",
-            "propertyA/Cambridge_Photos_7.jpg",
+            "propertyA/Cambridge1.png",
+            "propertyA/Cambridge2.png",
+            "propertyA/Cambridge_Photos_5.png",
+            "propertyA/Cambridge_Photos_8.png",
+            "propertyA/Cambridge_Photos_7.png",
         ]
         cache.set("hero_images", hero_images, 300)
 
     featured_images = cache.get("featured_images")
     if not featured_images:
         featured_images = [
-            "Cambridge1.jpg",
-            "Cambridge2.jpg",
-            "Cambridge3.jpg",
-            "Cambridge4.jpg",
-            "Cambridge5.jpg",
-            "Cambridge6.jpg",
+            "Cambridge1.png",
+            "Cambridge2.png",
+            "Cambridge3.png",
+            "Cambridge4.png",
+            "Cambridge5.png",
+            "Cambridge6.png",
         ]
         cache.set("featured_images", featured_images, 300)
 
@@ -51,7 +51,6 @@ def home(request):
         "PLACE_ID": PLACE_ID,
         "GOOGLE_API_KEY": GOOGLE_API_KEY,
     })
-
 
 
 def contact(request):

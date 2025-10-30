@@ -212,14 +212,6 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
-        VanillaTilt.init(document.querySelectorAll(".tilt"), {
-            max: 6,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.2,
-        });
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
@@ -458,6 +450,37 @@ document.addEventListener("DOMContentLoaded", function() {
       "max-glare": 0.3
     });
   }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const heroImages = JSON.parse(document.getElementById('hero-images-data').textContent);
+    const heroImg = document.getElementById('hero-img');
+    if (!heroImg || !heroImages.length) return;
+
+    let current = 0;
+
+    // Preload images
+    const preloaded = heroImages.map(src => {
+        const img = new Image();
+        img.src = "{% static 'images/gallery/' %}" + src;
+        return img;
+    });
+
+    function nextHeroSlide() {
+        current = (current + 1) % heroImages.length;
+
+        // Smooth fade
+        heroImg.style.opacity = 0;
+        setTimeout(() => {
+            heroImg.src = preloaded[current].src;
+            heroImg.alt = "Hero image " + (current + 1);
+            heroImg.style.opacity = 1;
+        }, 300); // fade duration
+    }
+
+    setInterval(nextHeroSlide, 5000); // 5s
 });
 </script>
 
