@@ -8,10 +8,7 @@
 <section class="hero">
   <div class="hero-slideshow">
     {% for img in hero_images %}
-      <picture>
-        <source srcset="{% static 'images/gallery/' %}{{ img|replace:'.jpg','.webp' }}" type="image/webp">
-        <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
-      </picture>
+      <img loading="lazy" src="{% static 'images/gallery/' %}{{ img }}" alt="Hero image {{ forloop.counter }}">
     {% endfor %}
   </div>
 
@@ -39,18 +36,16 @@
     <div class="gallery-carousel">
       {% for i in featured_images %}
       <div class="gallery-item">
-        <picture>
-          <source srcset="{% static 'images/' %}{{ i|replace:'.jpg','.webp' }}" type="image/webp">
-          <img loading="lazy" src="{% static 'images/' %}{{ i }}" 
-               alt="Cambridge Property {{ forloop.counter }}"
-               class="tilt">
-        </picture>
+        <img loading="lazy" src="{% static 'images/' %}{{ i }}" 
+             alt="Cambridge Property {{ forloop.counter }}"
+             class="tilt">
       </div>
       {% endfor %}
     </div>
     <button class="gallery-arrow right">&#10095;</button>
   </div>
 </section>
+
 
 <!-- Full Page Background Wrapper -->
 <section class="bg-section">
