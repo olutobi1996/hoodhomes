@@ -107,8 +107,7 @@ body {
 
 /* Shared background for sections */
 .with-bg {
-    background: url("{% static 'images/Cambridge1.jpg' %}") no-repeat center center;
-    background-size: cover;
+    background: #fdfdfd; /* light off-white, can change to #f7f7f7 or #faf9f6 */
     position: relative;
     z-index: 1;
     padding: 4rem 2rem;
@@ -118,10 +117,10 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.85);
-    /* white overlay for readability */
+    background: #fdfdfd; /* match or slightly tinted */
     z-index: -1;
 }
+
 
 /* Remove background entirely on mobile */
 @media (max-width: 768px) {
