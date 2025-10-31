@@ -487,68 +487,62 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  // --- Lazy loading setup ---
   const lazyImgs = document.querySelectorAll("img.lazy-fade[data-src]");
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        img.style.opacity = "0";
-        img.onload = () => (img.style.transition = "opacity 0.6s", img.style.opacity = "1");
-        obs.unobserve(img);
-      }
-    });
-  }, { rootMargin: "100px" });
-  lazyImgs.forEach(img => observer.observe(img));
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const lazyImgs = document.querySelectorAll("img.lazy-fade[data-src]");
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        img.style.opacity = "0";
-        img.onload = () => (img.style.transition = "opacity 0.6s", img.style.opacity = "1");
-        obs.unobserve(img);
-      }
-    });
-  }, { rootMargin: "150px" });
-  lazyImgs.forEach(img => observer.observe(img));
-});
-</script>
-<script>
-document.querySelectorAll(".gallery-wrapper").forEach(wrapper => {
-  const carousel = wrapper.querySelector(".gallery-carousel");
-  const items = carousel.querySelectorAll(".gallery-item");
-  const left = wrapper.querySelector(".gallery-arrow.left");
-  const right = wrapper.querySelector(".gallery-arrow.right");
-  let index = 0;
-  const move = () => carousel.style.transform = `translateX(-${index * 100}%)`;
-  right.addEventListener("click", e => { e.stopPropagation(); index = (index + 1) % items.length; move(); });
-  left.addEventListener("click", e => { e.stopPropagation(); index = (index - 1 + items.length) % items.length; move(); });
-  setInterval(() => { index = (index + 1) % items.length; move(); }, 4000);
-});
+  const loadImg = (img) => {
+    img.src = img.dataset.src;
+    img.removeAttribute("data-src");
+    img.style.opacity = "0";
+    img.onload = () => {
+      img.style.transition = "opacity 0.6s";
+      img.style.opacity = "1";
+    };
+  };
 
-document.addEventListener("DOMContentLoaded", function() {
-  const lazyImgs = document.querySelectorAll("img.lazy-fade[data-src]");
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        img.style.opacity = "0";
-        img.onload = () => (img.style.transition = "opacity 0.6s", img.style.opacity = "1");
-        obs.unobserve(img);
+        loadImg(entry.target);
+        obs.unobserve(entry.target);
       }
     });
-  }, { rootMargin: "150px" });
+  }, { rootMargin: "300px" }); // larger margin for early load
+
   lazyImgs.forEach(img => observer.observe(img));
+
+  // --- Carousel setup ---
+  document.querySelectorAll(".gallery-wrapper").forEach(wrapper => {
+    const carousel = wrapper.querySelector(".gallery-carousel");
+    const items = carousel.querySelectorAll(".gallery-item");
+    const left = wrapper.querySelector(".gallery-arrow.left");
+    const right = wrapper.querySelector(".gallery-arrow.right");
+    let index = 0;
+
+    const move = () => {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      // Manually trigger lazy load for visible image
+      const visibleImg = items[index].querySelector("img[data-src]");
+      if (visibleImg) loadImg(visibleImg);
+    };
+
+    right.addEventListener("click", e => {
+      e.stopPropagation();
+      index = (index + 1) % items.length;
+      move();
+    });
+
+    left.addEventListener("click", e => {
+      e.stopPropagation();
+      index = (index - 1 + items.length) % items.length;
+      move();
+    });
+
+    // Auto-slide
+    setInterval(() => {
+      index = (index + 1) % items.length;
+      move();
+    }, 4000);
+  });
 });
 </script>
 
