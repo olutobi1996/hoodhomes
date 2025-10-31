@@ -840,7 +840,7 @@ html, body {
 footer.premium-footer {
     background: url("/static/images/Cambridge2.jpg") no-repeat center center;
     background-size: cover;
-    color: #fff;
+    color: #000;
     padding: 2rem 1rem;
     border-radius: 12px;
     position: relative;
@@ -853,7 +853,7 @@ footer.premium-footer {
     max-width: 1100px;
     margin: 2rem auto;
     padding: 4rem 3rem;
-    background-color: #000; /* black background for contrast */
+    background-color: #fff; /* White background for readability */
     border: 2px solid var(--primary-yellow);
     border-radius: 14px;
     box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); /* subtle glow */
@@ -862,7 +862,7 @@ footer.premium-footer {
     justify-content: space-between;
     align-items: flex-start;
     gap: 3rem;
-    text-align: center;
+    text-align: left;
     transition: all 0.4s ease;
 }
 
@@ -876,14 +876,14 @@ footer.premium-footer {
     gap: 3rem;
     justify-content: space-between;
     width: 100%;
-    color: #fff;
+    color: #000; /* All text black by default */
 }
 
 /* Footer Info & Form */
 .footer-info,
 .footer-form {
     flex: 1 1 300px;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 /* Headings */
@@ -895,16 +895,22 @@ footer.premium-footer {
     margin-bottom: 1rem;
     cursor: pointer;
     transition: color 0.2s ease;
-    text-decoration: none; /* remove underlines */
+    text-decoration: none;
 }
 
 /* Paragraphs & Links */
 .footer-info p,
 .footer-info a,
 .footer-legal-links p {
-    color: #fff;
-    text-decoration: none; /* remove underline */
+    color: #000; /* black text */
+    text-decoration: none;
     margin-bottom: 0.8rem;
+}
+
+/* Phone and Email gold */
+.footer-info p a[href^="tel"],
+.footer-info p a[href^="mailto"] {
+    color: var(--primary-yellow);
 }
 
 .footer-info a:hover,
@@ -914,7 +920,7 @@ footer.premium-footer {
 
 /* Form Styling */
 .form-card {
-    background: #111;
+    background: #fff; /* White form box */
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
@@ -926,15 +932,15 @@ footer.premium-footer {
     padding: 0.8rem 1rem;
     margin-bottom: 1rem;
     border-radius: 8px;
-    border: 1px solid #555;
-    background: #222;
-    color: #fff;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
     font-size: 0.95rem;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: #ccc;
+    color: #555;
 }
 
 /* Consent Box */
@@ -943,7 +949,7 @@ footer.premium-footer {
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
-    color: #fff;
+    color: #000;
 }
 
 .consent-box input[type="checkbox"] {
@@ -975,13 +981,13 @@ footer.premium-footer {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
     margin-top: 2rem;
     text-align: center;
 }
 
 .footer-bottom-bar a {
-    color: #d4af37;
+    color: var(--primary-yellow);
     text-decoration: none;
     margin: 0 0.5rem;
 }
@@ -990,7 +996,6 @@ footer.premium-footer {
     color: #ffd700;
 }
 
-/* Footer Bottom Text */
 .footer-bottom-bar p {
     margin: 0;
     font-size: 0.95rem;
