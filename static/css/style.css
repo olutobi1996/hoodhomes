@@ -321,8 +321,8 @@ p, li {
     align-items: stretch;
 }
 .split-section:nth-child(even) { flex-direction: row-reverse; }
-.split-text, .split-image { flex: 1; display: flex; justify-content: center; align-items: center; }
-.split-image img { width: 100%; max-width: 500px; max-height: 450px; object-fit: cover; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.25); transition: all 0.3s ease; }
+.split-text, .split-image { flex: 1; display: flex; justify-content: center; align-items: center; overflow: visible; }
+.split-image img { width: 100%; max-width: 500px; height: auto; max-height: 450px; object-fit: contain; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.25); transition: all 0.3s ease; }
 .split-image img:hover { box-shadow: 0 0 15px var(--primary-yellow); transform: translateY(-3px); }
 
 /* Text box */
@@ -834,9 +834,9 @@ html, body {
 .alert.error { background:#ffe6e6; border:1px solid #ff9999; color:#b30000; }
 @keyframes fadeOut { 0% {opacity:1;} 80% {opacity:1;} 100% {opacity:0; display:none;} }
 
-/* Footer Bottom */
-.footer-bottom-bar, .footer-bottom { text-align:center; }
-
+/* =========================
+   Footer General
+   ========================= */
 footer.premium-footer {
     background: url("/static/images/Cambridge2.jpg") no-repeat center center;
     background-size: cover;
@@ -845,47 +845,129 @@ footer.premium-footer {
     border-radius: 12px;
     position: relative;
     overflow: hidden;
+    font-family: 'DM Serif Display', serif;
 }
 
+/* Footer Container + Glow Box */
 .footer-glow-box {
     max-width: 1100px;
     margin: 2rem auto;
-    padding: 2rem 3rem;
-    background: #fff;
+    padding: 4rem 3rem;
+    background-color: #000; /* black background for contrast */
     border: 2px solid var(--primary-yellow);
     border-radius: 14px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); /* subtle glow */
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     gap: 3rem;
-    flex-wrap: wrap;
     text-align: center;
     transition: all 0.4s ease;
 }
 
 .footer-glow-box:hover {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.7);
 }
 
-.footer-info h3, .footer-info h4, .footer-form h4 {
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: space-between;
+    width: 100%;
+    color: #fff;
+}
+
+/* Footer Info & Form */
+.footer-info,
+.footer-form {
+    flex: 1 1 300px;
+    line-height: 1.6;
+}
+
+/* Headings */
+.footer-info h3,
+.footer-info h4,
+.footer-form h4 {
     color: var(--primary-yellow);
     font-family: 'DM Serif Display', serif;
+    margin-bottom: 1rem;
     cursor: pointer;
     transition: color 0.2s ease;
     text-decoration: none; /* remove underlines */
 }
 
-.footer-info p a, .footer-form a {
-    color: var(--primary-yellow);
-    text-decoration: none;
-    transition: color 0.2s ease;
+/* Paragraphs & Links */
+.footer-info p,
+.footer-info a,
+.footer-legal-links p {
+    color: #fff;
+    text-decoration: none; /* remove underline */
+    margin-bottom: 0.8rem;
 }
 
-.footer-info p a:hover, .footer-form a:hover {
+.footer-info a:hover,
+.footer-form a:hover {
     color: #ffd700;
 }
 
+/* Form Styling */
+.form-card {
+    background: #111;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background: #222;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #ccc;
+}
+
+/* Consent Box */
+.consent-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.consent-box input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Submit Button */
+.cta-button {
+    background: #d4af37;
+    color: #000;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #ffd700;
+}
+
+/* Footer Bottom Bar */
 .footer-bottom-bar {
     width: 100%;
     padding: 1rem 0.5rem;
@@ -894,11 +976,62 @@ footer.premium-footer {
     align-items: center;
     gap: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: auto;
+    margin-top: 2rem;
     text-align: center;
 }
 
-/* Talk To Us Button */
-.talk-to-us-btn { position:fixed; bottom:1.5rem; right:6rem; background:linear-gradient(45deg,#ffcf01,#ffd700); color:#111; padding:0.8rem 1.5rem; border:none; border-radius:50px; font-weight:bold; font-size:1rem; cursor:pointer; z-index:2000; display:flex; align-items:center; gap:0.5rem; box-shadow:0 4px 12px rgba(255,223,0,0.5); transition:all 0.3s ease; }
-.talk-to-us-btn:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(255,223,0,0.7); }
+.footer-bottom-bar a {
+    color: #d4af37;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
 
+.footer-bottom-bar a:hover {
+    color: #ffd700;
+}
+
+/* Footer Bottom Text */
+.footer-bottom-bar p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Talk To Us Button */
+.talk-to-us-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 6rem;
+    background: linear-gradient(45deg,#ffcf01,#ffd700);
+    color: #111;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(255,223,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.talk-to-us-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255,223,0,0.7);
+}
+
+/* Responsive Footer Adjustments */
+@media (max-width: 768px) {
+    .footer-glow-box {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .talk-to-us-btn {
+        right: 1.5rem;
+        bottom: 1rem;
+    }
+}
