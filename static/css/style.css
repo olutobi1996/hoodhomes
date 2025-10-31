@@ -669,8 +669,9 @@ ul {
 .swiper {
   position: relative;
   width: 100%;
+  max-width: 1000px; /* constrain overall gallery width */
   overflow: hidden;
-  margin: 2rem 0;
+  margin: 2rem auto; /* center on page */
 }
 
 .swiper-wrapper {
@@ -679,7 +680,7 @@ ul {
 
 .swiper-slide {
   flex-shrink: 0;
-  width: calc(50% - 10px); /* 2 images per row on desktop */
+   width: calc(50% - 10px); /* 2 images per row on desktop */
   padding: 5px;
   box-sizing: border-box;
 }
@@ -723,10 +724,9 @@ ul {
   opacity: 1;
 }
 
-/* Responsive layout */
 @media (max-width: 1024px) {
   .swiper-slide {
-    width: calc(50% - 10px); /* still 2 images for tablets */
+    width: calc(50% - 10px); /* 2 images */
   }
 }
 
