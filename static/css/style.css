@@ -123,6 +123,27 @@ p, li {
 }
 .logo-stack .hh { font-size: 2.4rem; }
 .logo-stack .hood-homes { font-size: 1.6rem; }
+.logo-stack.corner-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* match navbar alignment */
+    gap: 0;
+    font-family: 'DM Serif Display', serif;
+}
+
+.logo-stack.corner-logo .hh {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-yellow);
+}
+
+.logo-stack.corner-logo .hood-homes {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #000;
+    text-transform: uppercase;
+}
+
 
 /* Nav Links */
 .nav-links {
@@ -471,6 +492,95 @@ html, body {
 }
 
 /* =========================
+   Reasons Grid
+   ========================= */
+.reasons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+.reason-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    position: relative;
+}
+
+/* Reason Item */
+.reason-item {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 0 30px var(--primary-yellow);
+    text-align: center;
+    width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reason-item:hover {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) scale(1.03);
+    box-shadow: 0 0 35px var(--primary-yellow);
+}
+
+.reason-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: var(--primary-color, #f4f4f4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.reason-icon i {
+    color: var(--primary-yellow);
+    font-size: 1.8rem;
+}
+
+/* Horizontal arrows */
+.reason-row .reason-item:not(:last-child)::after {
+    content: "➔";
+    position: absolute;
+    right: -1.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--primary-yellow);
+}
+
+/* Vertical arrows */
+.reason-row::after {
+    content: "↓";
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: var(--primary-yellow);
+}
+
+.reason-row:last-child::after {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reason-row {
+        flex-direction: column;
+    }
+
+    .reason-row .reason-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
+
+/* =========================
    Properties Grid
    ========================= */
 .properties {
@@ -726,6 +836,67 @@ html, body {
 
 /* Footer Bottom */
 .footer-bottom-bar, .footer-bottom { text-align:center; }
+
+footer.premium-footer {
+    background: url("/static/images/Cambridge2.jpg") no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-glow-box {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2rem 3rem;
+    background: #fff;
+    border: 2px solid var(--primary-yellow);
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.footer-glow-box:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+}
+
+.footer-info h3, .footer-info h4, .footer-form h4 {
+    color: var(--primary-yellow);
+    font-family: 'DM Serif Display', serif;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-decoration: none; /* remove underlines */
+}
+
+.footer-info p a, .footer-form a {
+    color: var(--primary-yellow);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-info p a:hover, .footer-form a:hover {
+    color: #ffd700;
+}
+
+.footer-bottom-bar {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: auto;
+    text-align: center;
+}
 
 /* Talk To Us Button */
 .talk-to-us-btn { position:fixed; bottom:1.5rem; right:6rem; background:linear-gradient(45deg,#ffcf01,#ffd700); color:#111; padding:0.8rem 1.5rem; border:none; border-radius:50px; font-weight:bold; font-size:1rem; cursor:pointer; z-index:2000; display:flex; align-items:center; gap:0.5rem; box-shadow:0 4px 12px rgba(255,223,0,0.5); transition:all 0.3s ease; }
