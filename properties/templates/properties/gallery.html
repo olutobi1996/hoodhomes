@@ -1,91 +1,51 @@
 {% extends "base.html" %} {% load static %} {% block title %}Gallery | Hood
 Homes{% endblock %} {% block content %}
-  <section
-    class="properties container"
-    style="padding-top: 120px"
-    data-aos="fade-up"
-  >
-    <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">
-      Gallery
-    </h2>
+<!-- Gallery Section -->
+<section class="properties container" style="padding-top: 120px" data-aos="fade-up">
+  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Gallery</h2>
 
-    <!-- Property A -->
-    <div
-      class="gallery-wrapper"
-      style="margin-bottom: 60px; position: relative; overflow: hidden"
-    >
-      <button class="gallery-arrow left">&#10094;</button>
-      <div
-        class="gallery-carousel flex transition-transform duration-500 ease-in-out"
-      >
-        {% for img in propertyA_images %}
-        <div class="gallery-item min-w-full">
-          <img
+  <!-- Property A -->
+  <div class="gallery-wrapper" style="margin-bottom: 60px; position: relative; overflow: hidden">
+    <button class="gallery-arrow left">&#10094;</button>
+    <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
+      {% for img in propertyA_images %}
+      <div class="gallery-item min-w-full">
+        <img
+          {% if forloop.first %}
             src="{% static 'images/gallery/propertyA/' %}{{ img }}"
-            alt="Property A image {{ forloop.counter }}"
-            class="w-full h-auto object-cover"
-          />
-        </div>
-        {% endfor %}
+          {% else %}
+            data-src="{% static 'images/gallery/propertyA/' %}{{ img }}"
+          {% endif %}
+          alt="Property A image {{ forloop.counter }}"
+          class="w-full h-auto object-cover lazy-fade"
+          loading="lazy"
+        />
       </div>
-      <button class="gallery-arrow right">&#10095;</button>
+      {% endfor %}
     </div>
+    <button class="gallery-arrow right">&#10095;</button>
+  </div>
 
-    <!-- Property B -->
-    <div
-      class="gallery-wrapper"
-      style="margin-bottom: 80px; position: relative; overflow: hidden"
-    >
-      <button class="gallery-arrow left">&#10094;</button>
-      <div
-        class="gallery-carousel flex transition-transform duration-500 ease-in-out"
-      >
-        {% for img in propertyB_images %}
-        <div class="gallery-item min-w-full">
-          <img
+  <!-- Property B -->
+  <div class="gallery-wrapper" style="margin-bottom: 80px; position: relative; overflow: hidden">
+    <button class="gallery-arrow left">&#10094;</button>
+    <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
+      {% for img in propertyB_images %}
+      <div class="gallery-item min-w-full">
+        <img
+          {% if forloop.first %}
             src="{% static 'images/gallery/propertyB/' %}{{ img }}"
-            alt="Property B image {{ forloop.counter }}"
-            class="w-full h-auto object-cover"
-          />
-        </div>
-        {% endfor %}
+          {% else %}
+            data-src="{% static 'images/gallery/propertyB/' %}{{ img }}"
+          {% endif %}
+          alt="Property B image {{ forloop.counter }}"
+          class="w-full h-auto object-cover lazy-fade"
+          loading="lazy"
+        />
       </div>
-      <button class="gallery-arrow right">&#10095;</button>
+      {% endfor %}
     </div>
+    <button class="gallery-arrow right">&#10095;</button>
+  </div>
 </section>
-
-<script>
-  document.querySelectorAll(".gallery-wrapper").forEach((wrapper, idx) => {
-    const carousel = wrapper.querySelector(".gallery-carousel");
-    const items = carousel.querySelectorAll(".gallery-item");
-    const left = wrapper.querySelector(".gallery-arrow.left");
-    const right = wrapper.querySelector(".gallery-arrow.right");
-
-    let index = 0;
-
-    const moveCarousel = () => {
-      carousel.style.transform = `translateX(-${index * 100}%)`;
-    };
-
-    // Handle clicks
-    right.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent event bubbling to others
-      index = (index + 1) % items.length;
-      moveCarousel();
-    });
-
-    left.addEventListener("click", (e) => {
-      e.stopPropagation();
-      index = (index - 1 + items.length) % items.length;
-      moveCarousel();
-    });
-
-    // Optional: auto-slide every few seconds
-    setInterval(() => {
-      index = (index + 1) % items.length;
-      moveCarousel();
-    }, 4000); // 4 seconds per slide
-  });
-</script>
-
 {% endblock %}

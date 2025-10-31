@@ -27,9 +27,7 @@
   </div>
 </section>
 
-
 {{ hero_images|json_script:"hero-images-data" }}
-
 
 <!-- Gallery Section -->
 <section class="properties container">
@@ -39,9 +37,16 @@
     <div class="gallery-carousel">
       {% for i in featured_images %}
       <div class="gallery-item">
-        <img loading="lazy" src="{% static 'images/' %}{{ i }}" 
-             alt="Cambridge Property {{ forloop.counter }}"
-             class="tilt">
+        <img
+          {% if forloop.first %}
+            src="{% static 'images/' %}{{ i }}"
+          {% else %}
+            data-src="{% static 'images/' %}{{ i }}"
+          {% endif %}
+          alt="Cambridge Property {{ forloop.counter }}"
+          class="tilt lazy-fade"
+          loading="lazy"
+        />
       </div>
       {% endfor %}
     </div>
