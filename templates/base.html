@@ -490,6 +490,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // --- Lazy loading setup ---
   const lazyImgs = document.querySelectorAll("img.lazy-fade[data-src]");
   const loadImg = (img) => {
+    if (!img || !img.dataset.src) return;
     img.src = img.dataset.src;
     img.removeAttribute("data-src");
     img.style.opacity = "0";
@@ -506,11 +507,11 @@ document.addEventListener("DOMContentLoaded", function() {
         obs.unobserve(entry.target);
       }
     });
-  }, { rootMargin: "300px" }); // larger margin for early load
+  }, { rootMargin: "300px" });
 
   lazyImgs.forEach(img => observer.observe(img));
 
-  // --- Carousel setup ---
+  // --- Continuous Carousel setup ---
   document.querySelectorAll(".gallery-wrapper").forEach(wrapper => {
     const carousel = wrapper.querySelector(".gallery-carousel");
     const items = carousel.querySelectorAll(".gallery-item");
@@ -518,28 +519,58 @@ document.addEventListener("DOMContentLoaded", function() {
     const right = wrapper.querySelector(".gallery-arrow.right");
     let index = 0;
 
+    // Clone first and last items for seamless looping
+    const firstClone = items[0].cloneNode(true);
+    const lastClone = items[items.length - 1].cloneNode(true);
+    carousel.appendChild(firstClone);
+    carousel.insertBefore(lastClone, items[0]);
+
+    let allItems = carousel.querySelectorAll(".gallery-item");
+    let slideWidth = 100;
+    let allowTransition = true;
+
+    // Start at the "real" first image (index 1, after lastClone)
+    index = 1;
+    carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+
     const move = () => {
-      carousel.style.transform = `translateX(-${index * 100}%)`;
-      // Manually trigger lazy load for visible image
-      const visibleImg = items[index].querySelector("img[data-src]");
+      if (!allowTransition) return;
+      carousel.style.transition = "transform 0.6s ease";
+      carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+    };
+
+    const handleTransitionEnd = () => {
+      if (index === allItems.length - 1) {
+        carousel.style.transition = "none";
+        index = 1;
+        carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+      } else if (index === 0) {
+        carousel.style.transition = "none";
+        index = allItems.length - 2;
+        carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+      }
+      // Lazy load visible image
+      const visibleImg = allItems[index].querySelector("img[data-src]");
       if (visibleImg) loadImg(visibleImg);
     };
 
+    carousel.addEventListener("transitionend", handleTransitionEnd);
+
     right.addEventListener("click", e => {
       e.stopPropagation();
-      index = (index + 1) % items.length;
+      index++;
       move();
     });
 
     left.addEventListener("click", e => {
       e.stopPropagation();
-      index = (index - 1 + items.length) % items.length;
+      index--;
       move();
     });
 
-    // Auto-slide
+    // Auto-slide every 4 seconds
     setInterval(() => {
-      index = (index + 1) % items.length;
+      index++;
       move();
     }, 4000);
   });
