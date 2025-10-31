@@ -17,6 +17,10 @@
 
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+     <!-- Swiper Js -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 
 </head>
 
@@ -487,95 +491,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // --- Lazy loading setup ---
-  const lazyImgs = document.querySelectorAll("img.lazy-fade[data-src]");
-  const loadImg = (img) => {
-    if (!img || !img.dataset.src) return;
-    img.src = img.dataset.src;
-    img.removeAttribute("data-src");
-    img.style.opacity = "0";
-    img.onload = () => {
-      img.style.transition = "opacity 0.6s";
-      img.style.opacity = "1";
-    };
-  };
+  const gallerySelectors = [
+    ".myGallery",
+    ".servicesGallery",
+    ".propertyA-gallery",
+    ".propertyB-gallery"
+  ];
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        loadImg(entry.target);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: "300px" });
-
-  lazyImgs.forEach(img => observer.observe(img));
-
-  // --- Continuous Carousel setup ---
-  document.querySelectorAll(".gallery-wrapper").forEach(wrapper => {
-    const carousel = wrapper.querySelector(".gallery-carousel");
-    const items = carousel.querySelectorAll(".gallery-item");
-    const left = wrapper.querySelector(".gallery-arrow.left");
-    const right = wrapper.querySelector(".gallery-arrow.right");
-    let index = 0;
-
-    // Clone first and last items for seamless looping
-    const firstClone = items[0].cloneNode(true);
-    const lastClone = items[items.length - 1].cloneNode(true);
-    carousel.appendChild(firstClone);
-    carousel.insertBefore(lastClone, items[0]);
-
-    let allItems = carousel.querySelectorAll(".gallery-item");
-    let slideWidth = 100;
-    let allowTransition = true;
-
-    // Start at the "real" first image (index 1, after lastClone)
-    index = 1;
-    carousel.style.transform = `translateX(-${index * slideWidth}%)`;
-
-    const move = () => {
-      if (!allowTransition) return;
-      carousel.style.transition = "transform 0.6s ease";
-      carousel.style.transform = `translateX(-${index * slideWidth}%)`;
-    };
-
-    const handleTransitionEnd = () => {
-      if (index === allItems.length - 1) {
-        carousel.style.transition = "none";
-        index = 1;
-        carousel.style.transform = `translateX(-${index * slideWidth}%)`;
-      } else if (index === 0) {
-        carousel.style.transition = "none";
-        index = allItems.length - 2;
-        carousel.style.transform = `translateX(-${index * slideWidth}%)`;
-      }
-      // Lazy load visible image
-      const visibleImg = allItems[index].querySelector("img[data-src]");
-      if (visibleImg) loadImg(visibleImg);
-    };
-
-    carousel.addEventListener("transitionend", handleTransitionEnd);
-
-    right.addEventListener("click", e => {
-      e.stopPropagation();
-      index++;
-      move();
-    });
-
-    left.addEventListener("click", e => {
-      e.stopPropagation();
-      index--;
-      move();
-    });
-
-    // Auto-slide every 4 seconds
-    setInterval(() => {
-      index++;
-      move();
-    }, 4000);
+  gallerySelectors.forEach(selector => {
+    if (document.querySelector(selector)) {
+      new Swiper(selector, {
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        speed: 800,
+        lazy: true,
+        spaceBetween: 10,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: selector + " .swiper-button-next",
+          prevEl: selector + " .swiper-button-prev",
+        },
+        pagination: {
+          el: selector + " .swiper-pagination",
+          clickable: true,
+        },
+      });
+    }
   });
 });
 </script>
+
 
     <!-- Gallery Image Modal -->
 <div id="imageModal" class="image-modal">
@@ -583,6 +531,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <img class="modal-content" id="modalImage">
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>

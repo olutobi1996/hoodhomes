@@ -634,10 +634,20 @@ ul {
     box-shadow: 0 0 15px var(--primary-yellow);
 }
 
-.lazy-fade {
-  opacity: 1;
-  transition: opacity 0.6s ease;
+.swiper {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  overflow: hidden;
 }
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

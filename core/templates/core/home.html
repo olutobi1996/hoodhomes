@@ -32,27 +32,28 @@
 <!-- Gallery Section -->
 <section class="properties container">
   <h2 class="section-heading">Gallery</h2>
-  <div class="gallery-wrapper">
-    <button class="gallery-arrow left">&#10094;</button>
-    <div class="gallery-carousel">
+
+  <div class="swiper myGallery">
+    <div class="swiper-wrapper">
       {% for i in featured_images %}
-      <div class="gallery-item">
+      <div class="swiper-slide">
         <img
-          {% if forloop.first %}
-            src="{% static 'images/' %}{{ i }}"
-          {% else %}
-            data-src="{% static 'images/' %}{{ i }}"
-          {% endif %}
+          src="{% static 'images/' %}{{ i }}"
           alt="Cambridge Property {{ forloop.counter }}"
-          class="tilt lazy-fade"
           loading="lazy"
+          class="w-full h-auto object-cover"
         />
       </div>
       {% endfor %}
     </div>
-    <button class="gallery-arrow right">&#10095;</button>
+
+    <!-- Optional Controls -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
+
 
 
 <!-- Full Page Background Wrapper -->

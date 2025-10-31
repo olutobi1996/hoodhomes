@@ -32,23 +32,26 @@
 <!-- Our Work -->
 <section class="services-gallery container" data-aos="fade-up">
   <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Our Work in Cambridge</h2>
-  <div class="masonry-grid">
-    {% for i in images %}
-      <div class="masonry-item" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+
+  <div class="swiper servicesGallery">
+    <div class="swiper-wrapper">
+      {% for i in images %}
+      <div class="swiper-slide">
         <img
-          {% if forloop.first %}
-            src="{% static 'images/Cambridge' %}{{ i }}.jpg"
-          {% else %}
-            data-src="{% static 'images/Cambridge' %}{{ i }}.jpg"
-          {% endif %}
+          src="{% static 'images/Cambridge' %}{{ i }}.jpg"
           alt="Service {{ i }}"
-          class="lazy-fade"
           loading="lazy"
+          class="w-full h-auto object-cover"
         />
       </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </section>
+
 
 
 <!-- Services Section -->

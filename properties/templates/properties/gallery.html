@@ -5,47 +5,40 @@ Homes{% endblock %} {% block content %}
   <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Gallery</h2>
 
   <!-- Property A -->
-  <div class="gallery-wrapper" style="margin-bottom: 60px; position: relative; overflow: hidden">
-    <button class="gallery-arrow left">&#10094;</button>
-    <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
+  <div class="swiper propertyA-gallery" style="margin-bottom: 60px;">
+    <div class="swiper-wrapper">
       {% for img in propertyA_images %}
-      <div class="gallery-item min-w-full">
+      <div class="swiper-slide">
         <img
-          {% if forloop.first %}
-            src="{% static 'images/gallery/propertyA/' %}{{ img }}"
-          {% else %}
-            data-src="{% static 'images/gallery/propertyA/' %}{{ img }}"
-          {% endif %}
+          src="{% static 'images/gallery/propertyA/' %}{{ img }}"
           alt="Property A image {{ forloop.counter }}"
-          class="w-full h-auto object-cover lazy-fade"
+          class="w-full h-auto object-cover"
           loading="lazy"
         />
       </div>
       {% endfor %}
     </div>
-    <button class="gallery-arrow right">&#10095;</button>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 
   <!-- Property B -->
-  <div class="gallery-wrapper" style="margin-bottom: 80px; position: relative; overflow: hidden">
-    <button class="gallery-arrow left">&#10094;</button>
-    <div class="gallery-carousel flex transition-transform duration-500 ease-in-out">
+  <div class="swiper propertyB-gallery" style="margin-bottom: 80px;">
+    <div class="swiper-wrapper">
       {% for img in propertyB_images %}
-      <div class="gallery-item min-w-full">
+      <div class="swiper-slide">
         <img
-          {% if forloop.first %}
-            src="{% static 'images/gallery/propertyB/' %}{{ img }}"
-          {% else %}
-            data-src="{% static 'images/gallery/propertyB/' %}{{ img }}"
-          {% endif %}
+          src="{% static 'images/gallery/propertyB/' %}{{ img }}"
           alt="Property B image {{ forloop.counter }}"
-          class="w-full h-auto object-cover lazy-fade"
+          class="w-full h-auto object-cover"
           loading="lazy"
         />
       </div>
       {% endfor %}
     </div>
-    <button class="gallery-arrow right">&#10095;</button>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </section>
+
 {% endblock %}
