@@ -600,8 +600,9 @@ html, body {
   .item .content {
     width: 85%;
     padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
+       /* ❌ remove frosted effect */
+    background: none !important;
+    backdrop-filter: none !important;
   }
 
   .content .name {
