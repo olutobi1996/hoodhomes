@@ -29,31 +29,37 @@
 
 {{ hero_images|json_script:"hero-images-data" }}
 
-<!-- Gallery Section -->
-<section class="properties container">
+<!-- Particles Background -->
+<div id="particles-background"></div>
+
+<!-- Property Gallery Section -->
+<!-- Property Gallery Section -->
+<section class="property-gallery container">
   <h2 class="section-heading">Gallery</h2>
 
-  <div class="swiper myGallery">
-    <div class="swiper-wrapper">
+  <div class="gallery-wrapper">
+    <div class="slide">
       {% for i in featured_images %}
-      <div class="swiper-slide">
-        <img
-          src="{% static 'images/' %}{{ i }}"
-          alt="Cambridge Property {{ forloop.counter }}"
-          loading="lazy"
-          class="w-full h-auto object-cover"
-        />
+      <div class="item" style="background-image: url({% static 'images/' %}{{ i }});">
+        <div class="content">
+          <div class="name">Cambridge</div>
+          <div class="des">
+            Discover our exclusive Cambridge listings, handpicked for quality and location.
+          </div>
+          <a href="#" class="seeMore">
+            <button>See More</button>
+          </a>
+        </div>
       </div>
       {% endfor %}
     </div>
 
-    <!-- Optional Controls -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+    <div class="button">
+      <button class="prev">◁</button>
+      <button class="next">▷</button>
+    </div>
   </div>
 </section>
-
 
 
 <!-- Full Page Background Wrapper -->

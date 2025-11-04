@@ -495,38 +495,64 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const gallerySelectors = [
-    ".myGallery",
-    ".servicesGallery",
-    ".propertyA-gallery",
-    ".propertyB-gallery"
-  ];
+document.addEventListener("DOMContentLoaded", function () {
+  const next = document.querySelector(".next");
+  const prev = document.querySelector(".prev");
 
-  gallerySelectors.forEach(selector => {
-    if (document.querySelector(selector)) {
-      new Swiper(selector, {
-        loop: true,
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
-        speed: 800,
-        lazy: true,
-        spaceBetween: 10,
-        slidesPerView: 1,
-        navigation: {
-          nextEl: selector + " .swiper-button-next",
-          prevEl: selector + " .swiper-button-prev",
-        },
-        pagination: {
-          el: selector + " .swiper-pagination",
-          clickable: true,
-        },
-      });
-    }
+  next.addEventListener("click", function () {
+    const items = document.querySelectorAll(".item");
+    document.querySelector(".slide").appendChild(items[0]);
+  });
+
+  prev.addEventListener("click", function () {
+    const items = document.querySelectorAll(".item");
+    document.querySelector(".slide").prepend(items[items.length - 1]);
   });
 });
+</script>
+
+
+<!-- Load particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<!-- Initialize gold-on-white particles -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    particlesJS("particles-background", {
+      "particles": {
+        "number": { "value": 35, "density": { "enable": true, "value_area": 900 } },
+        "color": { "value": "#d4af37" },  // gold color
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.4 },
+        "size": {
+          "value": 12,          // larger circles
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "line_linked": { "enable": false }, // no connecting lines, just clean circles
+        "move": {
+          "enable": true,
+          "speed": 0.6,          // slower movement
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100, "duration": 0.4 },
+          "push": { "particles_nb": 3 }
+        }
+      },
+      "retina_detect": true
+    });
+  });
 </script>
 
 

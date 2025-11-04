@@ -78,6 +78,29 @@ h1::after, h2::after, h3::after, h4::after,
     background: var(--primary-yellow);
     border-radius: 2px;
 }
+/* ---------------- Canvas Background ---------------- */
+/* Particles background behind everything */
+#particles-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #ffffff 0%, #fdf8ef 100%);
+}
+
+
+/* Then ensure your main content is above this */
+body > .container,
+body > section,
+.hero,
+.split-section,
+.why-choose {
+  position: relative;
+  z-index: 1;
+}
 
 /* ---------------- Paragraphs ---------------- */
 p, li {
@@ -370,74 +393,201 @@ html, body {
 }
 
 /* =========================
-   Swiper Gallery
+   Modern Property Gallery
    ========================= */
-.swiper {
+.property-gallery {
   position: relative;
-  width: 100%;
   max-width: 1000px;
-  margin: 2rem auto;
+  margin: 4rem auto;
+  text-align: center;
   overflow: hidden;
 }
 
-.swiper-wrapper {
-  display: flex;
-}
-
-.swiper-slide {
-  flex-shrink: 0;
-  width: calc(50% - 10px);
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.swiper-slide img {
+.gallery-wrapper {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: all 0.4s ease;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: 3px solid #d4af37; /* ✨ Gold border */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Softer shadow for elegance */
+  overflow: hidden;
+  background: #ffffff; /* 🤍 White background */
 }
 
-.swiper-slide img:hover {
-  box-shadow: 0 0 25px var(--primary-yellow);
-  transform: scale(1.02);
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-/* Navigation buttons */
-.swiper-button-next,
-.swiper-button-prev {
+.slide .item {
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.6s ease;
+}
+
+/* Position the slides */
+.slide .item:nth-child(1) {
+  left: 15%;
+  transform: translate(-50%, -50%) scale(0.8);
+  filter: blur(2px) brightness(0.8);
+}
+.slide .item:nth-child(2) {
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 2;
+}
+.slide .item:nth-child(3) {
+  left: 85%;
+  transform: translate(-50%, -50%) scale(0.8);
+  filter: blur(2px) brightness(0.8);
+}
+.slide .item:nth-child(n + 4) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Content Overlay */
+.item .content {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  color: #fff;
+  text-align: center;
+  display: none;
+}
+
+.slide .item:nth-child(2) .content {
+  display: block;
+}
+
+.content .name {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #d4af37;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+.content .des {
+  margin: 10px 0 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.3s forwards;
+}
+
+.content button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #d4af37;
   color: white;
-  background-color: rgba(0,0,0,0.5);
-  padding: 10px 15px;
-  border-radius: 50%;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.content button:hover {
+  background-color: #b9972e;
+  transform: translateY(-3px);
+}
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Navigation Buttons */
+.button {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+}
+
+.button button {
+  width: 45px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid #d4af37;
+  background: rgba(255, 255, 255, 0.9);
   font-size: 1.2rem;
-  transition: background-color 0.3s ease;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background-color: rgba(0,0,0,0.8);
+.button button:hover {
+  background: #d4af37;
+  color: white;
+  transform: scale(1.1);
 }
 
-/* Pagination */
-.swiper-pagination-bullet {
-  background: var(--primary-yellow);
-  opacity: 0.8;
+/* =========================
+   Responsive Layout
+   ========================= */
+@media (max-width: 768px) {
+  .gallery-wrapper {
+    height: 380px;
+  }
+  .slide .item {
+    width: 180px;
+    height: 260px;
+  }
+  .content .name {
+    font-size: 1.4rem;
+  }
+  .content .des {
+    font-size: 0.9rem;
+  }
 }
 
-.swiper-pagination-bullet-active {
-  opacity: 1;
+@media (max-width: 480px) {
+  .gallery-wrapper {
+    height: 320px;
+  }
+  .slide .item {
+    width: 150px;
+    height: 220px;
+  }
+  .content .name {
+    font-size: 1.2rem;
+  }
+  .content button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
 }
 
-/* Responsive Slides */
-@media (max-width: 1024px) {
-  .swiper-slide { width: calc(50% - 10px); }
-}
-
-@media (max-width: 600px) {
-  .swiper-slide { width: 100%; }
-}
 
 /* =========================
    Image Modal
