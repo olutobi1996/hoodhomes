@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
@@ -76,101 +78,130 @@
         <i class="fas fa-comments"></i> Talk To Us
     </button>
 
-    <!-- Footer -->
-    <footer id="main-footer" class="footer premium-footer hidden-footer">
-
-        <!-- Inner Content Box -->
-        <div class="footer-glow-box">
-            <div class="footer-container container">
-
-                <!-- Left: Company Info -->
-                <div class="footer-info">
-                    <h3>Talk To Us</h3>
-                    <p>We’d love to hear from you. Reach out for property advice, valuations, or enquiries.</p>
-
-                    <h4>Our Office</h4>
-
-                    <p><span class="icon gold-icon"><i class="fas fa-map-marker-alt"></i></span>
-                        5 Valiant Lane, Cambridge, CB5 8XB</p>
-                    <p>
-                        <span class="icon gold-icon"><i class="fas fa-phone-alt"></i></span>
-                        <strong>Call us:</strong> <a href="tel:07841519614">07841 519 614</a>
-                    </p>
-
-                    <p>
-    <span class="icon gold-icon"><i class="fas fa-envelope"></i></span>
-    <strong>Email:</strong> <a href="mailto:Office@hoodhomes.co.uk">Office@hoodhomes.co.uk</a>
-</p>
-
-
-                    <p>
-                        <span class="icon gold-icon"><i class="fab fa-facebook"></i></span>
-                        <a href="https://www.facebook.com/" target="_blank">Follow me on Facebook</a>
-                    </p>
-                    <p>
-    <span class="icon gold-icon"><i class="fab fa-instagram"></i></span>
-    <a href="https://www.instagram.com/jhoodhomes/" target="_blank">Follow me on Instagram</a>
-</p>
-                </div>
-
-                <!-- Right: Contact Form -->
-                <!-- Right: Footer Contact Form -->
-                <div class="footer-form">
-                    <h4>Send us a message</h4>
-                    <div class="form-card">
-                        <form id="contact-form-footer" action="{% url 'core:contact' %}" method="post"
-                            class="contact-form">
-                            {% csrf_token %}
-                            <input type="text" name="name" placeholder="Name" required>
-                            <input type="tel" name="phone" placeholder="Phone">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                            <textarea name="message" placeholder="Message" rows="3" required></textarea>
-                            <div class="consent-box">
-                                <input type="checkbox" name="consent" required>
-                                <label>I consent to an agent of Hood Homes contacting me.</label>
+ <!-- Footer -->
+ <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>5 Valiant Lane, Cambridge, CB5 8XB</span>
                             </div>
-                            <button type="submit" class="cta-button">Submit</button>
-                        </form>
-                        <div id="thank-you-footer"
-                            style="display:none; color:#d4af37; font-weight:bold; margin-top:10px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>07841 519 614</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>Office@hoodhomes.co.uk</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Bottom bar -->
-            <!-- Bottom Logos & Legal -->
-            <div class="footer-bottom-bar">
-
-                <!-- Scrolling logos -->
-                <div class="logos-scroll-wrapper">
-                    <ul class="partner-logos-scroll">
-                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/zoopla_samcbx.png"
-                                alt="Zoopla"></li>
-                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/rightmove_czenkd.svg"
-                                alt="Rightmove"></li>
-                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/the-property-ombudsman_n6fcdn.svg"
-                                alt="Ombudsman"></li>
-                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tsi-3_qr8fpe.svg"
-                                alt="TSI"></li>
-                        <li><img src="https://res.cloudinary.com/dmxyx6qvy/image/upload/v1759319476/tds_wvluun.svg"
-                                alt="TDS"></li>
-                    </ul>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+    <a href="index.html">
+        <div class="logo-stack corner-logo">
+            <span class="hh">HH</span>
+            <span class="hood-homes">Hood Homes</span>
+        </div>
+    </a>
+</div>
+                            <div class="footer-text">
+                                <p>We’d love to hear from you. Reach out for property advice, valuations, or enquiries.</p>
+                            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="https://www.instagram.com/jhoodhomes/"><i class="fab fa-instagram instagram-bg"></i></a>
+                                <a href="https://share.google/l1FPSON3pz9YzOfWs"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="{% url 'core:home' %}">Home</a></li>
+                <li><a href="{% url 'core:about' %}">About</a></li>
+                <li><a href="{% url 'core:services' %}">Services</a></li>
+                <li><a href="{% url 'blog:list' %}">Blog</a></li>
+                <li><a href="{% url 'properties:gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'core:contact' %}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Email</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Enquire now and get in touch with Hood Homes</p>
+                            </div>
+                            <div class="subscribe-form">
+                                  <form id="contact-form-footer" action="{% url 'core:contact' %}" method="post" class="contact-form">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="tel" name="phone" placeholder="Phone">
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                <div class="consent-box">
                 </div>
-
-                <!-- Legal links -->
-                <div class="footer-legal-links">
-                    <p>
-                        <a href="{% url 'core:privacy_policy' %}" class="policy-link" target="_blank">Privacy Policy</a>
-                        |
-                        <a href="{% url 'core:terms_conditions' %}" class="policy-link" target="_blank">Terms &
-                            Conditions</a> |
-                        <a href="{% url 'core:cookies' %}" class="policy-link" target="_blank">Cookies</a>
-                    </p>
-                    <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+                <button type="submit" class="cta-button">Submit</button>
+            </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p class="footer-bottom">&copy; {{ now|date:"Y" }} Hood Homes. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="{% url 'core:privacy_policy' %}" class="policy-link" target="_blank">Privacy Policy</a></li>
+                        |
+                        <li><a href="{% url 'core:terms_conditions' %}" class="policy-link" target="_blank">Terms &
+                            Conditions</a></li>
+                        <li><a href="{% url 'core:cookies' %}" class="policy-link" target="_blank">Cookies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
+
+
 
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
