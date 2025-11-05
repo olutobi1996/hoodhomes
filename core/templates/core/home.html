@@ -62,26 +62,36 @@
 </section>
 
 <!-- Full Page Background Wrapper -->
-<section class="split-section">
-  <!-- Meet The Owner -->
-  <div class="split-section">
-    <div class="split-text" data-aos="fade-right">
-      <div class="split-text-box">
-        <h2 class="section-heading">Meet the Owner</h2>
+ <div class="owner-section">
+<div class="split-text-box">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <h2 class="title">Meet the Owner</h2>
         <p>
           The property market is changing fast. I take the time to understand each client’s goals
           and tailor my approach to meet them. Combining hands-on experience with modern methods,
-          I aim to maximise value and minimise risk. Whether selling, letting, or investing,
-          my goal is simple: to make the process seamless and deliver outstanding outcomes.
+          I aim to maximise value and minimise risk.
         </p>
         <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
       </div>
-    </div>
-    <div class="split-image" data-aos="fade-left">
-      <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood">
+
+      <div class="flip-card-back">
+        <h2 class="title">About Joe Hood</h2>
+        <p>
+          With years of Cambridge market experience, Joe’s expertise ensures each client achieves
+          the best outcome every time. His approach blends data, design, and personal insight to deliver results.
+        </p>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+
+  <div class="split-image" data-aos="fade-left">
+    <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood">
+  </div>
+</div>
 
 <!-- Why Choose Hood Homes --> 
    <div class="why-choose" data-aos="fade-up">
@@ -325,56 +335,94 @@
   </div>
 
 <!-- Services Section -->
-<section class="split-section">
-  <div class="split-text" data-aos="fade-left" data-aos-delay="100">
-    <div class="split-text-box">
-      <h2 class="section-heading">Property Lettings & Management</h2>
-      <p>
-        We handle the entire lettings process — from marketing and tenant sourcing to rent collection,
-        maintenance, compliance checks, and inspections. With the Renters Reform Bill ahead, landlords
-        need an agent who keeps them compliant while protecting their interests. We take away the stress
-        so you can focus on returns.
-      </p>
+<!-- =========================
+     Services Section (Flipping Cards)
+     ========================= -->
+
+<!-- Property Lettings & Management -->
+<section class="owner-section">
+  <div class="split-text-box" data-aos="fade-left" data-aos-delay="100">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2 class="title">Property Lettings & Management</h2>
+          <p>
+            Complete lettings support — from marketing to tenant sourcing and compliance.
+          </p>
+        </div>
+        <div class="flip-card-back">
+          <h2 class="title">Our Approach</h2>
+          <p>
+            We handle the entire lettings process: marketing, tenant vetting, rent collection,
+            maintenance, and compliance checks. With the Renters Reform Bill on the horizon,
+            we keep landlords fully compliant and stress-free.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="split-image" data-aos="fade-right">
-    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Lettings Service">
+    <img src="{% static 'images/Cambridge1.jpg' %}" alt="Lettings Service" />
   </div>
 </section>
 
-<section class="split-section">
-  <div class="split-text" data-aos="fade-right" data-aos-delay="200">
-    <div class="split-text-box">
-      <h2 class="section-heading">Property Sales</h2>
-      <p>
-        We don’t just “list and wait.” Our tailored strategies combine professional marketing,
-        wide online exposure, and strong negotiation to secure the best price in the shortest time.
-        Every property is unique, so we adapt our approach to highlight its strengths and keep you informed
-        from first viewing to completion.
-      </p>
+<!-- Property Sales -->
+<section class="owner-section">
+  <div class="split-text-box" data-aos="fade-right" data-aos-delay="200">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2 class="title">Property Sales</h2>
+          <p>
+            Smart, tailored strategies designed to achieve the best results.
+          </p>
+        </div>
+        <div class="flip-card-back">
+          <h2 class="title">How We Sell</h2>
+          <p>
+            We don’t just “list and wait.” Using professional marketing, targeted exposure,
+            and expert negotiation, we secure the best price in the shortest time —
+            while keeping you informed every step of the way.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="split-image" data-aos="fade-left">
-    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Sales Service">
+    <img src="{% static 'images/Cambridge2.jpg' %}" alt="Sales Service" />
   </div>
 </section>
 
-<section class="split-section">
-  <div class="split-text" data-aos="fade-left" data-aos-delay="300">
-    <div class="split-text-box">
-      <h2 class="section-heading">Property Investment</h2>
-      <p>
-        From sourcing high-potential opportunities to managing refurbishments, we guide you through
-        the entire investment process. Our trusted contractors ensure quality, speed, and value —
-        whether you’re growing a portfolio or maximising a single property, we make investing seamless
-        and profitable.
-      </p>
+<!-- Property Investment -->
+<section class="owner-section">
+  <div class="split-text-box" data-aos="fade-left" data-aos-delay="300">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2 class="title">Property Investment</h2>
+          <p>
+            End-to-end investment support — from sourcing to management.
+          </p>
+        </div>
+        <div class="flip-card-back">
+          <h2 class="title">Maximising Returns</h2>
+          <p>
+            From identifying high-potential opportunities to managing refurbishments,
+            we handle the entire investment process. Our trusted contractors deliver
+            quality and speed — making every investment efficient and profitable.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="split-image" data-aos="fade-right">
-    <img src="{% static 'images/CambridgeHeader.jpg' %}" alt="Investment Service">
+    <img src="{% static 'images/CambridgeHeader.jpg' %}" alt="Investment Service" />
   </div>
 </section>
+
 
 
 <div id="google-reviews-root">
