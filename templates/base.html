@@ -20,41 +20,37 @@
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
      <!-- Swiper Js -->
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
 </head>
 
 <body>
-
-    <!-- Navbar -->
+  <!-- Navbar -->
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <div class="logo-stack corner-logo" data-aos="fade-up">
+       <nav class="navbar">
+  <div class="logo-stack corner-logo" data-aos="fade-up">
     <span class="hh">HH</span>
     <span class="hood-homes">Hood Homes</span>
-</div>
-            </div>
+  </div>
 
+  <!-- Hamburger for mobile -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-            <!-- Hamburger for mobile -->
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <ul class="nav-links">
+    <li><a href="{% url 'core:home' %}">Home</a></li>
+    <li><a href="{% url 'core:about' %}">About</a></li>
+    <li><a href="{% url 'core:services' %}">Services</a></li>
+    <li><a href="{% url 'blog:list' %}">Blog</a></li>
+    <li><a href="{% url 'properties:gallery' %}">Gallery</a></li>
+    <li><a href="{% url 'core:contact' %}">Contact</a></li>
+  </ul>
+</nav>
 
-            <ul class="nav-links">
-                <li><a href="{% url 'core:home' %}">Home</a></li>
-                <li><a href="{% url 'core:about' %}">About</a></li>
-                <li><a href="{% url 'core:services' %}">Services</a></li>
-                <li><a href="{% url 'blog:list' %}">Blog</a></li>
-                <li><a href="{% url 'properties:gallery' %}">Gallery</a></li>
-                <li><a href="{% url 'core:contact' %}">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- Page Content -->
@@ -201,10 +197,11 @@
         </div>
     </footer>
 
-
-
     <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <!-- Load particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -250,7 +247,6 @@
             }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
@@ -495,35 +491,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    const heroImages = JSON.parse(document.getElementById('hero-images-data').textContent);
-    const heroImg = document.getElementById('hero-img');
-    if (!heroImg || !heroImages.length) return;
+  const heroImages = JSON.parse(document.getElementById('hero-images-data').textContent);
+  const heroImg = document.getElementById('hero-img');
+  if (!heroImg || !heroImages.length) return;
 
-    let current = 0;
+  let current = 0;
 
-    // Preload images
-    const preloaded = heroImages.map(src => {
-        const img = new Image();
-        img.src = "{% static 'images/gallery/' %}" + src;
-        return img;
-    });
+  // Preload all hero images
+  const preloaded = heroImages.map(src => {
+    const img = new Image();
+    img.src = "{% static 'images/gallery/' %}" + src;
+    return img;
+  });
 
-    function nextHeroSlide() {
-        heroImg.style.transition = "opacity 0.5s ease";
-        heroImg.style.opacity = 0; // fade out
+  function nextHeroSlide() {
+    heroImg.style.transition = "opacity 0.8s ease";
+    heroImg.style.opacity = 0;
 
-        setTimeout(() => {
-            current = (current + 1) % heroImages.length;
-            heroImg.src = preloaded[current].src;
-            heroImg.alt = "Hero image " + (current + 1);
-            heroImg.style.opacity = 1; // fade in
-        }, 500); // match transition duration
-    }
+    // after fade-out
+    setTimeout(() => {
+      current = (current + 1) % heroImages.length; // loop back to start
+      heroImg.src = preloaded[current].src;
+      heroImg.alt = "Hero image " + (current + 1);
 
-    // Loop every 5 seconds
-    setInterval(nextHeroSlide, 5000);
+      // fade-in new image
+      setTimeout(() => {
+        heroImg.style.opacity = 1;
+      }, 100);
+    }, 800); // match transition speed
+  }
+
+  // 🔁 infinite loop every 6 seconds
+  setInterval(nextHeroSlide, 6000);
 });
 </script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -541,10 +543,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-
-<!-- Load particles.js -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <!-- Initialize gold-on-white particles -->
 <script>
@@ -585,7 +583,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 </script>
-
 
     <!-- Gallery Image Modal -->
 <div id="imageModal" class="image-modal">
