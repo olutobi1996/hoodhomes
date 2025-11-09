@@ -1374,6 +1374,129 @@ html, body {
 }
 
 /* =========================
+   Areas Covered Horizontal Flip (Gold Theme)
+   ========================= */
+.areas-covered {
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.areas-covered .section-heading {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--dark-grey);
+}
+
+/* Horizontal row container */
+.areas-covered .areas-flip-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+}
+
+/* Flip Card Container */
+.areas-covered .areas-flip-card {
+  background-color: transparent;
+  width: 250px;
+  height: 300px;
+  perspective: 1000px;
+  flex-shrink: 0;
+}
+
+.areas-covered .areas-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+}
+
+.areas-covered .areas-flip-card:hover .areas-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* FRONT & BACK */
+.areas-covered .areas-flip-card-front,
+.areas-covered .areas-flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* Front Styling (Gold Gradient) */
+.areas-covered .areas-flip-card-front {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffd700 100%);
+  color: #b8860b; /* Dark gold text */
+  font-weight: bold;
+  border: 2px solid rgba(212, 175, 55, 0.6);
+}
+
+/* Back Styling (Gold Darker) */
+.areas-covered .areas-flip-card-back {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #fff;
+  transform: rotateY(180deg);
+  font-size: 0.9rem;
+  border: 2px solid rgba(212, 175, 55, 0.6);
+}
+
+/* Typography inside cards */
+.areas-covered .areas-flip-card h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.areas-covered .areas-flip-card-back p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+/* Scrollbar styling for horizontal row */
+.areas-covered .areas-flip-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.areas-covered .areas-flip-row::-webkit-scrollbar-thumb {
+  background: #d4af37; /* gold scrollbar */
+  border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .areas-covered .areas-flip-row {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .areas-covered .areas-flip-card {
+    width: 90%;
+    height: auto;
+    min-height: 220px;
+  }
+  .areas-covered .areas-flip-card-back p {
+    font-size: 0.8rem;
+  }
+}
+
+
+/* =========================
    Layout: Card + Image Side by Side
    ========================= */
 .owner-section {
