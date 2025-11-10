@@ -128,16 +128,15 @@ backdrop-filter: blur(8px);    /* maintains glassy effect */
     transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-
-
 /* Logo */
 .logo-stack {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: center;  
     line-height: 1.1;
 }
+
 .logo-stack .hh,
 .logo-stack .hood-homes {
     font-weight: bold;
@@ -163,6 +162,7 @@ backdrop-filter: blur(8px);    /* maintains glassy effect */
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-yellow);
+    margin-left: 1.5rem; 
 }
 
 .logo-stack.corner-logo .hood-homes {
@@ -170,8 +170,8 @@ backdrop-filter: blur(8px);    /* maintains glassy effect */
     letter-spacing: 1px;
     color: #000;
     text-transform: uppercase;
+     margin-left: 1.5rem; 
 }
-
 
 /* Nav Links */
 .nav-links {
@@ -201,6 +201,7 @@ backdrop-filter: blur(8px);    /* maintains glassy effect */
   align-items: flex-start;
   line-height: 1;
   cursor: pointer;
+  margin-left: 1.5rem; 
 }
 
 .corner-logo .hh {
@@ -866,8 +867,10 @@ html, body {
 }
 
 .content {
-  padding: 100px 60px 0px 30px;
+  position: relative;
+  padding: 30px 30px 60px 30px; /* less top padding so content sits higher */
   transform: translate3d(0, 0, 26px);
+  z-index: 2;
 }
 
 .content .title {

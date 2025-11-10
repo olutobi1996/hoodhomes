@@ -32,10 +32,10 @@ Homes{% endblock %} {% block content %}
  <div class="about-page">
   <div class="container">
  
-
  <!-- About Section -->
 <section id="about" class="owner-section">
-  <div class="split-text-box">
+  <!-- LEFT SIDE: Flip Card -->
+  <div class="split-text-box" data-aos="fade-right" data-aos-delay="100">
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -54,12 +54,14 @@ Homes{% endblock %} {% block content %}
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="split-image" data-aos="fade-left">
-      <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Our Team">
-    </div>
+  <!-- RIGHT SIDE: Image -->
+  <div class="split-image" data-aos="fade-left" data-aos-delay="200">
+    <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Our Team">
   </div>
 </section>
+
 
 
 <!-- Why Choose Hood Homes --> 

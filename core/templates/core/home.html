@@ -26,8 +26,7 @@
     </a>
   </div>
 </section>
-
-
+<!-- Pass hero images to JS safely -->
 {{ hero_images|json_script:"hero-images-data" }}
 
 <!-- Particles Background -->
@@ -61,35 +60,36 @@
   </div>
 </section>
 
-<!-- Full Page Background Wrapper -->
- <div class="owner-section">
-<div class="split-text-box">
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <h2 class="title">Meet the Owner</h2>
-        <p>
-          The property market is changing fast. I take the time to understand each client’s goals
-          and tailor my approach to meet them. Combining hands-on experience with modern methods,
-          I aim to maximise value and minimise risk.
-        </p>
-      </div>
-
-      <div class="flip-card-back">
-        <h2 class="title">About Joe Hood</h2>
-        <p>
-          With years of Cambridge market experience, Joe’s expertise ensures each client achieves
-          the best outcome every time. His approach blends data, design, and personal insight to deliver results.
-        </p>
+<!-- Meet the Owner Section -->
+<section class="owner-section">
+  <!-- LEFT SIDE: Flip Card -->
+  <div class="split-text-box" data-aos="fade-right" data-aos-delay="100">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <h2 class="title">Meet the Owner</h2>
+          <p>
+            The property market is changing fast. I take the time to understand each client’s goals
+            and tailor my approach to meet them. Combining hands-on experience with modern methods,
+            I aim to maximise value and minimise risk.
+          </p>
+        </div>
+        <div class="flip-card-back">
+          <h2 class="title">About Joe Hood</h2>
+          <p>
+            With years of Cambridge market experience, Joe’s expertise ensures each client achieves
+            the best outcome every time. His approach blends data, design, and personal insight to deliver results.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="split-image" data-aos="fade-left">
+  <!-- RIGHT SIDE: Image -->
+  <div class="split-image" data-aos="fade-left" data-aos-delay="200">
     <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood">
   </div>
-</div>
-</div>
+</section>
 
 <!-- Why Choose Hood Homes --> 
    <div class="why-choose" data-aos="fade-up">
@@ -332,9 +332,8 @@
     </div>
   </div>
 
-  
 <!-- =========================
-     Services Section (Flipping Cards)
+     Services Section
      ========================= -->
 
 <!-- Property Lettings & Management -->
@@ -420,14 +419,4 @@
     <img src="{% static 'images/CambridgeHeader.jpg' %}" alt="Investment Service" />
   </div>
 </section>
-
-
-
-<div id="google-reviews-root">
-  <h3>What people say</h3>
-  <div id="google-reviews"></div>
-  <a id="leave-google-review" href="#" target="_blank" rel="noopener" class="cta-button">
-    Leave a review on Google
-  </a>
-</div>
 {% endblock %}

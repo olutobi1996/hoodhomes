@@ -339,38 +339,6 @@
     </script>
 
     <script>
-        async function renderGoogleReviews() {
-            const container = document.getElementById('google-reviews');
-            try {
-                const res = await fetch("{% url 'core:google_reviews' %}");
-                const data = await res.json();
-
-                if (data.error) throw new Error(data.error);
-
-                if (data.reviews.length) {
-                    container.innerHTML = data.reviews.map(r => `
-        <div class="g-review">
-          <p><strong>${r.author_name}</strong> ⭐ ${r.rating}</p>
-          <p>${r.text}</p>
-          <p class="review-time">${new Date(r.time * 1000).toLocaleDateString()}</p>
-        </div>
-      `).join('');
-                } else {
-                    container.innerHTML = '<p>No public reviews yet.</p>';
-                }
-
-                const placeId = "{{ PLACE_ID }}";  // pass it from your template context if needed
-                document.getElementById('leave-google-review').href = `https://search.google.com/local/writereview?placeid=${placeId}`;
-
-            } catch (err) {
-                console.error(err);
-                container.innerHTML = '<p>Unable to load reviews right now.</p>';
-            }
-        }
-
-        renderGoogleReviews();
-    </script>
-    <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Footer form
             const footerForm = document.getElementById("contact-form-footer");
@@ -508,24 +476,20 @@ document.addEventListener("DOMContentLoaded", function() {
     heroImg.style.transition = "opacity 0.8s ease";
     heroImg.style.opacity = 0;
 
-    // after fade-out
     setTimeout(() => {
-      current = (current + 1) % heroImages.length; // loop back to start
+      current = (current + 1) % heroImages.length;
       heroImg.src = preloaded[current].src;
       heroImg.alt = "Hero image " + (current + 1);
-
-      // fade-in new image
       setTimeout(() => {
         heroImg.style.opacity = 1;
       }, 100);
-    }, 800); // match transition speed
+    }, 800);
   }
 
-  // 🔁 infinite loop every 6 seconds
+  // Loop every 6 seconds
   setInterval(nextHeroSlide, 6000);
 });
 </script>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
