@@ -37,7 +37,7 @@ def home(request):
     if not featured_images:
         featured_images = [
             "Cambridge1.png",
-            "Cambridge2.png",
+            "Cambridge2(2).png",
             "Cambridge3.png",
             "Cambridge4.png",
             "Cambridge5.png",
