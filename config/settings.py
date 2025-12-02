@@ -20,14 +20,23 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- DATABASE ---
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
-
+if os.getenv('DATABASE_URL'):
+    # Use Postgres (Heroku)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # Use SQLite locally
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -73,7 +82,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -97,9 +105,6 @@ CACHES = {
         "LOCATION": "unique-snowflake",
     }
 }
-
-
-WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -164,3 +169,6 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "office@hoodhomes.co.uk")
 # --- Static optimization ---
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_USE_FINDERS = True
+
+ROOT_URLCONF = "config.urls"
+WSGI_APPLICATION = "config.wsgi.application"
