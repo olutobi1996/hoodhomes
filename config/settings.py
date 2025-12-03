@@ -20,42 +20,26 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- DATABASE ---
-<<<<<<< HEAD
-if os.getenv('DATABASE_URL'):
-    # Use Postgres (Heroku)
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.getenv('DATABASE_URL'),
-=======
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
-    # Use Heroku Postgres in production
+    # Use Postgres (Heroku)
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
->>>>>>> 5fdb6ab6c9192a89cae1849ec43140a4aa08d29a
             conn_max_age=600,
             ssl_require=True
         )
     }
 else:
-<<<<<<< HEAD
     # Use SQLite locally
-=======
-    # Use SQLite for local development
->>>>>>> 5fdb6ab6c9192a89cae1849ec43140a4aa08d29a
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 5fdb6ab6c9192a89cae1849ec43140a4aa08d29a
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
