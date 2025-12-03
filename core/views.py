@@ -7,7 +7,6 @@ import requests
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET 
 from django.views.decorators.cache import cache_page
-from .manual_reviews import MANUAL_REVIEWS
 from django.http import JsonResponse
 from django.core.mail import send_mail, get_connection, BadHeaderError
 from django.contrib import messages
@@ -37,7 +36,7 @@ def home(request):
     if not featured_images:
         featured_images = [
             "Cambridge1.png",
-            "Cambridge2.png",
+            "CambridgeHeader.jpg",
             "Cambridge3.png",
             "Cambridge4.png",
             "Cambridge5.png",
@@ -114,52 +113,6 @@ def contact_success(request):
     return render(request, "core/contact_success.html")
 
 
-
-@require_GET
-def google_reviews(request):
-    """
-    Temporary manual Google reviews
-    """
-    return JsonResponse({
-        "name": "Hood Homes",
-        "rating": 5,
-        "address": "5 Valiant Lane, Cambridge, CB5 8XB",
-        "reviews": MANUAL_REVIEWS
-    })
-
-
-"""
-@require_GET
-@cache_page(60*30)  # cache for 30 minutes
-def google_reviews(request):
-
-    
-    if not GOOGLE_API_KEY or not PLACE_ID:
-        return JsonResponse({"error": "Missing API key or Place ID"}, status=500)
-
-    url = f"https://maps.googleapis.com/maps/api/place/details/json"
-    params = {
-        "place_id": PLACE_ID,
-        "fields": "name,rating,reviews,formatted_address",
-        "key": GOOGLE_API_KEY
-    }
-
-    try:
-        r = requests.get(url, params=params, timeout=10)
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:
-        return JsonResponse({"error": "Failed to fetch Google reviews", "detail": str(e)}, status=502)
-
-    result = data.get("result", {})
-    reviews = result.get("reviews", [])[:5]  # top 5 reviews
-    return JsonResponse({
-        "name": result.get("name"),
-        "rating": result.get("rating"),
-        "address": result.get("formatted_address"),
-        "reviews": reviews
-    })
-"""
 
 def about(request):
     hero_images = [

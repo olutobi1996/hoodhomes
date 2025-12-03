@@ -12,5 +12,4 @@ urlpatterns = [
      path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('terms-conditions/', views.terms_conditions, name='terms_conditions'),
     path('cookies/', views.cookies_policy, name='cookies'),
-    path("api/google-reviews/", views.google_reviews, name="google_reviews"),
 ]
