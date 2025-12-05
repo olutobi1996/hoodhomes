@@ -1,57 +1,45 @@
 {% extends "base.html" %} {% load static %} {% block title %}Gallery | Hood
 Homes{% endblock %} {% block content %}
-
-<!-- Particles Background -->
-<div id="particles-background"></div>
 <!-- Gallery Section -->
-<!-- Unified Property Gallery Section -->
-<section class="property-gallery container" data-aos="fade-up">
-  <h2 class="section-heading">Gallery</h2>
+<section class="properties container" style="padding-top: 120px" data-aos="fade-up">
+  <h2 class="section-heading" data-aos="fade-up" data-aos-delay="100">Gallery</h2>
 
-  <!-- Gallery Wrapper for Property A -->
-  <div class="gallery-wrapper">
-    <div class="slide">
+  <!-- Property A -->
+  <div class="swiper propertyA-gallery" style="margin-bottom: 60px;">
+    <div class="swiper-wrapper">
       {% for img in propertyA_images %}
-      <div class="item" style="background-image: url({% static 'images/gallery/propertyA/' %}{{ img }});">
-        <div class="content">
-          <div class="name">Property A</div>
-          <div class="des">
-            Explore Property A's exclusive listings, carefully selected for prime locations and quality finishes.
-          </div>
-          <a href="{% url 'properties:gallery' %}" class="seeMore">
-            <button>See More</button>
-          </a>
-        </div>
+      <div class="swiper-slide">
+        <img
+          src="{% static 'images/gallery/propertyA/' %}{{ img }}"
+          alt="Property A image {{ forloop.counter }}"
+          class="w-full h-auto object-cover"
+          loading="lazy"
+        />
       </div>
       {% endfor %}
     </div>
-    <div class="button">
-      <button class="prev">◁</button>
-      <button class="next">▷</button>
-    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 
-  <!-- Gallery Wrapper for Property B -->
-  <div class="gallery-wrapper" style="margin-top: 3rem;">
-    <div class="slide">
+  <!-- Property B -->
+  <div class="swiper propertyB-gallery" style="margin-bottom: 80px;">
+    <div class="swiper-wrapper">
       {% for img in propertyB_images %}
-      <div class="item" style="background-image: url({% static 'images/gallery/propertyB/' %}{{ img }});">
-        <div class="content">
-          <div class="name">Property B</div>
-          <div class="des">
-            Explore Property B's exclusive listings, carefully selected for prime locations and quality finishes.
-          </div>
-          <a href="{% url 'properties:gallery' %}" class="seeMore">
-            <button>See More</button>
-          </a>
-        </div>
+      <div class="swiper-slide">
+        <img
+          src="{% static 'images/gallery/propertyB/' %}{{ img }}"
+          alt="Property B image {{ forloop.counter }}"
+          class="w-full h-auto object-cover"
+          loading="lazy"
+        />
       </div>
       {% endfor %}
     </div>
-    <div class="button">
-      <button class="prev">◁</button>
-      <button class="next">▷</button>
-    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </section>
+
 {% endblock %}
+
