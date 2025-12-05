@@ -306,39 +306,6 @@
             window.$crisp.push(["config", "text:welcome", "👋 Hi! Welcome to Hood Homes — how can we help today?"]);
         };
     </script>
-
-    <script>
-        async function renderGoogleReviews() {
-            const container = document.getElementById('google-reviews');
-            try {
-                const res = await fetch("{% url 'core:google_reviews' %}");
-                const data = await res.json();
-
-                if (data.error) throw new Error(data.error);
-
-                if (data.reviews.length) {
-                    container.innerHTML = data.reviews.map(r => `
-        <div class="g-review">
-          <p><strong>${r.author_name}</strong> ⭐ ${r.rating}</p>
-          <p>${r.text}</p>
-          <p class="review-time">${new Date(r.time * 1000).toLocaleDateString()}</p>
-        </div>
-      `).join('');
-                } else {
-                    container.innerHTML = '<p>No public reviews yet.</p>';
-                }
-
-                const placeId = "{{ PLACE_ID }}";  // pass it from your template context if needed
-                document.getElementById('leave-google-review').href = `https://search.google.com/local/writereview?placeid=${placeId}`;
-
-            } catch (err) {
-                console.error(err);
-                container.innerHTML = '<p>Unable to load reviews right now.</p>';
-            }
-        }
-
-        renderGoogleReviews();
-    </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Footer form
