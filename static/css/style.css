@@ -349,8 +349,6 @@ backdrop-filter: blur(8px);    /* maintains glassy effect */
     box-shadow: 0 0 15px var(--primary-yellow);
 }
 
-<<<<<<< HEAD
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero {
@@ -472,8 +470,6 @@ html, body {
   background: #ffffff; /* 🤍 White background */
   overflow: hidden;
 }
-
-<<<<<<< HEAD
 .swiper-wrapper {
   display: flex;
   align-items: center;
@@ -518,7 +514,6 @@ html, body {
   transition: all 0.6s ease;
 }
 
-<<<<<<< HEAD
 
 .swiper-slide {
   flex-shrink: 0;
@@ -599,7 +594,7 @@ html, body {
   cursor: pointer;
   border-radius: 8px;
   background-color: #d4af37;
->>>>>>> 5fdb6ab6c9192a89cae1849ec43140a4aa08d29a
+
   color: white;
   font-weight: 500;
   font-size: 0.85rem;
