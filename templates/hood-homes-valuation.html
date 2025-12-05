@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Free Property Valuation — Hood Homes</title>
+  <meta name="description" content="Get a free, no-obligation property valuation from Hood Homes. Local, accurate and speedy appointments." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/yourfontawesomekit.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --gold:#d4af37;
+      --gold-strong:#ffd700;
+      --black:#0b0b0b;
+      --muted:#333;
+      --card:#fff;
+      --bg:#fff;
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',Arial,system-ui,sans-serif;margin:0;background:var(--bg);color:var(--black)}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    .hero{display:flex;gap:30px;align-items:center;padding:36px 0}
+    .hero-left{flex:1}
+    .logo-stack{display:flex;align-items:center;gap:12px}
+    .logo-stack .hh{background:var(--gold);color:#000;padding:10px 12px;border-radius:8px;font-weight:700}
+    .logo-stack .name{font-weight:700;color:var(--black);font-size:1.25rem}
+
+    /* Logo - Hood Homes Landing Page */
+.logo-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;  
+    line-height: 1.1;
+}
+
+.logo-stack.corner-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* align left for navbar */
+    gap: 0;
+    font-family: 'DM Serif Display', serif;
+}
+
+/* Gradient shimmer for HH */
+.logo-stack.corner-logo .hh {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    margin-left: 1.5rem;
+}
+
+/* Hood Homes text styling */
+.logo-stack.corner-logo .hood-homes {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #d4af37;
+    text-transform: uppercase;
+    margin-left: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn-primary, .btn-ghost {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn-ghost:hover,
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+
+/* Shimmer animation (if not already on page) */
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+    h1{font-size:30px;margin:12px 0 8px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    .hero-cta{display:flex;gap:12px;margin-top:18px}
+    .btn-primary{background:linear-gradient(45deg,var(--gold),var(--gold-strong));color:#111;padding:12px 18px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-secondary{background:transparent;border:2px solid var(--gold);color:var(--gold);padding:10px 16px;border-radius:10px}
+
+    .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+
+    /* Form */
+    .form-col{width:420px}
+    form input, form textarea, form select{
+      width:100%;padding:12px;border-radius:8px;border:1px solid #eee;margin-bottom:10px;font-size:0.95rem
+    }
+    form textarea{min-height:110px;resize:vertical}
+
+    .features{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
+    .feature{flex:1;min-width:200px;padding:16px;border-radius:10px;border:1px solid #f2e9d0;background:#fff}
+
+    .trust-row{display:flex;gap:10px;align-items:center;margin-top:18px}
+    .trust .badge{background:var(--gold);padding:8px;border-radius:8px;font-weight:700}
+
+    footer{margin-top:40px}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{flex-direction:column}
+      .form-col{width:100%}
+      .features{flex-direction:column}
+    }
+
+    /* Minimal additions to match Hood Homes footer look */
+    /* (You have a full footer CSS already; keep this minimal so it blends) */
+    .phone{font-weight:700;color:var(--black)}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+   <header class="hero">
+  <div class="hero-left">
+    <a href="#valuation-form">
+      <div class="logo-stack corner-logo">
+        <span class="hh">HH</span>
+        <span class="hood-homes">Hood Homes</span>
+      </div>
+    </a>
+
+    <h1>Get Your Free Property Valuation</h1>
+    <p class="lead">No-obligation, accurate valuations...</p>
+
+    <div class="hero-cta">
+      <a href="#valuation-form" class="btn-primary">Request a Free Valuation</a>
+      <a href="tel:07841519614" class="btn-secondary">Call: 07841 519 614</a>
+    </div>
+
+    <div class="trust-row" aria-hidden="true">
+      <div class="trust badge">★★★★★</div>
+      <div style="color:var(--muted)">Trusted local estate agents · Free valuation · Fast appointment</div>
+    </div>
+
+    <div class="features">
+      <div class="feature"><strong>Accurate local pricing</strong><p style="margin:8px 0 0;color:var(--muted)">We use local market data to produce realistic valuations.</p></div>
+      <div class="feature"><strong>Full marketing service</strong><p style="margin:8px 0 0;color:var(--muted)">Photography, listings, viewings & negotiation.</p></div>
+      <div class="feature"><strong>No obligation</strong><p style="margin:8px 0 0;color:var(--muted)">Receive an appraisal with no pressure to instruct.</p></div>
+    </div>
+  </div>
+      <aside class="card form-col" id="valuation-form" aria-label="Property valuation form">
+        <h3 style="margin-top:0">Free Valuation — Book Now</h3>
+
+      <form action="https://formspree.io/f/mblnkpql" method="POST">
+  <input type="text" name="name" placeholder="Full name" required>
+  <input type="tel" name="phone" placeholder="Phone number" required>
+  <input type="email" name="email" placeholder="Email address" required>
+  <input type="text" name="address" placeholder="Property address" required>
+  <select name="ownership">
+    <option value="">Are you the owner?</option>
+    <option value="owner">Yes, owner</option>
+    <option value="agent">No, agent/other</option>
+  </select>
+  <textarea name="notes" placeholder="Any additional details (approx. tenure, works done etc.)"></textarea>
+  <label style="font-size:0.9rem">
+    <input type="checkbox" name="consent" required> I consent to being contacted by Hood Homes about this valuation.
+  </label>
+  <div style="margin-top:12px">
+    <button type="submit" class="btn-primary" style="width:100%">Request Valuation</button>
+  </div>
+  <p style="margin-top:12px;color:var(--muted)">We typically respond within 24 hours. If urgent, call 07841 519 614.</p>
+</form>
+
+      </aside>
+    </header>
+       </div>
+
+  <!-- GA4 / GTM placeholder: add your tags here -->
+</body>
+</html>
