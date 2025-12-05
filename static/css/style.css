@@ -393,11 +393,13 @@ html, body {
 
 .swiper-slide img {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1;   /* keeps it square */
+  max-height: 250px;    /* limits how tall it can get on large screens */
   object-fit: cover;
   border-radius: 12px;
   transition: all 0.4s ease;
 }
+
 
 .swiper-slide img:hover {
   box-shadow: 0 0 25px var(--primary-yellow);
