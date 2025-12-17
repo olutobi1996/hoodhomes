@@ -14,6 +14,7 @@ class BlogPost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
+    published_at = models.DateTimeField(null=True, blank=True) 
 
     class Meta:
         ordering = ['-created_at']
