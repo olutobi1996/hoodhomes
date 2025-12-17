@@ -29,42 +29,6 @@
 
 {{ hero_images|json_script:"hero-images-data" }}
 
-<!-- Gallery Section -->
-<section class="properties container">
-  <h2 class="section-heading">Gallery</h2>
-
-  <div class="swiper myGallery">
-    <div class="swiper-wrapper">
-      {% for i in featured_images %}
-      <div class="swiper-slide">
-        <div class="slide-inner">
-          <img
-            src="{% static 'images/' %}{{ i }}"
-            alt="Cambridge Property {{ forloop.counter }}"
-            loading="lazy"
-            onclick="openModal(this.src)"
-          />
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="swiper-button-next"><i class="fa-solid fa-check"></i></div>
-    <div class="swiper-button-prev"><i class="fa-solid fa-check"></i></div>
-
-    <!-- Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
-
-<!-- Lightbox Modal -->
-<div class="image-modal" id="imageModal" onclick="closeModal()">
-  <span class="close-modal">&times;</span>
-  <img id="modalImg" src="" alt="Gallery Image" />
-</div>
-
-
 <!-- Full Page Background Wrapper -->
 <section class="split-section" style="display:flex;gap:3rem;margin:5rem auto;max-width:1200px;padding:0 1rem;align-items:stretch;">
   <!-- Text Box -->
