@@ -373,32 +373,18 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImage");
-  const closeModal = document.querySelector(".close-modal");
+function openModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = src;
+    modal.classList.add('active');
+}
 
-  // Only show modal when an image is clicked
-  document.querySelectorAll(".gallery-item img").forEach(img => {
-    img.addEventListener("click", function() {
-      modal.classList.add("active"); // activate modal
-      modalImg.src = this.src;       // show clicked image
-    });
-  });
-
-  // Close modal on clicking 'X'
-  closeModal.addEventListener("click", () => {
-    modal.classList.remove("active");
-  });
-
-  // Close modal if clicking outside image
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.classList.remove("active");
-  });
-});
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+}
 </script>
-
-
     <style>
         .g-review {
             border: 1px solid #eee;

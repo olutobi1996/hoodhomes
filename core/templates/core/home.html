@@ -37,44 +37,80 @@
     <div class="swiper-wrapper">
       {% for i in featured_images %}
       <div class="swiper-slide">
-        <img
-          src="{% static 'images/' %}{{ i }}"
-          alt="Cambridge Property {{ forloop.counter }}"
-          loading="lazy"
-          class="w-full h-auto object-cover"
-        />
+        <div class="slide-inner">
+          <img
+            src="{% static 'images/' %}{{ i }}"
+            alt="Cambridge Property {{ forloop.counter }}"
+            loading="lazy"
+            onclick="openModal(this.src)"
+          />
+        </div>
       </div>
       {% endfor %}
     </div>
 
-    <!-- Optional Controls -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <!-- Navigation Buttons -->
+    <div class="swiper-button-next"><i class="fa-solid fa-check"></i></div>
+    <div class="swiper-button-prev"><i class="fa-solid fa-check"></i></div>
+
+    <!-- Pagination -->
     <div class="swiper-pagination"></div>
   </div>
 </section>
 
+<!-- Lightbox Modal -->
+<div class="image-modal" id="imageModal" onclick="closeModal()">
+  <span class="close-modal">&times;</span>
+  <img id="modalImg" src="" alt="Gallery Image" />
+</div>
 
 
 <!-- Full Page Background Wrapper -->
-<section class="split-section">
-  <!-- Meet The Owner -->
-  <div class="split-section">
-    <div class="split-text" data-aos="fade-right">
-      <div class="split-text-box">
-        <h2 class="section-heading">Meet the Owner</h2>
-        <p>
-  The property market is changing fast. I take the time to understand each client’s goals 
-  and tailor my approach to meet them. Combining hands-on experience with modern methods, 
-  I aim to maximise value and minimise risk. Whether selling, letting, or investing, 
-  my goal is simple: to make the process seamless and deliver outstanding outcomes.
+<section class="split-section" style="display:flex;gap:3rem;margin:5rem auto;max-width:1200px;padding:0 1rem;align-items:stretch;">
+  <!-- Text Box -->
+  <div class="split-text" data-aos="fade-right" style="flex:1;display:flex;align-items:stretch;">
+    <div class="split-text-box" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;background:rgba(255,255,255,0.95);padding:2rem;border-radius:12px;box-shadow:0 0 15px rgba(212,175,55,0.3);">
+      <h2 class="section-heading" style="font-size:2rem;margin-bottom:0.5rem;color:#333;">Meet the Owner</h2>
+      <p>
+  I’m a Cambridge local with a lifelong passion for property and a career that spans every corner of the sector. From managing branches to overseeing refurbishments, lettings, and sales, I’ve built a strong foundation of experience and a reputation for delivering results. Before property, I played professional football — an experience that shaped my work ethic, drive, and commitment to high standards. I bring that same focus and discipline into every deal, ensuring clients receive exceptional service from start to finish.
 </p>
-        <a href="{% url 'core:about' %}" class="cta-button">Learn More</a>
+
+<p>
+  The property market is changing fast, and I believe success today requires a fresh, forward-thinking approach. I take the time to understand each client’s individual goals and tailor my approach to meet them, making sure every decision is strategic and well-informed. By combining hands-on experience with modern methods and market insight, I aim to maximise value and minimise risk at every stage of the process. Whether you’re investing, selling, or letting, my goal is simple: to make the process seamless and deliver outstanding outcomes.
+</p>
+
+<p>
+  Having worked across the entire property sector — including for large corporate agents — I’ve seen the difference between ticking boxes and truly delivering for clients. Too often, service levels in the corporate world are rushed, impersonal, and reactive. In today’s fast-moving and unpredictable market, that simply isn’t good enough.
+</p>
+
+<p>
+  Property is changing, and your choice of agent has never mattered more. You need someone who is proactive, adaptable, and laser-focused on your goals — not just hitting internal sales targets. I treat every property as if it were my own, protecting its value and maximising its potential. My commitment to high standards, clear communication, and efficient processes ensures a seamless experience from start to finish.
+</p>
+
+     <a href="{% url 'core:about' %}" 
+   class="cta-button" 
+   style="background:#d4af37;
+          color:#111;
+          padding:0.8rem 1.5rem;
+          border-radius:30px;
+          font-weight:bold;
+          text-decoration:none;
+          display:inline-block;
+          width:auto;
+          align-self:flex-start; /* THIS stops flex stretch */
+          text-align:center;
+          margin-top:1rem;">
+   Learn More
+</a>
+
+
       </div>
     </div>
-    <div class="split-image" data-aos="fade-left">
-      <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood">
-    </div>
+     <!-- Image Box -->
+   <div class="split-image" data-aos="fade-left" style="flex:1;display:flex;align-items:stretch;">
+    <img src="{% static 'images/JoeProffesional2.jpg' %}" alt="Joe Hood"
+         style="width:100%;height:100%;flex:1;object-fit:cover;object-position:top center;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,0.25);">
+  </div>
   </div>
 </section>
 
@@ -86,55 +122,72 @@
     <div class="reasons-grid">
 
       <!-- Row 1 -->
-      <div class="reason-row">
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="100" data-arrow="right-down">
-          <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
-          <h3>Partnership</h3>
-          <p>We build strong relationships and guide you through every step, your success is ours.</p>
-        </div>
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="200" data-arrow="down-left">
-          <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <h3>Experience</h3>
-          <p>Years of sales, lettings, and management expertise you can trust.</p>
-        </div>
-      </div>
+<div class="reason-row">
+  <div class="reason-item" data-aos="zoom-in" data-aos-delay="100" data-arrow="right-down">
+    <div class="reason-icon"><i class="fa-solid fa-handshake"></i></div>
+    <h3>Partnership</h3>
+    <p>
+      We build strong, trusting relationships with every client. From the first meeting to the final handover, 
+      we guide you step by step, ensuring that your goals are understood and prioritised.
+    </p>
+  </div>
+  <div class="reason-item" data-aos="zoom-in" data-aos-delay="200" data-arrow="down-left">
+    <div class="reason-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <h3>Experience</h3>
+    <p>
+      With years of hands-on experience across sales, lettings, and management, we bring deep insight 
+      into every aspect of the property sector. Having worked for both local and corporate agencies, 
+      we know what works.
+    </p>
+  </div>
+</div>
 
-      <!-- Row 2 -->
-      <div class="reason-row">
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="300" data-arrow="right-down">
-          <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
-          <h3>Safe Hands</h3>
-          <p>Fully accredited and compliant, protecting your property and interests.</p>
-        </div>
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="400" data-arrow="down">
-          <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
-          <h3>Tech</h3>
-          <p>Modern tools like digital marketing and online booking keep things simple.</p>
-        </div>
-      </div>
+<!-- Row 2 -->
+<div class="reason-row">
+  <div class="reason-item" data-aos="zoom-in" data-aos-delay="300" data-arrow="right-down">
+    <div class="reason-icon"><i class="fa-solid fa-life-ring"></i></div>
+    <h3>Safe Hands</h3>
+    <p>
+      Your property and investments are fully protected under our care. We are fully accredited, compliant, 
+      and meticulous about risk management. Every decision we make is guided by safeguarding your interests.
+    </p>
+  </div>
+  <div class="reason-item" data-aos="zoom-in" data-aos-delay="400" data-arrow="down">
+    <div class="reason-icon"><i class="fa-solid fa-cloud-upload"></i></div>
+    <h3>Tech</h3>
+    <p>
+      We leverage cutting-edge tools, digital marketing, and online booking platforms to streamline the process. 
+      From professional photography to virtual viewings and automated tenant management.
+    </p>
+  </div>
+</div>
 
-      <!-- Row 3 -->
-      <div class="reason-row">
-        <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
-          <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
-          <h3>People</h3>
-          <p>We listen, care, and deliver a personal service tailored to your needs.</p>
-        </div>
-      </div>
+<!-- Row 3 -->
+<div class="reason-row">
+  <div class="reason-item" data-aos="zoom-in" data-aos-delay="500">
+    <div class="reason-icon"><i class="fa-solid fa-users"></i></div>
+    <h3>People</h3>
+    <p>
+      We genuinely care about our clients and listen to their unique needs. Every service we provide is tailored 
+      to deliver a personal, high-quality experience.
+    </p>
+  </div>
+</div>
+
 
     </div>
   </div>
 
-<!-- Services Section -->
 <section class="split-section">
   <div class="split-text" data-aos="fade-left" data-aos-delay="100">
     <div class="split-text-box">
       <h2 class="section-heading">Property Lettings & Management</h2>
       <p>
-        We handle the entire lettings process — from marketing and tenant sourcing to rent collection,
-        maintenance, compliance checks, and inspections. With the Renters Reform Bill ahead, landlords
-        need an agent who keeps them compliant while protecting their interests. We take away the stress
-        so you can focus on returns.
+        We handle every detail of the lettings process — from marketing and tenant sourcing to rent collection, 
+        maintenance, compliance checks, and regular inspections. With upcoming regulations like the Renters Reform Bill, 
+        landlords need an agent who not only stays fully compliant but actively protects their interests. 
+        Our goal is to take away the stress, maximise rental returns, and ensure your property is maintained 
+        to the highest standard, all while keeping communication clear and transparent.
       </p>
     </div>
   </div>
@@ -148,10 +201,11 @@
     <div class="split-text-box">
       <h2 class="section-heading">Property Sales</h2>
       <p>
-        We don’t just “list and wait.” Our tailored strategies combine professional marketing,
-        wide online exposure, and strong negotiation to secure the best price in the shortest time.
-        Every property is unique, so we adapt our approach to highlight its strengths and keep you informed
-        from first viewing to completion.
+        We don’t just list properties — we craft tailored strategies for each sale. Combining professional photography, 
+        extensive online marketing, and strong negotiation skills, we aim to achieve the best price in the shortest possible time. 
+        We highlight each property’s unique features, provide honest market guidance, and communicate clearly 
+        throughout the process. From the first viewing to completion, we ensure every step is efficient, professional, 
+        and geared toward delivering results that exceed expectations.
       </p>
     </div>
   </div>
@@ -165,10 +219,11 @@
     <div class="split-text-box">
       <h2 class="section-heading">Property Investment</h2>
       <p>
-        From sourcing high-potential opportunities to managing refurbishments, we guide you through
-        the entire investment process. Our trusted contractors ensure quality, speed, and value —
-        whether you’re growing a portfolio or maximising a single property, we make investing seamless
-        and profitable.
+        Whether you’re expanding a property portfolio or maximising a single asset, we guide you through 
+        the entire investment journey. From sourcing high-potential opportunities to overseeing refurbishments 
+        and managing contractors, we ensure quality, efficiency, and value. Our experience helps you make 
+        informed, strategic decisions while minimising risk. With our guidance, investing in property becomes 
+        a seamless, profitable, and stress-free process.
       </p>
     </div>
   </div>
@@ -176,6 +231,8 @@
     <img src="{% static 'images/CambridgeHeader.jpg' %}" alt="Investment Service">
   </div>
 </section>
+
+
 
 </div>
 {% endblock %}
