@@ -6,7 +6,6 @@ from django.utils import timezone
 
 User = get_user_model()
 
-
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
