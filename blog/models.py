@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from cloudinary.models import CloudinaryField
+from django.utils import timezone
+
 
 User = get_user_model()
 
@@ -14,7 +16,7 @@ class BlogPost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
-    published_at = models.DateTimeField(null=True, blank=True) 
+    published_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['-created_at']
