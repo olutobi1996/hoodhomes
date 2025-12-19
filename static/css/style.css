@@ -483,7 +483,52 @@
      overflow-x: hidden;
      width: 100%;
 }
-/* ========================= Swiper Gallery ========================= */
+/* ========================= Gallery ========================= */
+.section-gallery {
+  width: 100vw;
+  overflow: hidden;
+  margin: 4rem 0;
+}
+
+.gallery .row {
+  display: flex;
+  gap: 20px;
+  margin: 25px 0;
+  will-change: transform;
+}
+
+/* alternating direction */
+.gallery .row:nth-child(odd) {
+  transform: translateX(20%);
+}
+
+.gallery .row:nth-child(even) {
+  transform: translateX(-40%);
+}
+
+/* image container */
+.gallery__image-container {
+  width: 260px;       /* THIS controls size */
+  height: 200px;      /* THIS controls height */
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+/* image */
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery__image:hover {
+  transform: scale(1.05);
+}
+
 
 /* ========================= Reasons Grid ========================= */
  .reasons-grid {

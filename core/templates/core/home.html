@@ -29,6 +29,28 @@
 
 {{ hero_images|json_script:"hero-images-data" }}
 
+<section class="section-gallery gallery">
+  {% for row in featured_images|slice:":4" %}
+  {% if forloop.counter0|divisibleby:4 %}
+  <div class="row">
+  {% endif %}
+
+    <div class="gallery__image-container">
+      <img
+        src="{% static 'images/' %}{{ featured_images|index:forloop.counter0 }}"
+        alt="Property image {{ forloop.counter }}"
+        class="gallery__image"
+        loading="lazy"
+      />
+    </div>
+
+  {% if forloop.counter|divisibleby:4 or forloop.last %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</section>
+
+
 <!-- Full Page Background Wrapper -->
 <section class="split-section" style="display:flex;gap:3rem;margin:5rem auto;max-width:1200px;padding:0 1rem;align-items:stretch;">
   <!-- Text Box -->
