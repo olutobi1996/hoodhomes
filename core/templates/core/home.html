@@ -29,26 +29,25 @@
 
 {{ hero_images|json_script:"hero-images-data" }}
 
-<section class="section-gallery gallery">
-  {% for row in featured_images|slice:":4" %}
-  {% if forloop.counter0|divisibleby:4 %}
-  <div class="row">
-  {% endif %}
-
-    <div class="gallery__image-container">
+<section class="horizontal-gallery">
+  <div class="gallery-track">
+    {% for image in featured_images %}
       <img
-        src="{% static 'images/' %}{{ featured_images|index:forloop.counter0 }}"
-        alt="Property image {{ forloop.counter }}"
-        class="gallery__image"
-        loading="lazy"
+        src="{% static 'images/' %}{{ image }}"
+        alt="Property {{ forloop.counter }}"
       />
-    </div>
+    {% endfor %}
 
-  {% if forloop.counter|divisibleby:4 or forloop.last %}
+    {# duplicate once for seamless loop #}
+    {% for image in featured_images %}
+      <img
+        src="{% static 'images/' %}{{ image }}"
+        alt="Property {{ forloop.counter }}"
+      />
+    {% endfor %}
   </div>
-  {% endif %}
-  {% endfor %}
 </section>
+
 
 
 <!-- Full Page Background Wrapper -->
