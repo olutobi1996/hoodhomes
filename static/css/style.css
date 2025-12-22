@@ -25,7 +25,7 @@
  .container, .split-section, .why-choose, .properties {
      max-width: 1200px;
      margin: 0 auto;
-     padding: 0 1rem;
+     padding: 2rem;   
 }
 /* ---------------- Headings ---------------- */
  h1, h2, h3, h4, h5, h6, .section-heading, .section-title {
@@ -33,7 +33,7 @@
      font-weight: 700;
      color: #000 !important;
      text-align: center;
-     margin-bottom: 1rem;
+     margin-bottom: 3rem;
 }
  h1 {
      font-size: 3rem;
@@ -497,7 +497,7 @@
   display: flex;
   gap: 1rem;
   width: max-content;
-  animation: scrollGallery 30s linear infinite;
+  animation: scrollGallery 90s linear infinite;
 }
 
 /* Image size */
